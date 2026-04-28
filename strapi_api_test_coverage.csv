@@ -54,13 +54,13 @@ category,/api/categories,POST,Creates category with valid payload,CRUD,P2,Done,A
 category,/api/categories,POST,Rejects category create with missing required fields,Validation,P2,Done,API Audit,test_category.py::test_create_category_missing_required_name_is_rejected,Schema validation
 category,/api/categories/:id,PUT,Updates category by id,CRUD,P2,Done,API Audit,test_category.py::test_update_category,Default core update
 category,/api/categories/:id,DELETE,Deletes category by id,CRUD,P2,Done,API Audit,test_category.py::test_delete_category,Cascade implications on courses
-cda,/api/cdas,GET,Returns paginated list of CDA entries,CRUD,P2,Pending,API Audit,,Default core find
-cda,/api/cdas/:id,GET,Returns CDA by id,CRUD,P2,Pending,API Audit,,Default core findOne
-cda,/api/cdas/:id,GET,Returns 404 for unknown CDA id,Edge Case,P3,Pending,API Audit,,findOne not-found
-cda,/api/cdas,POST,Creates CDA entry with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-cda,/api/cdas,POST,Rejects CDA create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-cda,/api/cdas/:id,PUT,Updates CDA entry by id,CRUD,P2,Pending,API Audit,,Default core update
-cda,/api/cdas/:id,DELETE,Deletes CDA entry by id,CRUD,P3,Pending,API Audit,,Default core delete
+cda,/api/cdas,GET,Returns paginated list of CDA entries,CRUD,P2,Done,API Audit,test_cda.py::test_list_cdas,Default core find
+cda,/api/cdas/:id,GET,Returns CDA by id,CRUD,P2,Done,API Audit,test_cda.py::test_findone_cda,Default core findOne
+cda,/api/cdas/:id,GET,Returns 404 for unknown CDA id,Edge Case,P3,Done,API Audit,test_cda.py::test_findone_unknown_cda_returns_404,findOne not-found
+cda,/api/cdas,POST,Creates CDA entry with valid payload,CRUD,P2,Done,API Audit,test_cda.py::test_create_cda,Default core create
+cda,/api/cdas,POST,Rejects CDA create with invalid payload,Validation,P2,Done,API Audit,test_cda.py::test_create_cda_rejects_unwrapped_payload,Schema validation
+cda,/api/cdas/:id,PUT,Updates CDA entry by id,CRUD,P2,Done,API Audit,test_cda.py::test_update_cda,Default core update
+cda,/api/cdas/:id,DELETE,Deletes CDA entry by id,CRUD,P3,Done,API Audit,test_cda.py::test_delete_cda,Default core delete
 center,/api/centers,GET,Returns paginated list of centers,CRUD,P2,Pending,API Audit,,Default core find
 center,/api/centers/:id,GET,Returns center by id,CRUD,P2,Pending,API Audit,,Default core findOne
 center,/api/centers/:id,GET,Returns 404 for unknown center id,Edge Case,P3,Pending,API Audit,,findOne not-found
@@ -88,27 +88,27 @@ certificate,/api/certificates/:id,PUT,Updates certificate by id,CRUD,P2,Pending,
 certificate,/api/certificates/:id,PUT,Rejects unauthorized certificate update,Permissions,P1,Pending,API Audit,,Only owner/admin
 certificate,/api/certificates/:id,DELETE,Deletes certificate by id,CRUD,P2,Pending,API Audit,,Admin-only path
 certificate,/api/certificates/:id,DELETE,Rejects unauthenticated certificate delete,Auth,P1,Pending,API Audit,,Sensitive delete path
-certificate-partner,/api/certificate-partners,GET,Returns paginated list of certificate partners,CRUD,P2,Pending,API Audit,,Default core find
-certificate-partner,/api/certificate-partners/:id,GET,Returns certificate partner by id,CRUD,P2,Pending,API Audit,,Default core findOne
-certificate-partner,/api/certificate-partners/:id,GET,Returns 404 for unknown certificate partner id,Edge Case,P3,Pending,API Audit,,findOne not-found
-certificate-partner,/api/certificate-partners,POST,Creates certificate partner with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-certificate-partner,/api/certificate-partners,POST,Rejects certificate partner create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-certificate-partner,/api/certificate-partners/:id,PUT,Updates certificate partner by id,CRUD,P2,Pending,API Audit,,Default core update
-certificate-partner,/api/certificate-partners/:id,DELETE,Deletes certificate partner by id,CRUD,P3,Pending,API Audit,,Default core delete
-chat-widget-control,/api/chat-widget-controls,GET,Returns paginated list of chat widget controls,CRUD,P2,Pending,API Audit,,Default core find
-chat-widget-control,/api/chat-widget-controls/:id,GET,Returns chat widget control by id,CRUD,P2,Pending,API Audit,,Default core findOne
-chat-widget-control,/api/chat-widget-controls/:id,GET,Returns 404 for unknown chat widget control id,Edge Case,P3,Pending,API Audit,,findOne not-found
-chat-widget-control,/api/chat-widget-controls,POST,Creates chat widget control with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-chat-widget-control,/api/chat-widget-controls,POST,Rejects chat widget control create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-chat-widget-control,/api/chat-widget-controls/:id,PUT,Updates chat widget control by id,CRUD,P2,Pending,API Audit,,Default core update
-chat-widget-control,/api/chat-widget-controls/:id,DELETE,Deletes chat widget control by id,CRUD,P3,Pending,API Audit,,Default core delete
-childcare-training-landing-page,/api/childcare-training-landing-pages,GET,Returns paginated list of childcare landing pages,CRUD,P2,Pending,API Audit,,Default core find
-childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns childcare landing page by id,CRUD,P2,Pending,API Audit,,Default core findOne
-childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns 404 for unknown childcare landing page id,Edge Case,P3,Pending,API Audit,,findOne not-found
-childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Creates childcare landing page,CRUD,P2,Pending,API Audit,,Default core create
-childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Rejects childcare landing page create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-childcare-training-landing-page,/api/childcare-training-landing-pages/:id,PUT,Updates childcare landing page by id,CRUD,P2,Pending,API Audit,,Default core update
-childcare-training-landing-page,/api/childcare-training-landing-pages/:id,DELETE,Deletes childcare landing page by id,CRUD,P3,Pending,API Audit,,Default core delete
+certificate-partner,/api/certificate-partners,GET,Returns paginated list of certificate partners,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_list_certificate_partners,Default core find
+certificate-partner,/api/certificate-partners/:id,GET,Returns certificate partner by id,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_findone_certificate_partner,Default core findOne
+certificate-partner,/api/certificate-partners/:id,GET,Returns 404 for unknown certificate partner id,Edge Case,P3,Done,API Audit,test_certificate_partner.py::test_findone_unknown_certificate_partner_returns_404,findOne not-found
+certificate-partner,/api/certificate-partners,POST,Creates certificate partner with valid payload,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_create_certificate_partner,Default core create
+certificate-partner,/api/certificate-partners,POST,Rejects certificate partner create with invalid payload,Validation,P2,Done,API Audit,test_certificate_partner.py::test_create_certificate_partner_rejects_unwrapped_payload,Schema validation
+certificate-partner,/api/certificate-partners/:id,PUT,Updates certificate partner by id,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_update_certificate_partner,Default core update
+certificate-partner,/api/certificate-partners/:id,DELETE,Deletes certificate partner by id,CRUD,P3,Done,API Audit,test_certificate_partner.py::test_delete_certificate_partner,Default core delete
+chat-widget-control,/api/chat-widget-controls,GET,Returns paginated list of chat widget controls,CRUD,P2,Done,API Audit,test_chat_widget_control.py::test_list_chat_widget_controls,Default core find
+chat-widget-control,/api/chat-widget-controls/:id,GET,Returns chat widget control by id,CRUD,P2,Done,API Audit,test_chat_widget_control.py::test_findone_chat_widget_control,Default core findOne
+chat-widget-control,/api/chat-widget-controls/:id,GET,Returns 404 for unknown chat widget control id,Edge Case,P3,Done,API Audit,test_chat_widget_control.py::test_findone_unknown_chat_widget_control_returns_404,findOne not-found
+chat-widget-control,/api/chat-widget-controls,POST,Creates chat widget control with valid payload,CRUD,P2,Done,API Audit,test_chat_widget_control.py::test_create_chat_widget_control,Default core create
+chat-widget-control,/api/chat-widget-controls,POST,Rejects chat widget control create with invalid payload,Validation,P2,Done,API Audit,test_chat_widget_control.py::test_create_chat_widget_control_rejects_unwrapped_payload,Schema validation
+chat-widget-control,/api/chat-widget-controls/:id,PUT,Updates chat widget control by id,CRUD,P2,Done,API Audit,test_chat_widget_control.py::test_update_chat_widget_control,Default core update
+chat-widget-control,/api/chat-widget-controls/:id,DELETE,Deletes chat widget control by id,CRUD,P3,Done,API Audit,test_chat_widget_control.py::test_delete_chat_widget_control,Default core delete
+childcare-training-landing-page,/api/childcare-training-landing-pages,GET,Returns paginated list of childcare landing pages,CRUD,P2,Done,API Audit,test_childcare_training_landing_page.py::test_list_childcare_landing_pages,Default core find
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns childcare landing page by id,CRUD,P2,Done,API Audit,test_childcare_training_landing_page.py::test_findone_childcare_landing_page,Default core findOne
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns 404 for unknown childcare landing page id,Edge Case,P3,Done,API Audit,test_childcare_training_landing_page.py::test_findone_unknown_childcare_landing_page_returns_404,findOne not-found
+childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Creates childcare landing page,CRUD,P2,Done,API Audit,test_childcare_training_landing_page.py::test_create_childcare_landing_page,Default core create
+childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Rejects childcare landing page create with invalid payload,Validation,P2,Done,API Audit,test_childcare_training_landing_page.py::test_create_childcare_landing_page_rejects_unwrapped_payload,Schema validation
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,PUT,Updates childcare landing page by id,CRUD,P2,Done,API Audit,test_childcare_training_landing_page.py::test_update_childcare_landing_page,Default core update
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,DELETE,Deletes childcare landing page by id,CRUD,P3,Done,API Audit,test_childcare_training_landing_page.py::test_delete_childcare_landing_page,Default core delete
 course,/api/courses,GET,Returns paginated list of courses,CRUD,P1,Pending,API Audit,,Default core find - core catalog
 course,/api/courses,GET,Supports filtering courses by category and state,CRUD,P1,Pending,API Audit,,Strapi query filters
 course,/api/courses,GET,Supports populate of course relations,CRUD,P2,Pending,API Audit,,Populate query param
@@ -123,13 +123,13 @@ course,/api/courses/:id,PUT,Rejects unauthorized course update,Permissions,P1,Pe
 course,/api/courses,POST,Rejects unauthenticated course creation,Auth,P1,Pending,API Audit,,Admin-only path
 course,/api/courses,GET,Handles malformed query params gracefully,Edge Case,P3,Pending,API Audit,,Strapi parser error
 course,/api/courses/:id,GET,Handles non-numeric id gracefully,Edge Case,P3,Pending,API Audit,,Bad id parsing
-course-audio,/api/course-audios,GET,Returns paginated list of course audios,CRUD,P2,Pending,API Audit,,Default core find
-course-audio,/api/course-audios/:id,GET,Returns course audio by id,CRUD,P2,Pending,API Audit,,Default core findOne
-course-audio,/api/course-audios/:id,GET,Returns 404 for unknown course audio id,Edge Case,P3,Pending,API Audit,,findOne not-found
-course-audio,/api/course-audios,POST,Creates course audio with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-course-audio,/api/course-audios,POST,Rejects course audio create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-course-audio,/api/course-audios/:id,PUT,Updates course audio by id,CRUD,P2,Pending,API Audit,,Default core update
-course-audio,/api/course-audios/:id,DELETE,Deletes course audio by id,CRUD,P3,Pending,API Audit,,Default core delete
+course-audio,/api/course-audios,GET,Returns paginated list of course audios,CRUD,P2,Done,API Audit,test_course_audio.py::test_list_course_audios,Default core find
+course-audio,/api/course-audios/:id,GET,Returns course audio by id,CRUD,P2,Done,API Audit,test_course_audio.py::test_findone_course_audio,Default core findOne
+course-audio,/api/course-audios/:id,GET,Returns 404 for unknown course audio id,Edge Case,P3,Done,API Audit,test_course_audio.py::test_findone_unknown_course_audio_returns_404,findOne not-found
+course-audio,/api/course-audios,POST,Creates course audio with valid payload,CRUD,P2,Done,API Audit,test_course_audio.py::test_create_course_audio,Default core create
+course-audio,/api/course-audios,POST,Rejects course audio create with invalid payload,Validation,P2,Done,API Audit,test_course_audio.py::test_create_course_audio_rejects_unwrapped_payload,Schema validation
+course-audio,/api/course-audios/:id,PUT,Updates course audio by id,CRUD,P2,Done,API Audit,test_course_audio.py::test_update_course_audio,Default core update
+course-audio,/api/course-audios/:id,DELETE,Deletes course audio by id,CRUD,P3,Done,API Audit,test_course_audio.py::test_delete_course_audio,Default core delete
 course-feedback,/api/course-feedbacks,GET,Returns paginated list of course feedback,CRUD,P1,Pending,API Audit,,User-generated content - sensitive
 course-feedback,/api/course-feedbacks,GET,Rejects unauthenticated course feedback list requests,Auth,P1,Pending,API Audit,,Authenticated read recommended
 course-feedback,/api/course-feedbacks,GET,Enforces role-based access on course feedback,Permissions,P1,Pending,API Audit,,Owner or admin scope
@@ -142,27 +142,27 @@ course-feedback,/api/course-feedbacks/:id,PUT,Updates course feedback by id,CRUD
 course-feedback,/api/course-feedbacks/:id,PUT,Rejects unauthorized update of another users feedback,Permissions,P1,Pending,API Audit,,IDOR check
 course-feedback,/api/course-feedbacks/:id,DELETE,Deletes course feedback by id,CRUD,P2,Pending,API Audit,,Default core delete
 course-feedback,/api/course-feedbacks/:id,DELETE,Rejects unauthenticated delete of course feedback,Auth,P1,Pending,API Audit,,Sensitive delete path
-course-search,/api/course-searches,GET,Returns paginated list of course searches,CRUD,P2,Pending,API Audit,,Default core find
-course-search,/api/course-searches/:id,GET,Returns course search by id,CRUD,P2,Pending,API Audit,,Default core findOne
-course-search,/api/course-searches/:id,GET,Returns 404 for unknown course search id,Edge Case,P3,Pending,API Audit,,findOne not-found
-course-search,/api/course-searches,POST,Creates course search with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-course-search,/api/course-searches,POST,Rejects course search create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-course-search,/api/course-searches/:id,PUT,Updates course search by id,CRUD,P2,Pending,API Audit,,Default core update
-course-search,/api/course-searches/:id,DELETE,Deletes course search by id,CRUD,P3,Pending,API Audit,,Default core delete
-course-state,/api/course-states,GET,Returns paginated list of course states,CRUD,P2,Pending,API Audit,,Default core find
-course-state,/api/course-states/:id,GET,Returns course state by id,CRUD,P2,Pending,API Audit,,Default core findOne
-course-state,/api/course-states/:id,GET,Returns 404 for unknown course state id,Edge Case,P3,Pending,API Audit,,findOne not-found
-course-state,/api/course-states,POST,Creates course state with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-course-state,/api/course-states,POST,Rejects course state create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-course-state,/api/course-states/:id,PUT,Updates course state by id,CRUD,P2,Pending,API Audit,,Default core update
-course-state,/api/course-states/:id,DELETE,Deletes course state by id,CRUD,P3,Pending,API Audit,,Default core delete
-course-state-fee,/api/course-state-fees,GET,Returns paginated list of course state fees,CRUD,P1,Pending,API Audit,,Pricing-related entity
-course-state-fee,/api/course-state-fees/:id,GET,Returns course state fee by id,CRUD,P2,Pending,API Audit,,Default core findOne
-course-state-fee,/api/course-state-fees/:id,GET,Returns 404 for unknown course state fee id,Edge Case,P3,Pending,API Audit,,findOne not-found
-course-state-fee,/api/course-state-fees,POST,Creates course state fee with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-course-state-fee,/api/course-state-fees,POST,Rejects course state fee create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-course-state-fee,/api/course-state-fees/:id,PUT,Updates course state fee by id,CRUD,P2,Pending,API Audit,,Default core update
-course-state-fee,/api/course-state-fees/:id,DELETE,Deletes course state fee by id,CRUD,P3,Pending,API Audit,,Default core delete
+course-search,/api/course-searches,GET,Returns paginated list of course searches,CRUD,P2,Done,API Audit,test_course_search.py::test_list_course_searches,Default core find
+course-search,/api/course-searches/:id,GET,Returns course search by id,CRUD,P2,Done,API Audit,test_course_search.py::test_findone_course_search,Default core findOne
+course-search,/api/course-searches/:id,GET,Returns 404 for unknown course search id,Edge Case,P3,Done,API Audit,test_course_search.py::test_findone_unknown_course_search_returns_404,findOne not-found
+course-search,/api/course-searches,POST,Creates course search with valid payload,CRUD,P2,Done,API Audit,test_course_search.py::test_create_course_search,Default core create
+course-search,/api/course-searches,POST,Rejects course search create with invalid payload,Validation,P2,Done,API Audit,test_course_search.py::test_create_course_search_rejects_unwrapped_payload,Schema validation
+course-search,/api/course-searches/:id,PUT,Updates course search by id,CRUD,P2,Done,API Audit,test_course_search.py::test_update_course_search,Default core update
+course-search,/api/course-searches/:id,DELETE,Deletes course search by id,CRUD,P3,Done,API Audit,test_course_search.py::test_delete_course_search,Default core delete
+course-state,/api/course-states,GET,Returns paginated list of course states,CRUD,P2,Done,API Audit,test_course_state.py::test_list_course_states,Default core find
+course-state,/api/course-states/:id,GET,Returns course state by id,CRUD,P2,Done,API Audit,test_course_state.py::test_findone_course_state,Default core findOne
+course-state,/api/course-states/:id,GET,Returns 404 for unknown course state id,Edge Case,P3,Done,API Audit,test_course_state.py::test_findone_unknown_course_state_returns_404,findOne not-found
+course-state,/api/course-states,POST,Creates course state with valid payload,CRUD,P2,Done,API Audit,test_course_state.py::test_create_course_state,Default core create
+course-state,/api/course-states,POST,Rejects course state create with invalid payload,Validation,P2,Done,API Audit,test_course_state.py::test_create_course_state_rejects_unwrapped_payload,Schema validation
+course-state,/api/course-states/:id,PUT,Updates course state by id,CRUD,P2,Done,API Audit,test_course_state.py::test_update_course_state,Default core update
+course-state,/api/course-states/:id,DELETE,Deletes course state by id,CRUD,P3,Done,API Audit,test_course_state.py::test_delete_course_state,Default core delete
+course-state-fee,/api/course-state-fees,GET,Returns paginated list of course state fees,CRUD,P1,Done,API Audit,test_course_state_fee.py::test_list_course_state_fees,Pricing-related entity
+course-state-fee,/api/course-state-fees/:id,GET,Returns course state fee by id,CRUD,P2,Done,API Audit,test_course_state_fee.py::test_findone_course_state_fee,Default core findOne
+course-state-fee,/api/course-state-fees/:id,GET,Returns 404 for unknown course state fee id,Edge Case,P3,Done,API Audit,test_course_state_fee.py::test_findone_unknown_course_state_fee_returns_404,findOne not-found
+course-state-fee,/api/course-state-fees,POST,Creates course state fee with valid payload,CRUD,P2,Done,API Audit,test_course_state_fee.py::test_create_course_state_fee,Default core create
+course-state-fee,/api/course-state-fees,POST,Rejects course state fee create with invalid payload,Validation,P2,Done,API Audit,test_course_state_fee.py::test_create_course_state_fee_rejects_unwrapped_payload,Schema validation
+course-state-fee,/api/course-state-fees/:id,PUT,Updates course state fee by id,CRUD,P2,Done,API Audit,test_course_state_fee.py::test_update_course_state_fee,Default core update
+course-state-fee,/api/course-state-fees/:id,DELETE,Deletes course state fee by id,CRUD,P3,Done,API Audit,test_course_state_fee.py::test_delete_course_state_fee,Default core delete
 custom-auth,/api/custom-auth/login,POST,Logs in user successfully with valid username/password,Custom Endpoint,P1,Pending,API Audit,,Issues JWT and updates sign-in tracking
 custom-auth,/api/custom-auth/login,POST,Returns 400 when password is invalid,Custom Endpoint,P1,Pending,API Audit,,ValidationError 'Invalid identifier or password'
 custom-auth,/api/custom-auth/login,POST,Returns 400 when username does not exist,Custom Endpoint,P1,Pending,API Audit,,ValidationError on unknown user

@@ -1,0 +1,135 @@
+API	Endpoint	Method	Test Case	Category	Priority	Status	Test File	Notes
+about-us-page	/api/about-us-pages	GET	Returns paginated list of about-us pages	CRUD	P2	Done	test_about_us_page.py::test_list_about_us_pages	Default core find action
+about-us-page	/api/about-us-pages	GET	Supports pagination filters and sort query params	CRUD	P3	Done	test_about_us_page.py::test_list_supports_pagination_and_sort	Validates Strapi query parser
+about-us-page	/api/about-us-pages/:id	GET	Returns single about-us page by id	CRUD	P2	Done	test_about_us_page.py::test_findone_about_us_page	Default core findOne action
+about-us-page	/api/about-us-pages/:id	GET	Returns 404 when about-us page id not found	Edge Case	P2	Done	test_about_us_page.py::test_findone_unknown_about_us_page_returns_404	findOne missing record
+about-us-page	/api/about-us-pages	POST	Creates an about-us page with valid payload	CRUD	P2	Done	test_about_us_page.py::test_create_about_us_page	Default core create
+about-us-page	/api/about-us-pages	POST	Rejects create when required fields missing	Validation	P2	Done	test_about_us_page.py::test_create_about_us_page_rejects_unwrapped_payload	Schema validation
+about-us-page	/api/about-us-pages/:id	PUT	Updates about-us page by id	CRUD	P2	Done	test_about_us_page.py::test_update_about_us_page	Default core update
+about-us-page	/api/about-us-pages/:id	DELETE	Deletes about-us page by id	CRUD	P2	Done	test_about_us_page.py::test_delete_about_us_page	Default core delete
+activity-response	/api/activity-responses	GET	Returns paginated list of activity responses	CRUD	P2	Done	test_activity_response.py::test_list_activity_responses	Default core find
+activity-response	/api/activity-responses/:id	GET	Returns activity response by id	CRUD	P2	Done	test_activity_response.py::test_findone_activity_response	Default core findOne
+activity-response	/api/activity-responses/:id	GET	Returns 404 for unknown activity response id	Edge Case	P2	Done	test_activity_response.py::test_findone_unknown_activity_response_returns_404	findOne not-found path
+activity-response	/api/activity-responses	POST	Creates activity response with valid payload	CRUD	P2	Done	test_activity_response.py::test_create_activity_response	Used to record student answers
+activity-response	/api/activity-responses	POST	Rejects activity response create with invalid payload	Validation	P2	Done	test_activity_response.py::test_create_activity_response_rejects_invalid_payload	Schema validation
+activity-response	/api/activity-responses/:id	PUT	Updates activity response by id	CRUD	P2	Done	test_activity_response.py::test_update_activity_response	Default core update
+activity-response	/api/activity-responses/:id	DELETE	Deletes activity response by id	CRUD	P3	Done	test_activity_response.py::test_delete_activity_response	Default core delete
+announcement	/api/announcements	GET	Returns paginated list of announcements	CRUD	P2	Done	test_announcement.py::test_list_announcements	Default core find
+announcement	/api/announcements/:id	GET	Returns announcement by id	CRUD	P2	Done	test_announcement.py::test_findone_announcement	Default core findOne
+announcement	/api/announcements/:id	GET	Returns 404 for unknown announcement id	Edge Case	P3	Done	test_announcement.py::test_findone_unknown_announcement_returns_404	findOne not-found
+announcement	/api/announcements	POST	Creates announcement with valid payload	CRUD	P2	Done	test_announcement.py::test_create_announcement	Default core create
+announcement	/api/announcements	POST	Rejects announcement create with missing required fields	Validation	P2	Done	test_announcement.py::test_create_announcement_rejects_unwrapped_payload	Schema validation
+announcement	/api/announcements/:id	PUT	Updates announcement by id	CRUD	P2	Done	test_announcement.py::test_update_announcement	Default core update
+announcement	/api/announcements/:id	DELETE	Deletes announcement by id	CRUD	P3	Done	test_announcement.py::test_delete_announcement	Default core delete
+app-configuration	/api/app-configuration	GET	Returns global app configuration	CRUD	P1	Done	test_app_configuration.py::test_get_app_configuration	Single-type find
+app-configuration	/api/app-configuration	PUT	Updates global app configuration	CRUD	P2	Done	test_app_configuration.py::test_update_app_configuration	Single-type update
+app-configuration	/api/app-configuration	PUT	Rejects app config update with invalid payload	Validation	P2	Done	test_app_configuration.py::test_update_app_configuration_rejects_invalid_payload	Schema validation
+app-configuration	/api/app-configuration	DELETE	Deletes app configuration	CRUD	P3	Done	test_app_configuration.py::test_delete_app_configuration	Single-type delete (admin only)
+authorize-api	/api/authorize-api	GET	Returns Authorize.net config	CRUD	P1	Done	test_authorize_api.py::test_get_authorize_api_with_admin_token	Single-type find for payment config
+authorize-api	/api/authorize-api	GET	Rejects unauthenticated requests for authorize-api	Auth	P1	Done	test_authorize_api.py::test_get_authorize_api_unauthenticated_is_rejected	Sensitive payment data must be protected
+authorize-api	/api/authorize-api	GET	Enforces role-based access for authorize-api	Permissions	P1	Done	test_authorize_api.py::test_authorize_api_role_based_access	Only admins/internal roles
+authorize-api	/api/authorize-api	PUT	Updates Authorize.net configuration	CRUD	P1	Done	test_authorize_api.py::test_update_authorize_api	Single-type update
+authorize-api	/api/authorize-api	PUT	Rejects authorize-api update with invalid payload	Validation	P1	Done	test_authorize_api.py::test_update_authorize_api_rejects_invalid_payload	Schema validation on payment fields
+authorize-api	/api/authorize-api	PUT	Rejects unauthenticated update of authorize-api	Auth	P1	Done	test_authorize_api.py::test_update_authorize_api_unauthenticated_is_rejected	Auth required for sensitive data
+authorize-api	/api/authorize-api	DELETE	Rejects unauthenticated delete of authorize-api	Auth	P1	Done	test_authorize_api.py::test_delete_authorize_api_unauthenticated_is_rejected	Sensitive endpoint
+author	/api/authors	GET	Returns paginated list of authors	CRUD	P2	Done	test_author.py::test_list_authors	Default core find
+author	/api/authors/:id	GET	Returns author by id	CRUD	P2	Done	test_author.py::test_findone_author	Default core findOne
+author	/api/authors/:id	GET	Returns 404 for unknown author id	Edge Case	P3	Done	test_author.py::test_findone_unknown_author_returns_404	findOne not-found
+author	/api/authors	POST	Creates author with valid payload	CRUD	P2	Done	test_author.py::test_create_author	Default core create
+author	/api/authors	POST	Rejects author create when required fields missing	Validation	P2	Done	test_author.py::test_create_author_missing_required_name_is_rejected	Schema validation
+author	/api/authors/:id	PUT	Updates author by id	CRUD	P2	Done	test_author.py::test_update_author	Default core update
+author	/api/authors/:id	DELETE	Deletes author by id	CRUD	P3	Done	test_author.py::test_delete_author	Default core delete
+carousal-image	/api/carousal-images	GET	Returns paginated list of carousal images	CRUD	P2	Done	test_carousal_image.py::test_list_carousal_images	Default core find
+carousal-image	/api/carousal-images/:id	GET	Returns carousal image by id	CRUD	P2	Done	test_carousal_image.py::test_findone_carousal_image	Default core findOne
+carousal-image	/api/carousal-images/:id	GET	Returns 404 for unknown carousal image id	Edge Case	P3	Done	test_carousal_image.py::test_findone_unknown_carousal_image_returns_404	findOne not-found
+carousal-image	/api/carousal-images	POST	Creates carousal image with valid payload	CRUD	P2	Done	test_carousal_image.py::test_create_carousal_image	Default core create
+carousal-image	/api/carousal-images	POST	Rejects carousal image create with invalid payload	Validation	P2	Done	test_carousal_image.py::test_create_carousal_image_rejects_unwrapped_payload	Schema validation
+carousal-image	/api/carousal-images/:id	PUT	Updates carousal image by id	CRUD	P2	Done	test_carousal_image.py::test_update_carousal_image	Default core update
+carousal-image	/api/carousal-images/:id	DELETE	Deletes carousal image by id	CRUD	P3	Done	test_carousal_image.py::test_delete_carousal_image	Default core delete
+category	/api/categories	GET	Returns paginated list of categories	CRUD	P1	Done	test_category.py::test_list_categories	Top-level taxonomy
+category	/api/categories/:id	GET	Returns category by id	CRUD	P2	Done	test_category.py::test_findone_category	Default core findOne
+category	/api/categories/:id	GET	Returns 404 for unknown category id	Edge Case	P2	Done	test_category.py::test_findone_unknown_category_returns_404	findOne not-found
+category	/api/categories	POST	Creates category with valid payload	CRUD	P2	Done	test_category.py::test_create_category	Default core create
+category	/api/categories	POST	Rejects category create with missing required fields	Validation	P2	Done	test_category.py::test_create_category_missing_required_name_is_rejected	Schema validation
+category	/api/categories/:id	PUT	Updates category by id	CRUD	P2	Done	test_category.py::test_update_category	Default core update
+category	/api/categories/:id	DELETE	Deletes category by id	CRUD	P2	Done	test_category.py::test_delete_category	Cascade implications on courses
+cda	/api/cdas	GET	Returns paginated list of CDA entries	CRUD	P2	Done	test_cda.py::test_list_cdas	Default core find
+cda	/api/cdas/:id	GET	Returns CDA by id	CRUD	P2	Done	test_cda.py::test_findone_cda	Default core findOne
+cda	/api/cdas/:id	GET	Returns 404 for unknown CDA id	Edge Case	P3	Done	test_cda.py::test_findone_unknown_cda_returns_404	findOne not-found
+cda	/api/cdas	POST	Creates CDA entry with valid payload	CRUD	P2	Done	test_cda.py::test_create_cda	Default core create
+cda	/api/cdas	POST	Rejects CDA create with invalid payload	Validation	P2	Done	test_cda.py::test_create_cda_rejects_unwrapped_payload	Schema validation
+cda	/api/cdas/:id	PUT	Updates CDA entry by id	CRUD	P2	Done	test_cda.py::test_update_cda	Default core update
+cda	/api/cdas/:id	DELETE	Deletes CDA entry by id	CRUD	P3	Done	test_cda.py::test_delete_cda	Default core delete
+certificate-partner	/api/certificate-partners	GET	Returns paginated list of certificate partners	CRUD	P2	Done	test_certificate_partner.py::test_list_certificate_partners	Default core find
+certificate-partner	/api/certificate-partners/:id	GET	Returns certificate partner by id	CRUD	P2	Done	test_certificate_partner.py::test_findone_certificate_partner	Default core findOne
+certificate-partner	/api/certificate-partners/:id	GET	Returns 404 for unknown certificate partner id	Edge Case	P3	Done	test_certificate_partner.py::test_findone_unknown_certificate_partner_returns_404	findOne not-found
+certificate-partner	/api/certificate-partners	POST	Creates certificate partner with valid payload	CRUD	P2	Done	test_certificate_partner.py::test_create_certificate_partner	Default core create
+certificate-partner	/api/certificate-partners	POST	Rejects certificate partner create with invalid payload	Validation	P2	Done	test_certificate_partner.py::test_create_certificate_partner_rejects_unwrapped_payload	Schema validation
+certificate-partner	/api/certificate-partners/:id	PUT	Updates certificate partner by id	CRUD	P2	Done	test_certificate_partner.py::test_update_certificate_partner	Default core update
+certificate-partner	/api/certificate-partners/:id	DELETE	Deletes certificate partner by id	CRUD	P3	Done	test_certificate_partner.py::test_delete_certificate_partner	Default core delete
+chat-widget-control	/api/chat-widget-controls	GET	Returns paginated list of chat widget controls	CRUD	P2	Done	test_chat_widget_control.py::test_list_chat_widget_controls	Default core find
+chat-widget-control	/api/chat-widget-controls/:id	GET	Returns chat widget control by id	CRUD	P2	Done	test_chat_widget_control.py::test_findone_chat_widget_control	Default core findOne
+chat-widget-control	/api/chat-widget-controls/:id	GET	Returns 404 for unknown chat widget control id	Edge Case	P3	Done	test_chat_widget_control.py::test_findone_unknown_chat_widget_control_returns_404	findOne not-found
+chat-widget-control	/api/chat-widget-controls	POST	Creates chat widget control with valid payload	CRUD	P2	Done	test_chat_widget_control.py::test_create_chat_widget_control	Default core create
+chat-widget-control	/api/chat-widget-controls	POST	Rejects chat widget control create with invalid payload	Validation	P2	Done	test_chat_widget_control.py::test_create_chat_widget_control_rejects_unwrapped_payload	Schema validation
+chat-widget-control	/api/chat-widget-controls/:id	PUT	Updates chat widget control by id	CRUD	P2	Done	test_chat_widget_control.py::test_update_chat_widget_control	Default core update
+chat-widget-control	/api/chat-widget-controls/:id	DELETE	Deletes chat widget control by id	CRUD	P3	Done	test_chat_widget_control.py::test_delete_chat_widget_control	Default core delete
+childcare-training-landing-page	/api/childcare-training-landing-pages	GET	Returns paginated list of childcare landing pages	CRUD	P2	Done	test_childcare_training_landing_page.py::test_list_childcare_landing_pages	Default core find
+childcare-training-landing-page	/api/childcare-training-landing-pages/:id	GET	Returns childcare landing page by id	CRUD	P2	Done	test_childcare_training_landing_page.py::test_findone_childcare_landing_page	Default core findOne
+childcare-training-landing-page	/api/childcare-training-landing-pages/:id	GET	Returns 404 for unknown childcare landing page id	Edge Case	P3	Done	test_childcare_training_landing_page.py::test_findone_unknown_childcare_landing_page_returns_404	findOne not-found
+childcare-training-landing-page	/api/childcare-training-landing-pages	POST	Creates childcare landing page	CRUD	P2	Done	test_childcare_training_landing_page.py::test_create_childcare_landing_page	Default core create
+childcare-training-landing-page	/api/childcare-training-landing-pages	POST	Rejects childcare landing page create with invalid payload	Validation	P2	Done	test_childcare_training_landing_page.py::test_create_childcare_landing_page_rejects_unwrapped_payload	Schema validation
+childcare-training-landing-page	/api/childcare-training-landing-pages/:id	PUT	Updates childcare landing page by id	CRUD	P2	Done	test_childcare_training_landing_page.py::test_update_childcare_landing_page	Default core update
+childcare-training-landing-page	/api/childcare-training-landing-pages/:id	DELETE	Deletes childcare landing page by id	CRUD	P3	Done	test_childcare_training_landing_page.py::test_delete_childcare_landing_page	Default core delete
+course-audio	/api/course-audios	GET	Returns paginated list of course audios	CRUD	P2	Done	test_course_audio.py::test_list_course_audios	Default core find
+course-audio	/api/course-audios/:id	GET	Returns course audio by id	CRUD	P2	Done	test_course_audio.py::test_findone_course_audio	Default core findOne
+course-audio	/api/course-audios/:id	GET	Returns 404 for unknown course audio id	Edge Case	P3	Done	test_course_audio.py::test_findone_unknown_course_audio_returns_404	findOne not-found
+course-audio	/api/course-audios	POST	Creates course audio with valid payload	CRUD	P2	Done	test_course_audio.py::test_create_course_audio	Default core create
+course-audio	/api/course-audios	POST	Rejects course audio create with invalid payload	Validation	P2	Done	test_course_audio.py::test_create_course_audio_rejects_unwrapped_payload	Schema validation
+course-audio	/api/course-audios/:id	PUT	Updates course audio by id	CRUD	P2	Done	test_course_audio.py::test_update_course_audio	Default core update
+course-audio	/api/course-audios/:id	DELETE	Deletes course audio by id	CRUD	P3	Done	test_course_audio.py::test_delete_course_audio	Default core delete
+course-search	/api/course-searches	GET	Returns paginated list of course searches	CRUD	P2	Done	test_course_search.py::test_list_course_searches	Default core find
+course-search	/api/course-searches/:id	GET	Returns course search by id	CRUD	P2	Done	test_course_search.py::test_findone_course_search	Default core findOne
+course-search	/api/course-searches/:id	GET	Returns 404 for unknown course search id	Edge Case	P3	Done	test_course_search.py::test_findone_unknown_course_search_returns_404	findOne not-found
+course-search	/api/course-searches	POST	Creates course search with valid payload	CRUD	P2	Done	test_course_search.py::test_create_course_search	Default core create
+course-search	/api/course-searches	POST	Rejects course search create with invalid payload	Validation	P2	Done	test_course_search.py::test_create_course_search_rejects_unwrapped_payload	Schema validation
+course-search	/api/course-searches/:id	PUT	Updates course search by id	CRUD	P2	Done	test_course_search.py::test_update_course_search	Default core update
+course-search	/api/course-searches/:id	DELETE	Deletes course search by id	CRUD	P3	Done	test_course_search.py::test_delete_course_search	Default core delete
+course-state	/api/course-states	GET	Returns paginated list of course states	CRUD	P2	Done	test_course_state.py::test_list_course_states	Default core find
+course-state	/api/course-states/:id	GET	Returns course state by id	CRUD	P2	Done	test_course_state.py::test_findone_course_state	Default core findOne
+course-state	/api/course-states/:id	GET	Returns 404 for unknown course state id	Edge Case	P3	Done	test_course_state.py::test_findone_unknown_course_state_returns_404	findOne not-found
+course-state	/api/course-states	POST	Creates course state with valid payload	CRUD	P2	Done	test_course_state.py::test_create_course_state	Default core create
+course-state	/api/course-states	POST	Rejects course state create with invalid payload	Validation	P2	Done	test_course_state.py::test_create_course_state_rejects_unwrapped_payload	Schema validation
+course-state	/api/course-states/:id	PUT	Updates course state by id	CRUD	P2	Done	test_course_state.py::test_update_course_state	Default core update
+course-state	/api/course-states/:id	DELETE	Deletes course state by id	CRUD	P3	Done	test_course_state.py::test_delete_course_state	Default core delete
+course-state-fee	/api/course-state-fees	GET	Returns paginated list of course state fees	CRUD	P1	Done	test_course_state_fee.py::test_list_course_state_fees	Pricing-related entity
+course-state-fee	/api/course-state-fees/:id	GET	Returns course state fee by id	CRUD	P2	Done	test_course_state_fee.py::test_findone_course_state_fee	Default core findOne
+course-state-fee	/api/course-state-fees/:id	GET	Returns 404 for unknown course state fee id	Edge Case	P3	Done	test_course_state_fee.py::test_findone_unknown_course_state_fee_returns_404	findOne not-found
+course-state-fee	/api/course-state-fees	POST	Creates course state fee with valid payload	CRUD	P2	Done	test_course_state_fee.py::test_create_course_state_fee	Default core create
+course-state-fee	/api/course-state-fees	POST	Rejects course state fee create with invalid payload	Validation	P2	Done	test_course_state_fee.py::test_create_course_state_fee_rejects_unwrapped_payload	Schema validation
+course-state-fee	/api/course-state-fees/:id	PUT	Updates course state fee by id	CRUD	P2	Done	test_course_state_fee.py::test_update_course_state_fee	Default core update
+course-state-fee	/api/course-state-fees/:id	DELETE	Deletes course state fee by id	CRUD	P3	Done	test_course_state_fee.py::test_delete_course_state_fee	Default core delete
+custom-auth	/api/custom-auth/register	POST	Account Creation - create new account with all required fields	Custom Endpoint	P1	Done	test_account_management.py::test_account_creation_with_all_required_fields	Maps to QA case Account Creation
+custom-auth	/api/custom-auth/forgot-password	POST	Forgot Password - known username returns ok or email send failure	Custom Endpoint	P1	Done	test_account_management.py::test_forgot_password_for_known_user_returns_ok	Maps to QA case Forgot Password
+custom-auth	/api/custom-auth/forgot-password	POST	Forgot Password - unknown username returns NOT_FOUND	Custom Endpoint	P2	Done	test_account_management.py::test_forgot_password_for_unknown_user_returns_not_found	Edge case for Forgot Password QA
+custom-auth	/api/custom-auth/forgot-username	POST	Forgot Username - unknown email returns NOT_FOUND	Custom Endpoint	P1	Done	test_account_management.py::test_forgot_username_for_unknown_email_returns_not_found	Maps to QA case Forgot UserName
+custom-auth	/api/custom-auth/forgot-username	POST	Forgot Username - missing fields rejected	Custom Endpoint	P2	Done	test_account_management.py::test_forgot_username_requires_lastname_and_email	Validation for Forgot UserName
+users-permissions	/api/users/:id	PUT	Super Admin can update username and password and user can sign in	Permissions	P1	Done	test_account_management.py::test_super_admin_can_update_username_and_password	Maps to QA case Update Username and Password
+discount-code	/api/discount-codes	POST	New Discount Code - create percentage discount for multi-user use	Custom Endpoint	P1	Done	test_discount_code.py::test_create_new_percentage_discount_code_for_multi_user_use	Maps to QA case New Discount Code
+discount-code	/api/discount-codes	GET	Existing Discount Code - active code is visible in listing	CRUD	P1	Done	test_discount_code.py::test_active_discount_code_is_visible_in_listing	Maps to QA case Existing Discount Code
+discount-code	/api/discount-codes/:id	PUT	Inactivate Discount Code - status flips to inactive (EXPIRED)	Business Logic	P1	Done	test_discount_code.py::test_inactive_discount_code_reports_inactive_status	Maps to QA case Inactivate Discount Code
+discount-code	/api/discount-codes	POST	Discount Code create requires auth - rejected without API token	Permissions	P1	Done	test_discount_code.py::test_create_discount_code_requires_auth	Auth hardening for the New Discount Code flow
+center	/api/centers	POST	New Group Subscription - create a Center for a new Child Care Center	Custom Endpoint	P1	Done	test_group_subscription.py::test_new_group_subscription_creates_center	Maps to QA case New Group Subscription Set up
+center-user	/api/center-users	POST	Group Subscription - Super Admin can add Center Users	Permissions	P1	Done	test_group_subscription.py::test_super_admin_can_add_center_user	Maps to QA case Add Center Users using Super Admin Account
+center	/api/centers	GET	Group Subscription - Center Admin Dashboard lists assigned Center	Custom Endpoint	P1	Done	test_group_subscription.py::test_center_admin_dashboard_lists_their_center	Maps to QA case Center Admin Dashboard Access
+discount-code	/api/discount-codes	GET	Group Subscription - Center user can look up center-scoped discount code	Business Logic	P1	Done	test_group_subscription.py::test_center_scoped_discount_code_can_be_listed_for_center_user	Maps to QA case Discount Code Verification for Center User
+discount-code	/api/discount-codes	GET	Group Subscription - Non-center user lookup of unknown code returns empty	Business Logic	P1	Done	test_group_subscription.py::test_unknown_discount_code_lookup_returns_empty	Maps to QA case Discount Code Verification for Non-Center User
+progress	/api/progresses/:id	GET	Class Access - regular class progress can be fetched	CRUD	P1	Done	test_class_access.py::test_user_can_fetch_their_progress	Maps to QA case Class Access regular class
+progress	/api/progresses/:id	PUT	Class Access - progress updates persist (round-trip)	Business Logic	P1	Done	test_class_access.py::test_progress_updates_are_persisted	Maps to QA case Verify class progress is maintained
+course	/api/courses	GET	Class Access - 30 hour child care basics course exists	CRUD	P2	Skipped	test_class_access.py::test_thirty_hour_childcare_course_is_listed	Skipped - course not seeded in current Strapi instance
+scorm-progress	/api/scorm-progresses	POST	SCORM Class - access scorm class and maintain progress	Business Logic	P1	Done	test_class_access.py::test_scorm_progress_create_and_update	Maps to QA case Scorm Class access + progress
+interact-response	/api/interact-responses	POST	Quiz - completion creates an interact-response	Business Logic	P1	Done	test_class_access.py::test_quiz_completion_creates_interact_response	Maps to QA case Quiz completion
+certificate	/api/certificates	GET	Verify class can be Repeated - View Certificate endpoint responds	CRUD	P1	Done	test_class_access.py::test_certificate_endpoint_responds	Maps to QA case View Certificate after repeat - schema lacks user relation so tested as listing endpoint
+frontend	N/A	N/A	Google Translate widget translates course content	Edge Case	P3	N/A	test_class_access.py::test_google_translate_widget_translates_course_content	Frontend-only widget - no API to unit-test
+discount-code	/api/discount-codes	PUT	Graduate Report - hourly_rate field is writable and round-trips	Business Logic	P1	Done	test_graduate_report.py::test_discount_hourly_rate_field_is_writable	Maps to QA case Graduate Report - existing discount hourly rate
+discount-code	/api/discount-codes	GET	Graduate Report - MELOGRP code exposes hourly_rate	Business Logic	P2	Skipped	test_graduate_report.py::test_melogrp_discount_code_exposes_hourly_rate	Skipped - MELOGRP not seeded in current Strapi instance
