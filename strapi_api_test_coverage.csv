@@ -1,0 +1,628 @@
+API,Endpoint,Method,Test Case,Category,Priority,Status,Source,Test File,Notes
+about-us-page,/api/about-us-pages,GET,Returns paginated list of about-us pages,CRUD,P2,Done,API Audit,test_about_us_page.py::test_list_about_us_pages,Default core find action
+about-us-page,/api/about-us-pages,GET,Supports pagination filters and sort query params,CRUD,P3,Done,API Audit,test_about_us_page.py::test_list_supports_pagination_and_sort,Validates Strapi query parser
+about-us-page,/api/about-us-pages/:id,GET,Returns single about-us page by id,CRUD,P2,Done,API Audit,test_about_us_page.py::test_findone_about_us_page,Default core findOne action
+about-us-page,/api/about-us-pages/:id,GET,Returns 404 when about-us page id not found,Edge Case,P2,Done,API Audit,test_about_us_page.py::test_findone_unknown_about_us_page_returns_404,findOne missing record
+about-us-page,/api/about-us-pages,POST,Creates an about-us page with valid payload,CRUD,P2,Done,API Audit,test_about_us_page.py::test_create_about_us_page,Default core create
+about-us-page,/api/about-us-pages,POST,Rejects create when required fields missing,Validation,P2,Done,API Audit,test_about_us_page.py::test_create_about_us_page_rejects_unwrapped_payload,Schema validation
+about-us-page,/api/about-us-pages/:id,PUT,Updates about-us page by id,CRUD,P2,Done,API Audit,test_about_us_page.py::test_update_about_us_page,Default core update
+about-us-page,/api/about-us-pages/:id,DELETE,Deletes about-us page by id,CRUD,P2,Done,API Audit,test_about_us_page.py::test_delete_about_us_page,Default core delete
+activity-response,/api/activity-responses,GET,Returns paginated list of activity responses,CRUD,P2,Done,API Audit,test_activity_response.py::test_list_activity_responses,Default core find
+activity-response,/api/activity-responses/:id,GET,Returns activity response by id,CRUD,P2,Done,API Audit,test_activity_response.py::test_findone_activity_response,Default core findOne
+activity-response,/api/activity-responses/:id,GET,Returns 404 for unknown activity response id,Edge Case,P2,Done,API Audit,test_activity_response.py::test_findone_unknown_activity_response_returns_404,findOne not-found path
+activity-response,/api/activity-responses,POST,Creates activity response with valid payload,CRUD,P2,Done,API Audit,test_activity_response.py::test_create_activity_response,Used to record student answers
+activity-response,/api/activity-responses,POST,Rejects activity response create with invalid payload,Validation,P2,Done,API Audit,test_activity_response.py::test_create_activity_response_rejects_invalid_payload,Schema validation
+activity-response,/api/activity-responses/:id,PUT,Updates activity response by id,CRUD,P2,Done,API Audit,test_activity_response.py::test_update_activity_response,Default core update
+activity-response,/api/activity-responses/:id,DELETE,Deletes activity response by id,CRUD,P3,Done,API Audit,test_activity_response.py::test_delete_activity_response,Default core delete
+announcement,/api/announcements,GET,Returns paginated list of announcements,CRUD,P2,Done,API Audit,test_announcement.py::test_list_announcements,Default core find
+announcement,/api/announcements/:id,GET,Returns announcement by id,CRUD,P2,Done,API Audit,test_announcement.py::test_findone_announcement,Default core findOne
+announcement,/api/announcements/:id,GET,Returns 404 for unknown announcement id,Edge Case,P3,Done,API Audit,test_announcement.py::test_findone_unknown_announcement_returns_404,findOne not-found
+announcement,/api/announcements,POST,Creates announcement with valid payload,CRUD,P2,Done,API Audit,test_announcement.py::test_create_announcement,Default core create
+announcement,/api/announcements,POST,Rejects announcement create with missing required fields,Validation,P2,Done,API Audit,test_announcement.py::test_create_announcement_rejects_unwrapped_payload,Schema validation
+announcement,/api/announcements/:id,PUT,Updates announcement by id,CRUD,P2,Done,API Audit,test_announcement.py::test_update_announcement,Default core update
+announcement,/api/announcements/:id,DELETE,Deletes announcement by id,CRUD,P3,Done,API Audit,test_announcement.py::test_delete_announcement,Default core delete
+app-configuration,/api/app-configuration,GET,Returns global app configuration,CRUD,P1,Done,API Audit,test_app_configuration.py::test_get_app_configuration,Single-type find
+app-configuration,/api/app-configuration,PUT,Updates global app configuration,CRUD,P2,Done,API Audit,test_app_configuration.py::test_update_app_configuration,Single-type update
+app-configuration,/api/app-configuration,PUT,Rejects app config update with invalid payload,Validation,P2,Done,API Audit,test_app_configuration.py::test_update_app_configuration_rejects_invalid_payload,Schema validation
+app-configuration,/api/app-configuration,DELETE,Deletes app configuration,CRUD,P3,Done,API Audit,test_app_configuration.py::test_delete_app_configuration,Single-type delete (admin only)
+authorize-api,/api/authorize-api,GET,Returns Authorize.net config,CRUD,P1,Done,API Audit,test_authorize_api.py::test_get_authorize_api_with_admin_token,Single-type find for payment config
+authorize-api,/api/authorize-api,GET,Rejects unauthenticated requests for authorize-api,Auth,P1,Done,API Audit,test_authorize_api.py::test_get_authorize_api_unauthenticated_is_rejected,Sensitive payment data must be protected
+authorize-api,/api/authorize-api,GET,Enforces role-based access for authorize-api,Permissions,P1,Done,API Audit,test_authorize_api.py::test_authorize_api_role_based_access,Only admins/internal roles
+authorize-api,/api/authorize-api,PUT,Updates Authorize.net configuration,CRUD,P1,Done,API Audit,test_authorize_api.py::test_update_authorize_api,Single-type update
+authorize-api,/api/authorize-api,PUT,Rejects authorize-api update with invalid payload,Validation,P1,Done,API Audit,test_authorize_api.py::test_update_authorize_api_rejects_invalid_payload,Schema validation on payment fields
+authorize-api,/api/authorize-api,PUT,Rejects unauthenticated update of authorize-api,Auth,P1,Done,API Audit,test_authorize_api.py::test_update_authorize_api_unauthenticated_is_rejected,Auth required for sensitive data
+authorize-api,/api/authorize-api,DELETE,Deletes authorize-api config,CRUD,P2,Pending,API Audit,,Single-type delete
+authorize-api,/api/authorize-api,DELETE,Rejects unauthenticated delete of authorize-api,Auth,P1,Done,API Audit,test_authorize_api.py::test_delete_authorize_api_unauthenticated_is_rejected,Sensitive endpoint
+author,/api/authors,GET,Returns paginated list of authors,CRUD,P2,Done,API Audit,test_author.py::test_list_authors,Default core find
+author,/api/authors/:id,GET,Returns author by id,CRUD,P2,Done,API Audit,test_author.py::test_findone_author,Default core findOne
+author,/api/authors/:id,GET,Returns 404 for unknown author id,Edge Case,P3,Done,API Audit,test_author.py::test_findone_unknown_author_returns_404,findOne not-found
+author,/api/authors,POST,Creates author with valid payload,CRUD,P2,Done,API Audit,test_author.py::test_create_author,Default core create
+author,/api/authors,POST,Rejects author create when required fields missing,Validation,P2,Done,API Audit,test_author.py::test_create_author_missing_required_name_is_rejected,Schema validation
+author,/api/authors/:id,PUT,Updates author by id,CRUD,P2,Done,API Audit,test_author.py::test_update_author,Default core update
+author,/api/authors/:id,DELETE,Deletes author by id,CRUD,P3,Done,API Audit,test_author.py::test_delete_author,Default core delete
+carousal-image,/api/carousal-images,GET,Returns paginated list of carousal images,CRUD,P2,Done,API Audit,test_carousal_image.py::test_list_carousal_images,Default core find
+carousal-image,/api/carousal-images/:id,GET,Returns carousal image by id,CRUD,P2,Done,API Audit,test_carousal_image.py::test_findone_carousal_image,Default core findOne
+carousal-image,/api/carousal-images/:id,GET,Returns 404 for unknown carousal image id,Edge Case,P3,Done,API Audit,test_carousal_image.py::test_findone_unknown_carousal_image_returns_404,findOne not-found
+carousal-image,/api/carousal-images,POST,Creates carousal image with valid payload,CRUD,P2,Done,API Audit,test_carousal_image.py::test_create_carousal_image,Default core create
+carousal-image,/api/carousal-images,POST,Rejects carousal image create with invalid payload,Validation,P2,Done,API Audit,test_carousal_image.py::test_create_carousal_image_rejects_unwrapped_payload,Schema validation
+carousal-image,/api/carousal-images/:id,PUT,Updates carousal image by id,CRUD,P2,Done,API Audit,test_carousal_image.py::test_update_carousal_image,Default core update
+carousal-image,/api/carousal-images/:id,DELETE,Deletes carousal image by id,CRUD,P3,Done,API Audit,test_carousal_image.py::test_delete_carousal_image,Default core delete
+category,/api/categories,GET,Returns paginated list of categories,CRUD,P1,Done,API Audit,test_category.py::test_list_categories,Top-level taxonomy
+category,/api/categories/:id,GET,Returns category by id,CRUD,P2,Done,API Audit,test_category.py::test_findone_category,Default core findOne
+category,/api/categories/:id,GET,Returns 404 for unknown category id,Edge Case,P2,Done,API Audit,test_category.py::test_findone_unknown_category_returns_404,findOne not-found
+category,/api/categories,POST,Creates category with valid payload,CRUD,P2,Done,API Audit,test_category.py::test_create_category,Default core create
+category,/api/categories,POST,Rejects category create with missing required fields,Validation,P2,Done,API Audit,test_category.py::test_create_category_missing_required_name_is_rejected,Schema validation
+category,/api/categories/:id,PUT,Updates category by id,CRUD,P2,Done,API Audit,test_category.py::test_update_category,Default core update
+category,/api/categories/:id,DELETE,Deletes category by id,CRUD,P2,Done,API Audit,test_category.py::test_delete_category,Cascade implications on courses
+cda,/api/cdas,GET,Returns paginated list of CDA entries,CRUD,P2,Pending,API Audit,,Default core find
+cda,/api/cdas/:id,GET,Returns CDA by id,CRUD,P2,Pending,API Audit,,Default core findOne
+cda,/api/cdas/:id,GET,Returns 404 for unknown CDA id,Edge Case,P3,Pending,API Audit,,findOne not-found
+cda,/api/cdas,POST,Creates CDA entry with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+cda,/api/cdas,POST,Rejects CDA create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+cda,/api/cdas/:id,PUT,Updates CDA entry by id,CRUD,P2,Pending,API Audit,,Default core update
+cda,/api/cdas/:id,DELETE,Deletes CDA entry by id,CRUD,P3,Pending,API Audit,,Default core delete
+center,/api/centers,GET,Returns paginated list of centers,CRUD,P2,Pending,API Audit,,Default core find
+center,/api/centers/:id,GET,Returns center by id,CRUD,P2,Pending,API Audit,,Default core findOne
+center,/api/centers/:id,GET,Returns 404 for unknown center id,Edge Case,P3,Pending,API Audit,,findOne not-found
+center,/api/centers,POST,Creates center with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+center,/api/centers,POST,Rejects center create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+center,/api/centers/:id,PUT,Updates center by id,CRUD,P2,Pending,API Audit,,Default core update
+center,/api/centers/:id,DELETE,Deletes center by id,CRUD,P2,Pending,API Audit,,Default core delete
+center-user,/api/center-users,GET,Returns paginated list of center users,CRUD,P2,Pending,API Audit,,Default core find
+center-user,/api/center-users/:id,GET,Returns center user by id,CRUD,P2,Pending,API Audit,,Default core findOne
+center-user,/api/center-users/:id,GET,Returns 404 for unknown center user id,Edge Case,P3,Pending,API Audit,,findOne not-found
+center-user,/api/center-users,POST,Creates center user with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+center-user,/api/center-users,POST,Rejects center user create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+center-user,/api/center-users/:id,PUT,Updates center user by id,CRUD,P2,Pending,API Audit,,Default core update
+center-user,/api/center-users/:id,DELETE,Deletes center user by id,CRUD,P3,Pending,API Audit,,Default core delete
+certificate,/api/certificates,GET,Returns paginated list of certificates,CRUD,P1,Pending,API Audit,,Sensitive certificate data
+certificate,/api/certificates,GET,Rejects unauthenticated certificate list requests,Auth,P1,Pending,API Audit,,Sensitive: must require auth
+certificate,/api/certificates,GET,Enforces role-based filtering of certificates by user,Permissions,P1,Pending,API Audit,,Users see only own certificates
+certificate,/api/certificates/:id,GET,Returns certificate by id,CRUD,P1,Pending,API Audit,,Default core findOne
+certificate,/api/certificates/:id,GET,Returns 404 for unknown certificate id,Edge Case,P2,Pending,API Audit,,findOne not-found
+certificate,/api/certificates/:id,GET,Rejects access to another users certificate,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
+certificate,/api/certificates,POST,Creates certificate with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+certificate,/api/certificates,POST,Rejects certificate create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+certificate,/api/certificates,POST,Rejects unauthenticated certificate creation,Auth,P1,Pending,API Audit,,Sensitive create path
+certificate,/api/certificates/:id,PUT,Updates certificate by id,CRUD,P2,Pending,API Audit,,Default core update
+certificate,/api/certificates/:id,PUT,Rejects unauthorized certificate update,Permissions,P1,Pending,API Audit,,Only owner/admin
+certificate,/api/certificates/:id,DELETE,Deletes certificate by id,CRUD,P2,Pending,API Audit,,Admin-only path
+certificate,/api/certificates/:id,DELETE,Rejects unauthenticated certificate delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+certificate-partner,/api/certificate-partners,GET,Returns paginated list of certificate partners,CRUD,P2,Pending,API Audit,,Default core find
+certificate-partner,/api/certificate-partners/:id,GET,Returns certificate partner by id,CRUD,P2,Pending,API Audit,,Default core findOne
+certificate-partner,/api/certificate-partners/:id,GET,Returns 404 for unknown certificate partner id,Edge Case,P3,Pending,API Audit,,findOne not-found
+certificate-partner,/api/certificate-partners,POST,Creates certificate partner with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+certificate-partner,/api/certificate-partners,POST,Rejects certificate partner create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+certificate-partner,/api/certificate-partners/:id,PUT,Updates certificate partner by id,CRUD,P2,Pending,API Audit,,Default core update
+certificate-partner,/api/certificate-partners/:id,DELETE,Deletes certificate partner by id,CRUD,P3,Pending,API Audit,,Default core delete
+chat-widget-control,/api/chat-widget-controls,GET,Returns paginated list of chat widget controls,CRUD,P2,Pending,API Audit,,Default core find
+chat-widget-control,/api/chat-widget-controls/:id,GET,Returns chat widget control by id,CRUD,P2,Pending,API Audit,,Default core findOne
+chat-widget-control,/api/chat-widget-controls/:id,GET,Returns 404 for unknown chat widget control id,Edge Case,P3,Pending,API Audit,,findOne not-found
+chat-widget-control,/api/chat-widget-controls,POST,Creates chat widget control with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+chat-widget-control,/api/chat-widget-controls,POST,Rejects chat widget control create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+chat-widget-control,/api/chat-widget-controls/:id,PUT,Updates chat widget control by id,CRUD,P2,Pending,API Audit,,Default core update
+chat-widget-control,/api/chat-widget-controls/:id,DELETE,Deletes chat widget control by id,CRUD,P3,Pending,API Audit,,Default core delete
+childcare-training-landing-page,/api/childcare-training-landing-pages,GET,Returns paginated list of childcare landing pages,CRUD,P2,Pending,API Audit,,Default core find
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns childcare landing page by id,CRUD,P2,Pending,API Audit,,Default core findOne
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,GET,Returns 404 for unknown childcare landing page id,Edge Case,P3,Pending,API Audit,,findOne not-found
+childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Creates childcare landing page,CRUD,P2,Pending,API Audit,,Default core create
+childcare-training-landing-page,/api/childcare-training-landing-pages,POST,Rejects childcare landing page create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,PUT,Updates childcare landing page by id,CRUD,P2,Pending,API Audit,,Default core update
+childcare-training-landing-page,/api/childcare-training-landing-pages/:id,DELETE,Deletes childcare landing page by id,CRUD,P3,Pending,API Audit,,Default core delete
+course,/api/courses,GET,Returns paginated list of courses,CRUD,P1,Pending,API Audit,,Default core find - core catalog
+course,/api/courses,GET,Supports filtering courses by category and state,CRUD,P1,Pending,API Audit,,Strapi query filters
+course,/api/courses,GET,Supports populate of course relations,CRUD,P2,Pending,API Audit,,Populate query param
+course,/api/courses/:id,GET,Returns course by id with relations,CRUD,P1,Pending,API Audit,,Default core findOne
+course,/api/courses/:id,GET,Returns 404 for unknown course id,Edge Case,P2,Pending,API Audit,,findOne not-found
+course,/api/courses,POST,Creates course with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+course,/api/courses,POST,Rejects course create with missing required fields,Validation,P2,Pending,API Audit,,Schema validation
+course,/api/courses/:id,PUT,Updates course by id,CRUD,P2,Pending,API Audit,,Default core update
+course,/api/courses/:id,DELETE,Deletes course by id,CRUD,P2,Pending,API Audit,,Cascade considerations
+course,/api/courses,GET,Returns published-only courses for unauthenticated requests,Permissions,P1,Pending,API Audit,,Draft/publish gating
+course,/api/courses/:id,PUT,Rejects unauthorized course update,Permissions,P1,Pending,API Audit,,Admin-only enforcement
+course,/api/courses,POST,Rejects unauthenticated course creation,Auth,P1,Pending,API Audit,,Admin-only path
+course,/api/courses,GET,Handles malformed query params gracefully,Edge Case,P3,Pending,API Audit,,Strapi parser error
+course,/api/courses/:id,GET,Handles non-numeric id gracefully,Edge Case,P3,Pending,API Audit,,Bad id parsing
+course-audio,/api/course-audios,GET,Returns paginated list of course audios,CRUD,P2,Pending,API Audit,,Default core find
+course-audio,/api/course-audios/:id,GET,Returns course audio by id,CRUD,P2,Pending,API Audit,,Default core findOne
+course-audio,/api/course-audios/:id,GET,Returns 404 for unknown course audio id,Edge Case,P3,Pending,API Audit,,findOne not-found
+course-audio,/api/course-audios,POST,Creates course audio with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+course-audio,/api/course-audios,POST,Rejects course audio create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+course-audio,/api/course-audios/:id,PUT,Updates course audio by id,CRUD,P2,Pending,API Audit,,Default core update
+course-audio,/api/course-audios/:id,DELETE,Deletes course audio by id,CRUD,P3,Pending,API Audit,,Default core delete
+course-feedback,/api/course-feedbacks,GET,Returns paginated list of course feedback,CRUD,P1,Pending,API Audit,,User-generated content - sensitive
+course-feedback,/api/course-feedbacks,GET,Rejects unauthenticated course feedback list requests,Auth,P1,Pending,API Audit,,Authenticated read recommended
+course-feedback,/api/course-feedbacks,GET,Enforces role-based access on course feedback,Permissions,P1,Pending,API Audit,,Owner or admin scope
+course-feedback,/api/course-feedbacks/:id,GET,Returns course feedback by id,CRUD,P2,Pending,API Audit,,Default core findOne
+course-feedback,/api/course-feedbacks/:id,GET,Returns 404 for unknown course feedback id,Edge Case,P3,Pending,API Audit,,findOne not-found
+course-feedback,/api/course-feedbacks,POST,Creates course feedback with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+course-feedback,/api/course-feedbacks,POST,Rejects course feedback create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+course-feedback,/api/course-feedbacks,POST,Rejects unauthenticated course feedback create,Auth,P1,Pending,API Audit,,User attribution required
+course-feedback,/api/course-feedbacks/:id,PUT,Updates course feedback by id,CRUD,P2,Pending,API Audit,,Default core update
+course-feedback,/api/course-feedbacks/:id,PUT,Rejects unauthorized update of another users feedback,Permissions,P1,Pending,API Audit,,IDOR check
+course-feedback,/api/course-feedbacks/:id,DELETE,Deletes course feedback by id,CRUD,P2,Pending,API Audit,,Default core delete
+course-feedback,/api/course-feedbacks/:id,DELETE,Rejects unauthenticated delete of course feedback,Auth,P1,Pending,API Audit,,Sensitive delete path
+course-search,/api/course-searches,GET,Returns paginated list of course searches,CRUD,P2,Pending,API Audit,,Default core find
+course-search,/api/course-searches/:id,GET,Returns course search by id,CRUD,P2,Pending,API Audit,,Default core findOne
+course-search,/api/course-searches/:id,GET,Returns 404 for unknown course search id,Edge Case,P3,Pending,API Audit,,findOne not-found
+course-search,/api/course-searches,POST,Creates course search with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+course-search,/api/course-searches,POST,Rejects course search create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+course-search,/api/course-searches/:id,PUT,Updates course search by id,CRUD,P2,Pending,API Audit,,Default core update
+course-search,/api/course-searches/:id,DELETE,Deletes course search by id,CRUD,P3,Pending,API Audit,,Default core delete
+course-state,/api/course-states,GET,Returns paginated list of course states,CRUD,P2,Pending,API Audit,,Default core find
+course-state,/api/course-states/:id,GET,Returns course state by id,CRUD,P2,Pending,API Audit,,Default core findOne
+course-state,/api/course-states/:id,GET,Returns 404 for unknown course state id,Edge Case,P3,Pending,API Audit,,findOne not-found
+course-state,/api/course-states,POST,Creates course state with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+course-state,/api/course-states,POST,Rejects course state create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+course-state,/api/course-states/:id,PUT,Updates course state by id,CRUD,P2,Pending,API Audit,,Default core update
+course-state,/api/course-states/:id,DELETE,Deletes course state by id,CRUD,P3,Pending,API Audit,,Default core delete
+course-state-fee,/api/course-state-fees,GET,Returns paginated list of course state fees,CRUD,P1,Pending,API Audit,,Pricing-related entity
+course-state-fee,/api/course-state-fees/:id,GET,Returns course state fee by id,CRUD,P2,Pending,API Audit,,Default core findOne
+course-state-fee,/api/course-state-fees/:id,GET,Returns 404 for unknown course state fee id,Edge Case,P3,Pending,API Audit,,findOne not-found
+course-state-fee,/api/course-state-fees,POST,Creates course state fee with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+course-state-fee,/api/course-state-fees,POST,Rejects course state fee create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+course-state-fee,/api/course-state-fees/:id,PUT,Updates course state fee by id,CRUD,P2,Pending,API Audit,,Default core update
+course-state-fee,/api/course-state-fees/:id,DELETE,Deletes course state fee by id,CRUD,P3,Pending,API Audit,,Default core delete
+custom-auth,/api/custom-auth/login,POST,Logs in user successfully with valid username/password,Custom Endpoint,P1,Pending,API Audit,,Issues JWT and updates sign-in tracking
+custom-auth,/api/custom-auth/login,POST,Returns 400 when password is invalid,Custom Endpoint,P1,Pending,API Audit,,ValidationError 'Invalid identifier or password'
+custom-auth,/api/custom-auth/login,POST,Returns 400 when username does not exist,Custom Endpoint,P1,Pending,API Audit,,ValidationError on unknown user
+custom-auth,/api/custom-auth/login,POST,Returns error when account is blocked,Custom Endpoint,P1,Pending,API Audit,,Blocked user path
+custom-auth,/api/custom-auth/login,POST,Returns MULTIPLE_USER_ACCOUNTS_WITH_EMAIL_ADDRESS when duplicate emails,Business Logic,P2,Pending,API Audit,,Multiple user accounts collision
+custom-auth,/api/custom-auth/login,POST,Rejects login when email confirmation is required and not confirmed,Auth,P2,Pending,API Audit,,Email confirmation flow
+custom-auth,/api/custom-auth/forgot-password,POST,Sends reset password email for valid username,Custom Endpoint,P1,Pending,API Audit,,Reset token persisted
+custom-auth,/api/custom-auth/forgot-password,POST,Returns NOT_FOUND when username unknown,Custom Endpoint,P1,Pending,API Audit,,Failure path
+custom-auth,/api/custom-auth/forgot-password,POST,Returns BLOCKED when user is blocked,Business Logic,P2,Pending,API Audit,,Blocked user path
+custom-auth,/api/custom-auth/forgot-password,POST,Returns NO_EMAIL when user has no email,Edge Case,P2,Pending,API Audit,,User missing email
+custom-auth,/api/custom-auth/forgot-password,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Pending,API Audit,,Email service down
+custom-auth,/api/custom-auth/forgot-username,POST,Sends username recovery email for matching last name+email,Custom Endpoint,P1,Pending,API Audit,,Looks up profile by last_name and email
+custom-auth,/api/custom-auth/forgot-username,POST,Returns NOT_FOUND when no matching profile,Custom Endpoint,P1,Pending,API Audit,,Failure path
+custom-auth,/api/custom-auth/forgot-username,POST,Returns BLOCKED when matched user is blocked,Business Logic,P2,Pending,API Audit,,Blocked user path
+custom-auth,/api/custom-auth/register,POST,Registers a new user with valid payload,Custom Endpoint,P1,Pending,API Audit,,Issues JWT when email confirmation disabled
+custom-auth,/api/custom-auth/register,POST,Throws when register action is disabled,Custom Endpoint,P1,Pending,API Audit,,allow_register=false
+custom-auth,/api/custom-auth/register,POST,Returns ok=false when username already taken,Validation,P1,Pending,API Audit,,Username collision
+custom-auth,/api/custom-auth/register,POST,Returns ok=false when email already taken with unique_email,Validation,P1,Pending,API Audit,,Email collision when unique_email enabled
+custom-auth,/api/custom-auth/register,POST,Sends confirmation email when email_confirmation enabled,Business Logic,P2,Pending,API Audit,,Email confirmation flow
+custom-auth,/api/custom-auth/register,POST,Strips confirmed/blocked/tokens from request body,Validation,P1,Pending,API Audit,,Prevents privilege escalation
+custom-auth,/api/custom-auth/contact-form,POST,Sends contact form email with valid payload,Custom Endpoint,P2,Pending,API Audit,,Public endpoint
+custom-auth,/api/custom-auth/contact-form,POST,Returns NOT_FOUND on email send error,Custom Endpoint,P2,Pending,API Audit,,Email failure
+custom-auth,/api/custom-auth/group-subscription-form,POST,Sends group subscription form email,Custom Endpoint,P2,Pending,API Audit,,Public endpoint
+custom-auth,/api/custom-auth/group-subscription-form,POST,Returns NOT_FOUND on email send error,Custom Endpoint,P2,Pending,API Audit,,Email failure
+custom-auth,/api/custom-auth/send-otp-email,POST,Sends OTP email with valid email and otp,Custom Endpoint,P1,Pending,API Audit,,auth=false public endpoint
+custom-auth,/api/custom-auth/send-otp-email,POST,Returns 400 when email or otp missing,Validation,P1,Pending,API Audit,,Required field validation
+custom-auth,/api/custom-auth/send-otp-email,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Pending,API Audit,,Email failure path
+custom-auth,/api/custom-auth/otp-login,POST,Logs in user via valid email and userId,Custom Endpoint,P1,Pending,API Audit,,Issues JWT - auth=false endpoint
+custom-auth,/api/custom-auth/otp-login,POST,Returns 400 when email or userId missing,Validation,P1,Pending,API Audit,,Required field validation
+custom-auth,/api/custom-auth/otp-login,POST,Returns USER_NOT_FOUND when no matching user,Custom Endpoint,P1,Pending,API Audit,,Lookup failure
+custom-auth,/api/custom-auth/otp-login,POST,Returns BLOCKED when user is blocked,Business Logic,P1,Pending,API Audit,,Blocked user path
+default-ad-media,/api/default-ad-medias,GET,Returns paginated list of default ad medias,CRUD,P3,Pending,API Audit,,Default core find
+default-ad-media,/api/default-ad-medias/:id,GET,Returns default ad media by id,CRUD,P3,Pending,API Audit,,Default core findOne
+default-ad-media,/api/default-ad-medias/:id,GET,Returns 404 for unknown default ad media id,Edge Case,P3,Pending,API Audit,,findOne not-found
+default-ad-media,/api/default-ad-medias,POST,Creates default ad media,CRUD,P3,Pending,API Audit,,Default core create
+default-ad-media,/api/default-ad-medias,POST,Rejects default ad media create with invalid payload,Validation,P3,Pending,API Audit,,Schema validation
+default-ad-media,/api/default-ad-medias/:id,PUT,Updates default ad media by id,CRUD,P3,Pending,API Audit,,Default core update
+default-ad-media,/api/default-ad-medias/:id,DELETE,Deletes default ad media by id,CRUD,P3,Pending,API Audit,,Default core delete
+discount-code,/api/discount-codes,GET,Returns paginated list of discount codes,CRUD,P1,Pending,API Audit,,Sensitive: pricing
+discount-code,/api/discount-codes,GET,Rejects unauthenticated discount code list requests,Auth,P1,Pending,API Audit,,Should not leak active codes
+discount-code,/api/discount-codes,GET,Enforces role-based access on discount code list,Permissions,P1,Pending,API Audit,,Admin-only
+discount-code,/api/discount-codes/:id,GET,Returns discount code by id,CRUD,P1,Pending,API Audit,,Default core findOne
+discount-code,/api/discount-codes/:id,GET,Returns 404 for unknown discount code id,Edge Case,P2,Pending,API Audit,,findOne not-found
+discount-code,/api/discount-codes,POST,Creates discount code with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+discount-code,/api/discount-codes,POST,Rejects discount code create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation: percent/amount
+discount-code,/api/discount-codes,POST,Rejects unauthenticated discount code creation,Auth,P1,Pending,API Audit,,Sensitive create path
+discount-code,/api/discount-codes/:id,PUT,Updates discount code by id,CRUD,P1,Pending,API Audit,,Default core update
+discount-code,/api/discount-codes/:id,PUT,Rejects unauthorized discount code update,Permissions,P1,Pending,API Audit,,Admin-only enforcement
+discount-code,/api/discount-codes/:id,DELETE,Deletes discount code by id,CRUD,P1,Pending,API Audit,,Default core delete
+discount-code,/api/discount-codes/:id,DELETE,Rejects unauthenticated discount code delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+error-log,/api/error-logs,GET,Returns paginated list of error logs,CRUD,P1,Pending,API Audit,,Sensitive: may contain stack traces
+error-log,/api/error-logs,GET,Rejects unauthenticated error log list requests,Auth,P1,Pending,API Audit,,Auth required
+error-log,/api/error-logs,GET,Enforces role-based access on error log list,Permissions,P1,Pending,API Audit,,Admin-only
+error-log,/api/error-logs/:id,GET,Returns error log by id,CRUD,P2,Pending,API Audit,,Default core findOne
+error-log,/api/error-logs/:id,GET,Returns 404 for unknown error log id,Edge Case,P3,Pending,API Audit,,findOne not-found
+error-log,/api/error-logs,POST,Creates error log with valid payload,CRUD,P2,Pending,API Audit,,Default core create - client error reports
+error-log,/api/error-logs,POST,Rejects error log create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+error-log,/api/error-logs,POST,Rejects unauthenticated error log creation,Auth,P2,Pending,API Audit,,Auth required (or rate-limited)
+error-log,/api/error-logs/:id,PUT,Updates error log by id,CRUD,P3,Pending,API Audit,,Default core update
+error-log,/api/error-logs/:id,DELETE,Deletes error log by id,CRUD,P2,Pending,API Audit,,Default core delete
+error-log,/api/error-logs/:id,DELETE,Rejects unauthenticated error log delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+error-report,/api/error-reports,GET,Returns paginated list of error reports,CRUD,P1,Pending,API Audit,,Sensitive: may contain user data
+error-report,/api/error-reports,GET,Rejects unauthenticated error report list requests,Auth,P1,Pending,API Audit,,Auth required
+error-report,/api/error-reports,GET,Enforces role-based access on error report list,Permissions,P1,Pending,API Audit,,Admin-only
+error-report,/api/error-reports/:id,GET,Returns error report by id,CRUD,P2,Pending,API Audit,,Default core findOne
+error-report,/api/error-reports/:id,GET,Returns 404 for unknown error report id,Edge Case,P3,Pending,API Audit,,findOne not-found
+error-report,/api/error-reports,POST,Creates error report with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+error-report,/api/error-reports,POST,Rejects error report create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+error-report,/api/error-reports,POST,Rejects unauthenticated error report creation,Auth,P2,Pending,API Audit,,Auth required (or rate-limited)
+error-report,/api/error-reports/:id,PUT,Updates error report by id,CRUD,P3,Pending,API Audit,,Default core update
+error-report,/api/error-reports/:id,DELETE,Deletes error report by id,CRUD,P2,Pending,API Audit,,Default core delete
+error-report,/api/error-reports/:id,DELETE,Rejects unauthenticated error report delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+exit-popup,/api/exit-popups,GET,Returns paginated list of exit popups,CRUD,P3,Pending,API Audit,,Default core find
+exit-popup,/api/exit-popups/:id,GET,Returns exit popup by id,CRUD,P3,Pending,API Audit,,Default core findOne
+exit-popup,/api/exit-popups/:id,GET,Returns 404 for unknown exit popup id,Edge Case,P3,Pending,API Audit,,findOne not-found
+exit-popup,/api/exit-popups,POST,Creates exit popup with valid payload,CRUD,P3,Pending,API Audit,,Default core create
+exit-popup,/api/exit-popups,POST,Rejects exit popup create with invalid payload,Validation,P3,Pending,API Audit,,Schema validation
+exit-popup,/api/exit-popups/:id,PUT,Updates exit popup by id,CRUD,P3,Pending,API Audit,,Default core update
+exit-popup,/api/exit-popups/:id,DELETE,Deletes exit popup by id,CRUD,P3,Pending,API Audit,,Default core delete
+featured-review,/api/featured-reviews,GET,Returns paginated list of featured reviews,CRUD,P2,Pending,API Audit,,Default core find
+featured-review,/api/featured-reviews/:id,GET,Returns featured review by id,CRUD,P2,Pending,API Audit,,Default core findOne
+featured-review,/api/featured-reviews/:id,GET,Returns 404 for unknown featured review id,Edge Case,P3,Pending,API Audit,,findOne not-found
+featured-review,/api/featured-reviews,POST,Creates featured review with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+featured-review,/api/featured-reviews,POST,Rejects featured review create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+featured-review,/api/featured-reviews/:id,PUT,Updates featured review by id,CRUD,P2,Pending,API Audit,,Default core update
+featured-review,/api/featured-reviews/:id,DELETE,Deletes featured review by id,CRUD,P3,Pending,API Audit,,Default core delete
+gemini-chat-prompt,/api/gemini-chat-prompt,GET,Returns gemini chat prompt configuration,CRUD,P2,Pending,API Audit,,Single-type find
+gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Updates gemini chat prompt configuration,CRUD,P2,Pending,API Audit,,Single-type update
+gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Rejects gemini chat prompt update with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+gemini-chat-prompt,/api/gemini-chat-prompt,DELETE,Deletes gemini chat prompt configuration,CRUD,P3,Pending,API Audit,,Single-type delete
+grade,/api/grades,GET,Returns paginated list of grades,CRUD,P2,Pending,API Audit,,Default core find
+grade,/api/grades/:id,GET,Returns grade by id,CRUD,P2,Pending,API Audit,,Default core findOne
+grade,/api/grades/:id,GET,Returns 404 for unknown grade id,Edge Case,P3,Pending,API Audit,,findOne not-found
+grade,/api/grades,POST,Creates grade with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+grade,/api/grades,POST,Rejects grade create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+grade,/api/grades/:id,PUT,Updates grade by id,CRUD,P2,Pending,API Audit,,Default core update
+grade,/api/grades/:id,DELETE,Deletes grade by id,CRUD,P3,Pending,API Audit,,Default core delete
+group-subscription,/api/group-subscriptions,GET,Returns paginated list of group subscriptions,CRUD,P1,Pending,API Audit,,Sensitive: org-level subscriptions
+group-subscription,/api/group-subscriptions,GET,Rejects unauthenticated group subscription list requests,Auth,P1,Pending,API Audit,,Auth required
+group-subscription,/api/group-subscriptions,GET,Enforces role-based scope on group subscription listing,Permissions,P1,Pending,API Audit,,Admin or owner only
+group-subscription,/api/group-subscriptions/:id,GET,Returns group subscription by id,CRUD,P1,Pending,API Audit,,Default core findOne
+group-subscription,/api/group-subscriptions/:id,GET,Returns 404 for unknown group subscription id,Edge Case,P2,Pending,API Audit,,findOne not-found
+group-subscription,/api/group-subscriptions,POST,Creates group subscription with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+group-subscription,/api/group-subscriptions,POST,Rejects group subscription create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+group-subscription,/api/group-subscriptions,POST,Rejects unauthenticated group subscription creation,Auth,P1,Pending,API Audit,,Sensitive create path
+group-subscription,/api/group-subscriptions/:id,PUT,Updates group subscription by id,CRUD,P1,Pending,API Audit,,Default core update
+group-subscription,/api/group-subscriptions/:id,PUT,Rejects unauthorized group subscription update,Permissions,P1,Pending,API Audit,,Owner/admin only
+group-subscription,/api/group-subscriptions/:id,DELETE,Deletes group subscription by id,CRUD,P1,Pending,API Audit,,Default core delete
+group-subscription,/api/group-subscriptions/:id,DELETE,Rejects unauthenticated group subscription delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+group-subscription-form-data,/api/group-subscription-form-datas,GET,Returns paginated list of group sub form data entries,CRUD,P2,Pending,API Audit,,Default core find
+group-subscription-form-data,/api/group-subscription-form-datas/:id,GET,Returns group sub form data by id,CRUD,P2,Pending,API Audit,,Default core findOne
+group-subscription-form-data,/api/group-subscription-form-datas/:id,GET,Returns 404 for unknown group sub form data id,Edge Case,P3,Pending,API Audit,,findOne not-found
+group-subscription-form-data,/api/group-subscription-form-datas,POST,Creates group sub form data with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+group-subscription-form-data,/api/group-subscription-form-datas,POST,Rejects group sub form data create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+group-subscription-form-data,/api/group-subscription-form-datas/:id,PUT,Updates group sub form data by id,CRUD,P2,Pending,API Audit,,Default core update
+group-subscription-form-data,/api/group-subscription-form-datas/:id,DELETE,Deletes group sub form data by id,CRUD,P3,Pending,API Audit,,Default core delete
+healthcare-training-landing-page,/api/healthcare-training-landing-pages,GET,Returns paginated list of healthcare landing pages,CRUD,P2,Pending,API Audit,,Default core find
+healthcare-training-landing-page,/api/healthcare-training-landing-pages/:id,GET,Returns healthcare landing page by id,CRUD,P2,Pending,API Audit,,Default core findOne
+healthcare-training-landing-page,/api/healthcare-training-landing-pages/:id,GET,Returns 404 for unknown healthcare landing page id,Edge Case,P3,Pending,API Audit,,findOne not-found
+healthcare-training-landing-page,/api/healthcare-training-landing-pages,POST,Creates healthcare landing page,CRUD,P2,Pending,API Audit,,Default core create
+healthcare-training-landing-page,/api/healthcare-training-landing-pages,POST,Rejects healthcare landing page create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+healthcare-training-landing-page,/api/healthcare-training-landing-pages/:id,PUT,Updates healthcare landing page by id,CRUD,P2,Pending,API Audit,,Default core update
+healthcare-training-landing-page,/api/healthcare-training-landing-pages/:id,DELETE,Deletes healthcare landing page by id,CRUD,P3,Pending,API Audit,,Default core delete
+help-category,/api/help-categories,GET,Returns paginated list of help categories,CRUD,P2,Pending,API Audit,,Default core find
+help-category,/api/help-categories/:id,GET,Returns help category by id,CRUD,P2,Pending,API Audit,,Default core findOne
+help-category,/api/help-categories/:id,GET,Returns 404 for unknown help category id,Edge Case,P3,Pending,API Audit,,findOne not-found
+help-category,/api/help-categories,POST,Creates help category with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+help-category,/api/help-categories,POST,Rejects help category create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+help-category,/api/help-categories/:id,PUT,Updates help category by id,CRUD,P2,Pending,API Audit,,Default core update
+help-category,/api/help-categories/:id,DELETE,Deletes help category by id,CRUD,P3,Pending,API Audit,,Default core delete
+help-sub-category,/api/help-sub-categories,GET,Returns paginated list of help sub categories,CRUD,P2,Pending,API Audit,,Default core find
+help-sub-category,/api/help-sub-categories/:id,GET,Returns help sub category by id,CRUD,P2,Pending,API Audit,,Default core findOne
+help-sub-category,/api/help-sub-categories/:id,GET,Returns 404 for unknown help sub category id,Edge Case,P3,Pending,API Audit,,findOne not-found
+help-sub-category,/api/help-sub-categories,POST,Creates help sub category with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+help-sub-category,/api/help-sub-categories,POST,Rejects help sub category create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+help-sub-category,/api/help-sub-categories/:id,PUT,Updates help sub category by id,CRUD,P2,Pending,API Audit,,Default core update
+help-sub-category,/api/help-sub-categories/:id,DELETE,Deletes help sub category by id,CRUD,P3,Pending,API Audit,,Default core delete
+hero-image,/api/hero-images,GET,Returns paginated list of hero images,CRUD,P2,Pending,API Audit,,Default core find
+hero-image,/api/hero-images/:id,GET,Returns hero image by id,CRUD,P2,Pending,API Audit,,Default core findOne
+hero-image,/api/hero-images/:id,GET,Returns 404 for unknown hero image id,Edge Case,P3,Pending,API Audit,,findOne not-found
+hero-image,/api/hero-images,POST,Creates hero image with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+hero-image,/api/hero-images,POST,Rejects hero image create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+hero-image,/api/hero-images/:id,PUT,Updates hero image by id,CRUD,P2,Pending,API Audit,,Default core update
+hero-image,/api/hero-images/:id,DELETE,Deletes hero image by id,CRUD,P3,Pending,API Audit,,Default core delete
+home-page-content,/api/home-page-contents,GET,Returns paginated list of home page content,CRUD,P2,Pending,API Audit,,Default core find
+home-page-content,/api/home-page-contents/:id,GET,Returns home page content by id,CRUD,P2,Pending,API Audit,,Default core findOne
+home-page-content,/api/home-page-contents/:id,GET,Returns 404 for unknown home page content id,Edge Case,P3,Pending,API Audit,,findOne not-found
+home-page-content,/api/home-page-contents,POST,Creates home page content with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+home-page-content,/api/home-page-contents,POST,Rejects home page content create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+home-page-content,/api/home-page-contents/:id,PUT,Updates home page content by id,CRUD,P2,Pending,API Audit,,Default core update
+home-page-content,/api/home-page-contents/:id,DELETE,Deletes home page content by id,CRUD,P3,Pending,API Audit,,Default core delete
+home-page-marquee,/api/home-page-marquees,GET,Returns paginated list of home page marquees,CRUD,P3,Pending,API Audit,,Default core find
+home-page-marquee,/api/home-page-marquees/:id,GET,Returns home page marquee by id,CRUD,P3,Pending,API Audit,,Default core findOne
+home-page-marquee,/api/home-page-marquees/:id,GET,Returns 404 for unknown home page marquee id,Edge Case,P3,Pending,API Audit,,findOne not-found
+home-page-marquee,/api/home-page-marquees,POST,Creates home page marquee with valid payload,CRUD,P3,Pending,API Audit,,Default core create
+home-page-marquee,/api/home-page-marquees,POST,Rejects home page marquee create with invalid payload,Validation,P3,Pending,API Audit,,Schema validation
+home-page-marquee,/api/home-page-marquees/:id,PUT,Updates home page marquee by id,CRUD,P3,Pending,API Audit,,Default core update
+home-page-marquee,/api/home-page-marquees/:id,DELETE,Deletes home page marquee by id,CRUD,P3,Pending,API Audit,,Default core delete
+home-page-promotion-banner,/api/home-page-promotion-banners,GET,Returns paginated list of promotion banners,CRUD,P2,Pending,API Audit,,Default core find
+home-page-promotion-banner,/api/home-page-promotion-banners/:id,GET,Returns promotion banner by id,CRUD,P2,Pending,API Audit,,Default core findOne
+home-page-promotion-banner,/api/home-page-promotion-banners/:id,GET,Returns 404 for unknown promotion banner id,Edge Case,P3,Pending,API Audit,,findOne not-found
+home-page-promotion-banner,/api/home-page-promotion-banners,POST,Creates promotion banner with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+home-page-promotion-banner,/api/home-page-promotion-banners,POST,Rejects promotion banner create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+home-page-promotion-banner,/api/home-page-promotion-banners/:id,PUT,Updates promotion banner by id,CRUD,P2,Pending,API Audit,,Default core update
+home-page-promotion-banner,/api/home-page-promotion-banners/:id,DELETE,Deletes promotion banner by id,CRUD,P3,Pending,API Audit,,Default core delete
+hot-deal,/api/hot-deals,GET,Returns paginated list of hot deals,CRUD,P2,Pending,API Audit,,Default core find
+hot-deal,/api/hot-deals/:id,GET,Returns hot deal by id,CRUD,P2,Pending,API Audit,,Default core findOne
+hot-deal,/api/hot-deals/:id,GET,Returns 404 for unknown hot deal id,Edge Case,P3,Pending,API Audit,,findOne not-found
+hot-deal,/api/hot-deals,POST,Creates hot deal with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+hot-deal,/api/hot-deals,POST,Rejects hot deal create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+hot-deal,/api/hot-deals/:id,PUT,Updates hot deal by id,CRUD,P2,Pending,API Audit,,Default core update
+hot-deal,/api/hot-deals/:id,DELETE,Deletes hot deal by id,CRUD,P3,Pending,API Audit,,Default core delete
+interact-response,/api/interact-responses,GET,Returns paginated list of interact responses,CRUD,P2,Pending,API Audit,,Default core find
+interact-response,/api/interact-responses/:id,GET,Returns interact response by id,CRUD,P2,Pending,API Audit,,Default core findOne
+interact-response,/api/interact-responses/:id,GET,Returns 404 for unknown interact response id,Edge Case,P3,Pending,API Audit,,findOne not-found
+interact-response,/api/interact-responses,POST,Creates interact response with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+interact-response,/api/interact-responses,POST,Rejects interact response create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+interact-response,/api/interact-responses/:id,PUT,Updates interact response by id,CRUD,P2,Pending,API Audit,,Default core update
+interact-response,/api/interact-responses/:id,DELETE,Deletes interact response by id,CRUD,P3,Pending,API Audit,,Default core delete
+knowledge-collection,/api/knowledge-collections,GET,Returns paginated list of knowledge collections,CRUD,P2,Pending,API Audit,,Default core find
+knowledge-collection,/api/knowledge-collections/:id,GET,Returns knowledge collection by id,CRUD,P2,Pending,API Audit,,Default core findOne
+knowledge-collection,/api/knowledge-collections/:id,GET,Returns 404 for unknown knowledge collection id,Edge Case,P3,Pending,API Audit,,findOne not-found
+knowledge-collection,/api/knowledge-collections,POST,Creates knowledge collection with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+knowledge-collection,/api/knowledge-collections,POST,Rejects knowledge collection create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+knowledge-collection,/api/knowledge-collections/:id,PUT,Updates knowledge collection by id,CRUD,P2,Pending,API Audit,,Default core update
+knowledge-collection,/api/knowledge-collections/:id,DELETE,Deletes knowledge collection by id,CRUD,P3,Pending,API Audit,,Default core delete
+legacy-category,/api/legacy-categories,GET,Returns paginated list of legacy categories,CRUD,P3,Pending,API Audit,,Default core find
+legacy-category,/api/legacy-categories/:id,GET,Returns legacy category by id,CRUD,P3,Pending,API Audit,,Default core findOne
+legacy-category,/api/legacy-categories/:id,GET,Returns 404 for unknown legacy category id,Edge Case,P3,Pending,API Audit,,findOne not-found
+legacy-category,/api/legacy-categories,POST,Creates legacy category with valid payload,CRUD,P3,Pending,API Audit,,Default core create
+legacy-category,/api/legacy-categories,POST,Rejects legacy category create with invalid payload,Validation,P3,Pending,API Audit,,Schema validation
+legacy-category,/api/legacy-categories/:id,PUT,Updates legacy category by id,CRUD,P3,Pending,API Audit,,Default core update
+legacy-category,/api/legacy-categories/:id,DELETE,Deletes legacy category by id,CRUD,P3,Pending,API Audit,,Default core delete
+order,/api/orders,GET,Returns paginated list of orders,CRUD,P1,Pending,API Audit,,Sensitive: financial transactions
+order,/api/orders,GET,Rejects unauthenticated order list requests,Auth,P1,Pending,API Audit,,Sensitive: must require auth
+order,/api/orders,GET,Enforces role-based filtering of orders by user,Permissions,P1,Pending,API Audit,,Users see only own orders
+order,/api/orders/:id,GET,Returns order by id,CRUD,P1,Pending,API Audit,,Default core findOne
+order,/api/orders/:id,GET,Returns 404 for unknown order id,Edge Case,P2,Pending,API Audit,,findOne not-found
+order,/api/orders/:id,GET,Rejects access to another users order,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
+order,/api/orders,POST,Creates order with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+order,/api/orders,POST,Rejects order create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation: amount/items
+order,/api/orders,POST,Rejects unauthenticated order creation,Auth,P1,Pending,API Audit,,Sensitive create path
+order,/api/orders,POST,Rejects negative or zero order totals,Business Logic,P1,Pending,API Audit,,Pricing validation
+order,/api/orders/:id,PUT,Updates order by id,CRUD,P1,Pending,API Audit,,Default core update
+order,/api/orders/:id,PUT,Rejects unauthorized order update,Permissions,P1,Pending,API Audit,,Admin-only enforcement
+order,/api/orders/:id,DELETE,Deletes order by id,CRUD,P2,Pending,API Audit,,Default core delete - admin only
+order,/api/orders/:id,DELETE,Rejects unauthenticated order delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+order-item,/api/order-items,GET,Returns paginated list of order items,CRUD,P2,Pending,API Audit,,Default core find
+order-item,/api/order-items/:id,GET,Returns order item by id,CRUD,P2,Pending,API Audit,,Default core findOne
+order-item,/api/order-items/:id,GET,Returns 404 for unknown order item id,Edge Case,P3,Pending,API Audit,,findOne not-found
+order-item,/api/order-items,POST,Creates order item with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+order-item,/api/order-items,POST,Rejects order item create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: qty/price
+order-item,/api/order-items/:id,PUT,Updates order item by id,CRUD,P2,Pending,API Audit,,Default core update
+order-item,/api/order-items/:id,DELETE,Deletes order item by id,CRUD,P3,Pending,API Audit,,Default core delete
+order-item,/api/order-items,GET,Rejects unauthenticated order item list requests,Auth,P2,Pending,API Audit,,Linked to order PII
+order-item,/api/order-items/:id,GET,Rejects access to another users order items,Permissions,P2,Pending,API Audit,,Cross-user IDOR check
+organization,/api/organizations,GET,Returns paginated list of organizations,CRUD,P2,Pending,API Audit,,Default core find
+organization,/api/organizations/:id,GET,Returns organization by id,CRUD,P2,Pending,API Audit,,Default core findOne
+organization,/api/organizations/:id,GET,Returns 404 for unknown organization id,Edge Case,P3,Pending,API Audit,,findOne not-found
+organization,/api/organizations,POST,Creates organization with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+organization,/api/organizations,POST,Rejects organization create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+organization,/api/organizations/:id,PUT,Updates organization by id,CRUD,P2,Pending,API Audit,,Default core update
+organization,/api/organizations/:id,DELETE,Deletes organization by id,CRUD,P3,Pending,API Audit,,Default core delete
+package,/api/packages,GET,Returns paginated list of packages,CRUD,P2,Pending,API Audit,,Default core find
+package,/api/packages/:id,GET,Returns package by id,CRUD,P2,Pending,API Audit,,Default core findOne
+package,/api/packages/:id,GET,Returns 404 for unknown package id,Edge Case,P3,Pending,API Audit,,findOne not-found
+package,/api/packages,POST,Creates package with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+package,/api/packages,POST,Rejects package create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: pricing
+package,/api/packages/:id,PUT,Updates package by id,CRUD,P2,Pending,API Audit,,Default core update
+package,/api/packages/:id,DELETE,Deletes package by id,CRUD,P3,Pending,API Audit,,Default core delete
+package,/api/packages/:id,PUT,Rejects unauthorized package update,Permissions,P2,Pending,API Audit,,Admin-only enforcement
+package,/api/packages,POST,Rejects unauthenticated package creation,Auth,P2,Pending,API Audit,,Admin-only path
+page,/api/pages,GET,Returns paginated list of pages,CRUD,P2,Pending,API Audit,,Default core find
+page,/api/pages/:id,GET,Returns page by id,CRUD,P2,Pending,API Audit,,Default core findOne
+page,/api/pages/:id,GET,Returns 404 for unknown page id,Edge Case,P3,Pending,API Audit,,findOne not-found
+page,/api/pages,POST,Creates page with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+page,/api/pages,POST,Rejects page create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: slug uniqueness
+page,/api/pages/:id,PUT,Updates page by id,CRUD,P2,Pending,API Audit,,Default core update
+page,/api/pages/:id,DELETE,Deletes page by id,CRUD,P3,Pending,API Audit,,Default core delete
+page,/api/pages,GET,Supports filter by slug query param,CRUD,P2,Pending,API Audit,,Used for SSR lookups
+page,/api/pages,POST,Rejects unauthenticated page creation,Auth,P2,Pending,API Audit,,Admin-only path
+post,/api/posts,GET,Supports filter by slug query param,CRUD,P2,Pending,API Audit,,Used for blog SSR lookups
+post,/api/posts,POST,Rejects unauthenticated post creation,Auth,P2,Pending,API Audit,,Admin-only path
+state,/api/states,GET,Returns states sorted by name,CRUD,P3,Pending,API Audit,,Sort query param check
+category,/api/categories,GET,Supports populate of related courses,CRUD,P2,Pending,API Audit,,Populate query param
+path-redirect,/api/path-redirects,GET,Returns paginated list of path redirects,CRUD,P2,Pending,API Audit,,Default core find
+path-redirect,/api/path-redirects/:id,GET,Returns path redirect by id,CRUD,P2,Pending,API Audit,,Default core findOne
+path-redirect,/api/path-redirects/:id,GET,Returns 404 for unknown path redirect id,Edge Case,P3,Pending,API Audit,,findOne not-found
+path-redirect,/api/path-redirects,POST,Creates path redirect with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+path-redirect,/api/path-redirects,POST,Rejects path redirect create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: source/dest
+path-redirect,/api/path-redirects/:id,PUT,Updates path redirect by id,CRUD,P2,Pending,API Audit,,Default core update
+path-redirect,/api/path-redirects/:id,DELETE,Deletes path redirect by id,CRUD,P3,Pending,API Audit,,Default core delete
+payment-configuration,/api/payment-configuration,GET,Returns global payment configuration,CRUD,P1,Pending,API Audit,,Single-type find for payment config
+payment-configuration,/api/payment-configuration,GET,Rejects unauthenticated requests for payment config,Auth,P1,Pending,API Audit,,Sensitive: payment provider settings
+payment-configuration,/api/payment-configuration,GET,Enforces role-based access for payment configuration,Permissions,P1,Pending,API Audit,,Admin-only
+payment-configuration,/api/payment-configuration,PUT,Updates payment configuration,CRUD,P1,Pending,API Audit,,Single-type update
+payment-configuration,/api/payment-configuration,PUT,Rejects payment configuration update with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+payment-configuration,/api/payment-configuration,PUT,Rejects unauthenticated payment configuration update,Auth,P1,Pending,API Audit,,Sensitive update path
+payment-configuration,/api/payment-configuration,DELETE,Deletes payment configuration,CRUD,P2,Pending,API Audit,,Single-type delete
+payment-configuration,/api/payment-configuration,DELETE,Rejects unauthenticated payment configuration delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+post,/api/posts,GET,Returns paginated list of posts,CRUD,P2,Pending,API Audit,,Default core find
+post,/api/posts/:id,GET,Returns post by id,CRUD,P2,Pending,API Audit,,Default core findOne
+post,/api/posts/:id,GET,Returns 404 for unknown post id,Edge Case,P3,Pending,API Audit,,findOne not-found
+post,/api/posts,POST,Creates post with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+post,/api/posts,POST,Rejects post create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: slug
+post,/api/posts/:id,PUT,Updates post by id,CRUD,P2,Pending,API Audit,,Default core update
+post,/api/posts/:id,DELETE,Deletes post by id,CRUD,P3,Pending,API Audit,,Default core delete
+profile,/api/profiles,GET,Returns paginated list of profiles,CRUD,P2,Pending,API Audit,,Default core find - PII
+profile,/api/profiles,GET,Rejects unauthenticated profile list requests,Auth,P2,Pending,API Audit,,Auth required for PII
+profile,/api/profiles/:id,GET,Returns profile by id,CRUD,P2,Pending,API Audit,,Default core findOne
+profile,/api/profiles/:id,GET,Returns 404 for unknown profile id,Edge Case,P3,Pending,API Audit,,findOne not-found
+profile,/api/profiles,POST,Creates profile with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+profile,/api/profiles,POST,Rejects profile create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+profile,/api/profiles/:id,PUT,Updates profile by id,CRUD,P2,Pending,API Audit,,Default core update
+profile,/api/profiles/:id,PUT,Rejects update of another users profile,Permissions,P2,Pending,API Audit,,Owner-only
+profile,/api/profiles/:id,DELETE,Deletes profile by id,CRUD,P3,Pending,API Audit,,Default core delete
+profile,/api/profiles,POST,Rejects unauthenticated profile creation,Auth,P2,Pending,API Audit,,Auth required for PII
+profile,/api/profiles/:id,GET,Rejects access to another users profile,Permissions,P2,Pending,API Audit,,IDOR-safe
+profile,/api/profiles/:id,DELETE,Rejects unauthenticated profile delete,Auth,P2,Pending,API Audit,,Sensitive delete path
+progress,/api/progresses,GET,Returns paginated list of progress entries,CRUD,P1,Pending,API Audit,,Sensitive: tracks user learning
+progress,/api/progresses,GET,Rejects unauthenticated progress list requests,Auth,P1,Pending,API Audit,,Auth required
+progress,/api/progresses,GET,Enforces role-based filtering of progress by user,Permissions,P1,Pending,API Audit,,Users see only own progress
+progress,/api/progresses/:id,GET,Returns progress by id,CRUD,P2,Pending,API Audit,,Default core findOne
+progress,/api/progresses/:id,GET,Returns 404 for unknown progress id,Edge Case,P3,Pending,API Audit,,findOne not-found
+progress,/api/progresses/:id,GET,Rejects access to another users progress,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
+progress,/api/progresses,POST,Creates progress with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+progress,/api/progresses,POST,Rejects progress create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+progress,/api/progresses,POST,Rejects unauthenticated progress creation,Auth,P1,Pending,API Audit,,Sensitive create path
+progress,/api/progresses/:id,PUT,Updates progress by id,CRUD,P1,Pending,API Audit,,Default core update
+progress,/api/progresses/:id,PUT,Rejects unauthorized progress update,Permissions,P1,Pending,API Audit,,Owner-only
+progress,/api/progresses/:id,DELETE,Deletes progress by id,CRUD,P2,Pending,API Audit,,Default core delete
+progress,/api/progresses/:id,DELETE,Rejects unauthenticated progress delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+school,/api/schools,GET,Returns paginated list of schools,CRUD,P2,Pending,API Audit,,Default core find
+school,/api/schools/:id,GET,Returns school by id,CRUD,P2,Pending,API Audit,,Default core findOne
+school,/api/schools/:id,GET,Returns 404 for unknown school id,Edge Case,P3,Pending,API Audit,,findOne not-found
+school,/api/schools,POST,Creates school with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+school,/api/schools,POST,Rejects school create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+school,/api/schools/:id,PUT,Updates school by id,CRUD,P2,Pending,API Audit,,Default core update
+school,/api/schools/:id,DELETE,Deletes school by id,CRUD,P3,Pending,API Audit,,Default core delete
+school-course,/api/school-courses,GET,Returns paginated list of school courses,CRUD,P2,Pending,API Audit,,Default core find
+school-course,/api/school-courses/:id,GET,Returns school course by id,CRUD,P2,Pending,API Audit,,Default core findOne
+school-course,/api/school-courses/:id,GET,Returns 404 for unknown school course id,Edge Case,P3,Pending,API Audit,,findOne not-found
+school-course,/api/school-courses,POST,Creates school course with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+school-course,/api/school-courses,POST,Rejects school course create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+school-course,/api/school-courses/:id,PUT,Updates school course by id,CRUD,P2,Pending,API Audit,,Default core update
+school-course,/api/school-courses/:id,DELETE,Deletes school course by id,CRUD,P3,Pending,API Audit,,Default core delete
+scorm-progress,/api/scorm-progresses,GET,Returns paginated list of SCORM progress entries,CRUD,P1,Pending,API Audit,,Sensitive: tracks SCORM completion
+scorm-progress,/api/scorm-progresses,GET,Rejects unauthenticated SCORM progress list requests,Auth,P1,Pending,API Audit,,Auth required
+scorm-progress,/api/scorm-progresses,GET,Enforces role-based filtering of SCORM progress by user,Permissions,P1,Pending,API Audit,,Users see only own SCORM progress
+scorm-progress,/api/scorm-progresses/:id,GET,Returns SCORM progress by id,CRUD,P2,Pending,API Audit,,Default core findOne
+scorm-progress,/api/scorm-progresses/:id,GET,Returns 404 for unknown SCORM progress id,Edge Case,P3,Pending,API Audit,,findOne not-found
+scorm-progress,/api/scorm-progresses/:id,GET,Rejects access to another users SCORM progress,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
+scorm-progress,/api/scorm-progresses,POST,Creates SCORM progress with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+scorm-progress,/api/scorm-progresses,POST,Rejects SCORM progress create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+scorm-progress,/api/scorm-progresses,POST,Rejects unauthenticated SCORM progress creation,Auth,P1,Pending,API Audit,,Sensitive create path
+scorm-progress,/api/scorm-progresses/:id,PUT,Updates SCORM progress by id,CRUD,P1,Pending,API Audit,,Default core update
+scorm-progress,/api/scorm-progresses/:id,PUT,Rejects unauthorized SCORM progress update,Permissions,P1,Pending,API Audit,,Owner-only
+scorm-progress,/api/scorm-progresses/:id,DELETE,Deletes SCORM progress by id,CRUD,P2,Pending,API Audit,,Default core delete
+scorm-progress,/api/scorm-progresses/:id,DELETE,Rejects unauthenticated SCORM progress delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+spot,/api/spots,GET,Returns paginated list of spots,CRUD,P2,Pending,API Audit,,Default core find
+spot,/api/spots/:id,GET,Returns spot by id,CRUD,P2,Pending,API Audit,,Default core findOne
+spot,/api/spots/:id,GET,Returns 404 for unknown spot id,Edge Case,P3,Pending,API Audit,,findOne not-found
+spot,/api/spots,POST,Creates spot with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+spot,/api/spots,POST,Rejects spot create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+spot,/api/spots/:id,PUT,Updates spot by id,CRUD,P2,Pending,API Audit,,Default core update
+spot,/api/spots/:id,DELETE,Deletes spot by id,CRUD,P3,Pending,API Audit,,Default core delete
+square-api,/api/square-api,GET,Returns Square payment configuration,CRUD,P1,Pending,API Audit,,Single-type find for Square config
+square-api,/api/square-api,GET,Rejects unauthenticated requests for square-api,Auth,P1,Pending,API Audit,,Sensitive payment provider data
+square-api,/api/square-api,GET,Enforces role-based access for square-api,Permissions,P1,Pending,API Audit,,Admin-only
+square-api,/api/square-api,PUT,Updates Square payment configuration,CRUD,P1,Pending,API Audit,,Single-type update
+square-api,/api/square-api,PUT,Rejects square-api update with invalid payload,Validation,P1,Pending,API Audit,,Schema validation: API keys/tokens
+square-api,/api/square-api,PUT,Rejects unauthenticated update of square-api,Auth,P1,Pending,API Audit,,Sensitive update path
+square-api,/api/square-api,DELETE,Deletes square-api configuration,CRUD,P2,Pending,API Audit,,Single-type delete
+square-api,/api/square-api,DELETE,Rejects unauthenticated delete of square-api,Auth,P1,Pending,API Audit,,Sensitive delete path
+state,/api/states,GET,Returns paginated list of states,CRUD,P2,Pending,API Audit,,Default core find
+state,/api/states/:id,GET,Returns state by id,CRUD,P2,Pending,API Audit,,Default core findOne
+state,/api/states/:id,GET,Returns 404 for unknown state id,Edge Case,P3,Pending,API Audit,,findOne not-found
+state,/api/states,POST,Creates state with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+state,/api/states,POST,Rejects state create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+state,/api/states/:id,PUT,Updates state by id,CRUD,P2,Pending,API Audit,,Default core update
+state,/api/states/:id,DELETE,Deletes state by id,CRUD,P3,Pending,API Audit,,Default core delete
+state-info,/api/state-infos,GET,Returns paginated list of state info entries,CRUD,P2,Pending,API Audit,,Default core find
+state-info,/api/state-infos/:id,GET,Returns state info by id,CRUD,P2,Pending,API Audit,,Default core findOne
+state-info,/api/state-infos/:id,GET,Returns 404 for unknown state info id,Edge Case,P3,Pending,API Audit,,findOne not-found
+state-info,/api/state-infos,POST,Creates state info with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+state-info,/api/state-infos,POST,Rejects state info create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+state-info,/api/state-infos/:id,PUT,Updates state info by id,CRUD,P2,Pending,API Audit,,Default core update
+state-info,/api/state-infos/:id,DELETE,Deletes state info by id,CRUD,P3,Pending,API Audit,,Default core delete
+sub-category,/api/sub-categories,GET,Returns paginated list of sub categories,CRUD,P2,Pending,API Audit,,Default core find
+sub-category,/api/sub-categories/:id,GET,Returns sub category by id,CRUD,P2,Pending,API Audit,,Default core findOne
+sub-category,/api/sub-categories/:id,GET,Returns 404 for unknown sub category id,Edge Case,P3,Pending,API Audit,,findOne not-found
+sub-category,/api/sub-categories,POST,Creates sub category with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+sub-category,/api/sub-categories,POST,Rejects sub category create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+sub-category,/api/sub-categories/:id,PUT,Updates sub category by id,CRUD,P2,Pending,API Audit,,Default core update
+sub-category,/api/sub-categories/:id,DELETE,Deletes sub category by id,CRUD,P3,Pending,API Audit,,Default core delete
+subscription,/api/subscriptions,GET,Returns paginated list of subscriptions,CRUD,P1,Pending,API Audit,,Sensitive: billing
+subscription,/api/subscriptions,GET,Rejects unauthenticated subscription list requests,Auth,P1,Pending,API Audit,,Auth required
+subscription,/api/subscriptions/:id,GET,Returns subscription by id,CRUD,P1,Pending,API Audit,,Default core findOne
+subscription,/api/subscriptions/:id,GET,Returns 404 for unknown subscription id,Edge Case,P2,Pending,API Audit,,findOne not-found
+subscription,/api/subscriptions,POST,Creates subscription with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+subscription,/api/subscriptions,POST,Rejects subscription create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+subscription,/api/subscriptions/:id,PUT,Updates subscription by id,CRUD,P1,Pending,API Audit,,Default core update
+subscription,/api/subscriptions/:id,DELETE,Deletes subscription by id,CRUD,P2,Pending,API Audit,,Default core delete
+subscription,/api/subscriptions,GET,Enforces role-based scoping of subscriptions to current user,Permissions,P1,Pending,API Audit,,IDOR-safe
+subscription,/api/subscriptions/:id,PUT,Rejects unauthorized subscription update,Permissions,P1,Pending,API Audit,,Owner/admin only
+subscription,/api/subscriptions,POST,Rejects unauthenticated subscription creation,Auth,P1,Pending,API Audit,,Sensitive create path
+subscription,/api/subscriptions/:id,DELETE,Rejects unauthenticated subscription delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+subscription-account,/api/subscription-accounts,GET,Returns paginated list of subscription accounts,CRUD,P1,Pending,API Audit,,Sensitive: org-level subscriptions
+subscription-account,/api/subscription-accounts,GET,Rejects unauthenticated subscription account list requests,Auth,P1,Pending,API Audit,,Auth required
+subscription-account,/api/subscription-accounts,GET,Enforces role-based scope on subscription account list,Permissions,P1,Pending,API Audit,,Owner/admin only
+subscription-account,/api/subscription-accounts/:id,GET,Returns subscription account by id,CRUD,P1,Pending,API Audit,,Default core findOne
+subscription-account,/api/subscription-accounts/:id,GET,Returns 404 for unknown subscription account id,Edge Case,P2,Pending,API Audit,,findOne not-found
+subscription-account,/api/subscription-accounts/:id,GET,Rejects access to another users subscription account,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
+subscription-account,/api/subscription-accounts,POST,Creates subscription account with valid payload,CRUD,P1,Pending,API Audit,,Default core create
+subscription-account,/api/subscription-accounts,POST,Rejects subscription account create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
+subscription-account,/api/subscription-accounts,POST,Rejects unauthenticated subscription account creation,Auth,P1,Pending,API Audit,,Sensitive create path
+subscription-account,/api/subscription-accounts/:id,PUT,Updates subscription account by id,CRUD,P1,Pending,API Audit,,Default core update
+subscription-account,/api/subscription-accounts/:id,PUT,Rejects unauthorized subscription account update,Permissions,P1,Pending,API Audit,,Owner/admin only
+subscription-account,/api/subscription-accounts/:id,DELETE,Deletes subscription account by id,CRUD,P2,Pending,API Audit,,Default core delete
+subscription-account,/api/subscription-accounts/:id,DELETE,Rejects unauthenticated subscription account delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+subscription-account-user,/api/subscription-account-users,GET,Returns paginated list of subscription account users,CRUD,P2,Pending,API Audit,,Default core find
+subscription-account-user,/api/subscription-account-users/:id,GET,Returns subscription account user by id,CRUD,P2,Pending,API Audit,,Default core findOne
+subscription-account-user,/api/subscription-account-users/:id,GET,Returns 404 for unknown subscription account user id,Edge Case,P3,Pending,API Audit,,findOne not-found
+subscription-account-user,/api/subscription-account-users,POST,Creates subscription account user with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+subscription-account-user,/api/subscription-account-users,POST,Rejects subscription account user create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+subscription-account-user,/api/subscription-account-users/:id,PUT,Updates subscription account user by id,CRUD,P2,Pending,API Audit,,Default core update
+subscription-account-user,/api/subscription-account-users/:id,DELETE,Deletes subscription account user by id,CRUD,P3,Pending,API Audit,,Default core delete
+subscription-order,/api/subscription-orders,GET,Returns paginated list of subscription orders,CRUD,P2,Pending,API Audit,,Default core find
+subscription-order,/api/subscription-orders/:id,GET,Returns subscription order by id,CRUD,P2,Pending,API Audit,,Default core findOne
+subscription-order,/api/subscription-orders/:id,GET,Returns 404 for unknown subscription order id,Edge Case,P3,Pending,API Audit,,findOne not-found
+subscription-order,/api/subscription-orders,POST,Creates subscription order with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+subscription-order,/api/subscription-orders,POST,Rejects subscription order create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+subscription-order,/api/subscription-orders/:id,PUT,Updates subscription order by id,CRUD,P2,Pending,API Audit,,Default core update
+subscription-order,/api/subscription-orders/:id,DELETE,Deletes subscription order by id,CRUD,P3,Pending,API Audit,,Default core delete
+subscription-order,/api/subscription-orders,GET,Rejects unauthenticated subscription order list requests,Auth,P2,Pending,API Audit,,Billing-related entity
+subscription-order,/api/subscription-orders/:id,GET,Rejects access to another users subscription order,Permissions,P2,Pending,API Audit,,Cross-user IDOR check
+subscription-plan,/api/subscription-plans,GET,Returns paginated list of subscription plans,CRUD,P2,Pending,API Audit,,Default core find
+subscription-plan,/api/subscription-plans/:id,GET,Returns subscription plan by id,CRUD,P2,Pending,API Audit,,Default core findOne
+subscription-plan,/api/subscription-plans/:id,GET,Returns 404 for unknown subscription plan id,Edge Case,P3,Pending,API Audit,,findOne not-found
+subscription-plan,/api/subscription-plans,POST,Creates subscription plan with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+subscription-plan,/api/subscription-plans,POST,Rejects subscription plan create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: pricing
+subscription-plan,/api/subscription-plans/:id,PUT,Updates subscription plan by id,CRUD,P2,Pending,API Audit,,Default core update
+subscription-plan,/api/subscription-plans/:id,DELETE,Deletes subscription plan by id,CRUD,P3,Pending,API Audit,,Default core delete
+support-chat-content,/api/support-chat-contents,GET,Returns paginated list of support chat content,CRUD,P2,Pending,API Audit,,Default core find
+support-chat-content,/api/support-chat-contents/:id,GET,Returns support chat content by id,CRUD,P2,Pending,API Audit,,Default core findOne
+support-chat-content,/api/support-chat-contents/:id,GET,Returns 404 for unknown support chat content id,Edge Case,P3,Pending,API Audit,,findOne not-found
+support-chat-content,/api/support-chat-contents,POST,Creates support chat content with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+support-chat-content,/api/support-chat-contents,POST,Rejects support chat content create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+support-chat-content,/api/support-chat-contents/:id,PUT,Updates support chat content by id,CRUD,P2,Pending,API Audit,,Default core update
+support-chat-content,/api/support-chat-contents/:id,DELETE,Deletes support chat content by id,CRUD,P3,Pending,API Audit,,Default core delete
+support-chat-log,/api/support-chat-logs,GET,Returns paginated list of support chat logs,CRUD,P2,Pending,API Audit,,Default core find
+support-chat-log,/api/support-chat-logs/:id,GET,Returns support chat log by id,CRUD,P2,Pending,API Audit,,Default core findOne
+support-chat-log,/api/support-chat-logs/:id,GET,Returns 404 for unknown support chat log id,Edge Case,P3,Pending,API Audit,,findOne not-found
+support-chat-log,/api/support-chat-logs,POST,Creates support chat log with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+support-chat-log,/api/support-chat-logs,POST,Rejects support chat log create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+support-chat-log,/api/support-chat-logs/:id,PUT,Updates support chat log by id,CRUD,P2,Pending,API Audit,,Default core update
+support-chat-log,/api/support-chat-logs/:id,DELETE,Deletes support chat log by id,CRUD,P3,Pending,API Audit,,Default core delete
+top-nav-sub-menu,/api/top-nav-sub-menus,GET,Returns paginated list of top nav sub menus,CRUD,P2,Pending,API Audit,,Default core find
+top-nav-sub-menu,/api/top-nav-sub-menus/:id,GET,Returns top nav sub menu by id,CRUD,P2,Pending,API Audit,,Default core findOne
+top-nav-sub-menu,/api/top-nav-sub-menus/:id,GET,Returns 404 for unknown top nav sub menu id,Edge Case,P3,Pending,API Audit,,findOne not-found
+top-nav-sub-menu,/api/top-nav-sub-menus,POST,Creates top nav sub menu with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+top-nav-sub-menu,/api/top-nav-sub-menus,POST,Rejects top nav sub menu create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+top-nav-sub-menu,/api/top-nav-sub-menus/:id,PUT,Updates top nav sub menu by id,CRUD,P2,Pending,API Audit,,Default core update
+top-nav-sub-menu,/api/top-nav-sub-menus/:id,DELETE,Deletes top nav sub menu by id,CRUD,P3,Pending,API Audit,,Default core delete
+topic,/api/topics,GET,Returns paginated list of topics,CRUD,P2,Pending,API Audit,,Default core find
+topic,/api/topics/:id,GET,Returns topic by id,CRUD,P2,Pending,API Audit,,Default core findOne
+topic,/api/topics/:id,GET,Returns 404 for unknown topic id,Edge Case,P3,Pending,API Audit,,findOne not-found
+topic,/api/topics,POST,Creates topic with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+topic,/api/topics,POST,Rejects topic create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+topic,/api/topics/:id,PUT,Updates topic by id,CRUD,P2,Pending,API Audit,,Default core update
+topic,/api/topics/:id,DELETE,Deletes topic by id,CRUD,P3,Pending,API Audit,,Default core delete
+training-landing-page,/api/training-landing-pages,GET,Returns paginated list of training landing pages,CRUD,P2,Pending,API Audit,,Default core find
+training-landing-page,/api/training-landing-pages/:id,GET,Returns training landing page by id,CRUD,P2,Pending,API Audit,,Default core findOne
+training-landing-page,/api/training-landing-pages/:id,GET,Returns 404 for unknown training landing page id,Edge Case,P3,Pending,API Audit,,findOne not-found
+training-landing-page,/api/training-landing-pages,POST,Creates training landing page with valid payload,CRUD,P2,Pending,API Audit,,Default core create
+training-landing-page,/api/training-landing-pages,POST,Rejects training landing page create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
+training-landing-page,/api/training-landing-pages/:id,PUT,Updates training landing page by id,CRUD,P2,Pending,API Audit,,Default core update
+training-landing-page,/api/training-landing-pages/:id,DELETE,Deletes training landing page by id,CRUD,P3,Pending,API Audit,,Default core delete
+custom-auth,/api/custom-auth/register,POST,Account Creation - create new account with all required fields,Custom Endpoint,P1,Done,Screenshot,test_account_management.py::test_account_creation_with_all_required_fields,Maps to QA case Account Creation
+custom-auth,/api/custom-auth/forgot-password,POST,Forgot Password - known username returns ok or email send failure,Custom Endpoint,P1,Done,Screenshot,test_account_management.py::test_forgot_password_for_known_user_returns_ok,Maps to QA case Forgot Password
+custom-auth,/api/custom-auth/forgot-password,POST,Forgot Password - unknown username returns NOT_FOUND,Custom Endpoint,P2,Done,Screenshot,test_account_management.py::test_forgot_password_for_unknown_user_returns_not_found,Edge case for Forgot Password QA
+custom-auth,/api/custom-auth/forgot-username,POST,Forgot Username - unknown email returns NOT_FOUND,Custom Endpoint,P1,Done,Screenshot,test_account_management.py::test_forgot_username_for_unknown_email_returns_not_found,Maps to QA case Forgot UserName
+custom-auth,/api/custom-auth/forgot-username,POST,Forgot Username - missing fields rejected,Custom Endpoint,P2,Done,Screenshot,test_account_management.py::test_forgot_username_requires_lastname_and_email,Validation for Forgot UserName
+users-permissions,/api/users/:id,PUT,Super Admin can update username and password and user can sign in,Permissions,P1,Done,Screenshot,test_account_management.py::test_super_admin_can_update_username_and_password,Maps to QA case Update Username and Password
+discount-code,/api/discount-codes,POST,New Discount Code - create percentage discount for multi-user use,Custom Endpoint,P1,Done,Screenshot,test_discount_code.py::test_create_new_percentage_discount_code_for_multi_user_use,Maps to QA case New Discount Code
+discount-code,/api/discount-codes,GET,Existing Discount Code - active code is visible in listing,CRUD,P1,Done,Screenshot,test_discount_code.py::test_active_discount_code_is_visible_in_listing,Maps to QA case Existing Discount Code
+discount-code,/api/discount-codes/:id,PUT,Inactivate Discount Code - status flips to inactive (EXPIRED),Business Logic,P1,Done,Screenshot,test_discount_code.py::test_inactive_discount_code_reports_inactive_status,Maps to QA case Inactivate Discount Code
+discount-code,/api/discount-codes,POST,Discount Code create requires auth - rejected without API token,Permissions,P1,Done,Screenshot,test_discount_code.py::test_create_discount_code_requires_auth,Auth hardening for the New Discount Code flow
+center,/api/centers,POST,New Group Subscription - create a Center for a new Child Care Center,Custom Endpoint,P1,Done,Screenshot,test_group_subscription.py::test_new_group_subscription_creates_center,Maps to QA case New Group Subscription Set up
+center-user,/api/center-users,POST,Group Subscription - Super Admin can add Center Users,Permissions,P1,Done,Screenshot,test_group_subscription.py::test_super_admin_can_add_center_user,Maps to QA case Add Center Users using Super Admin Account
+center,/api/centers,GET,Group Subscription - Center Admin Dashboard lists assigned Center,Custom Endpoint,P1,Done,Screenshot,test_group_subscription.py::test_center_admin_dashboard_lists_their_center,Maps to QA case Center Admin Dashboard Access
+discount-code,/api/discount-codes,GET,Group Subscription - Center user can look up center-scoped discount code,Business Logic,P1,Done,Screenshot,test_group_subscription.py::test_center_scoped_discount_code_can_be_listed_for_center_user,Maps to QA case Discount Code Verification for Center User
+discount-code,/api/discount-codes,GET,Group Subscription - Non-center user lookup of unknown code returns empty,Business Logic,P1,Done,Screenshot,test_group_subscription.py::test_unknown_discount_code_lookup_returns_empty,Maps to QA case Discount Code Verification for Non-Center User
+center-user,/api/center-users,POST,Group Subscription - Add Center Users using Center Admin Account,Permissions,P2,Pending,Screenshot,,UI flow uses Center Admin auth - covered today only via Super Admin path
+progress,/api/progresses/:id,GET,Class Access - regular class progress can be fetched,CRUD,P1,Done,Screenshot,test_class_access.py::test_user_can_fetch_their_progress,Maps to QA case Class Access regular class
+progress,/api/progresses/:id,PUT,Class Access - progress updates persist (round-trip),Business Logic,P1,Done,Screenshot,test_class_access.py::test_progress_updates_are_persisted,Maps to QA case Verify class progress is maintained
+course,/api/courses,GET,Class Access - 30 hour child care basics course exists,CRUD,P2,Skipped,Screenshot,test_class_access.py::test_thirty_hour_childcare_course_is_listed,Skipped - course not seeded in current Strapi instance
+scorm-progress,/api/scorm-progresses,POST,SCORM Class - access scorm class and maintain progress,Business Logic,P1,Done,Screenshot,test_class_access.py::test_scorm_progress_create_and_update,Maps to QA case Scorm Class access + progress
+interact-response,/api/interact-responses,POST,Quiz - completion creates an interact-response,Business Logic,P1,Done,Screenshot,test_class_access.py::test_quiz_completion_creates_interact_response,Maps to QA case Quiz completion
+certificate,/api/certificates,GET,Verify class can be Repeated - View Certificate endpoint responds,CRUD,P1,Done,Screenshot,test_class_access.py::test_certificate_endpoint_responds,Maps to QA case View Certificate after repeat - schema lacks user relation so tested as listing endpoint
+frontend,N/A,N/A,Google Translate widget translates course content,Edge Case,P3,N/A,Screenshot,test_class_access.py::test_google_translate_widget_translates_course_content,Frontend-only widget - no API to unit-test
+discount-code,/api/discount-codes,PUT,Graduate Report - hourly_rate field is writable and round-trips,Business Logic,P1,Done,Screenshot,test_graduate_report.py::test_discount_hourly_rate_field_is_writable,Maps to QA case Graduate Report - existing discount hourly rate
+discount-code,/api/discount-codes,GET,Graduate Report - MELOGRP code exposes hourly_rate,Business Logic,P2,Skipped,Screenshot,test_graduate_report.py::test_melogrp_discount_code_exposes_hourly_rate,Skipped - MELOGRP not seeded in current Strapi instance

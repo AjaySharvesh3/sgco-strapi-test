@@ -17,14 +17,29 @@ def _env(key: str, default: str = "") -> str:
     return val
 
 
+def _service_up(url: str, timeout: float = 2.0) -> bool:
+    try:
+        requests.get(url, timeout=timeout)
+        return True
+    except requests.RequestException:
+        return False
+
+
 @pytest.fixture(scope="session")
 def strapi_url() -> str:
-    return os.getenv("STRAPI_API_URL", "http://localhost:1337").rstrip("/")
+    url = os.getenv("STRAPI_API_URL", "http://localhost:1337").rstrip("/")
+    if not _service_up(f"{url}/_health"):
+        pytest.skip(f"Strapi not reachable at {url}", allow_module_level=False)
+    return url
 
 
 @pytest.fixture(scope="session")
 def next_api_url() -> str:
-    return os.getenv("NEXT_APP_API_URL", "http://localhost:3000/api").rstrip("/")
+    url = os.getenv("NEXT_APP_API_URL", "http://localhost:3000/api").rstrip("/")
+    base = url.rsplit("/api", 1)[0]
+    if not _service_up(base):
+        pytest.skip(f"Next.js not reachable at {base}", allow_module_level=False)
+    return url
 
 
 @pytest.fixture(scope="session")
@@ -92,3 +107,30 @@ def registered_user(strapi_url: str, strapi_headers: dict) -> dict:
         "id": data["user"]["id"],
         "jwt": data["jwt"],
     }
+
+
+@pytest.fixture
+def fresh_user(strapi_url: str, strapi_headers: dict) -> dict:
+    """A brand-new user, function-scoped — useful for forgot-password / forgot-username."""
+    payload = make_unique_user()
+    r = requests.post(
+        f"{strapi_url}/api/custom-auth/register",
+        json=payload,
+        headers=strapi_headers,
+        timeout=15,
+    )
+    assert r.status_code == 200, r.text
+    data = r.json()
+    return {**payload, "id": data["user"]["id"], "jwt": data.get("jwt", "")}
+
+
+def _api_token_required():
+    if not os.getenv("STRAPI_API_TOKEN", "").strip():
+        pytest.skip("STRAPI_API_TOKEN not set; skipping admin-write test")
+
+
+@pytest.fixture(scope="session")
+def admin_required():
+    """Yield-fixture form for tests that mutate Strapi admin-side data."""
+    _api_token_required()
+    return True
