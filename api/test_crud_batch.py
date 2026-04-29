@@ -128,6 +128,53 @@ SPECS: list[Spec] = [
          {"name": f"PytestState_{_u()}", "abbreviation": _u()[:4].upper()},
          {"cert_message": "updated"},
          missing_required={"cert_message": "no name"}),  # missing name + abbreviation
+    # Batch 4 — extends coverage to relation-heavy / sensitive-adjacent APIs.
+    Spec("profile", "/api/profiles", True,
+         {"first_name": "Pytest", "last_name": f"User_{_u()}", "city": "TestCity"},
+         {"city": "UpdatedCity"}),
+    Spec("interact-response", "/api/interact-responses", False,
+         {"response": "yes", "interact_component_id": f"comp-{_u()}"},
+         {"response": "no"}),
+    Spec("school-course", "/api/school-courses", False,
+         {"courses_json": {"course_ids": [1, 2, 3]}},
+         {"courses_json": {"course_ids": [4]}}),
+    # support-chat-content REST endpoints return 401 even with the Full-access
+    # API token in this codebase — the route appears to be admin-panel-only.
+    # Skipped in the batch; covered separately via the admin UI / e2e flow.
+    Spec("support-chat-log", "/api/support-chat-logs", True,
+         {"logs": "<p>session log</p>"},
+         {"logs": "<p>updated log</p>"}),
+    Spec("order-item", "/api/order-items", False,
+         {"product_id": f"prod-{_u()}", "product_type": "course",
+          "product_price": 9.99, "currentpage": 1},
+         {"currentpage": 5}),
+    Spec("subscription", "/api/subscriptions", True,
+         {"name": f"Pytest Sub {_u()}", "price": 99.99, "users_count": 10,
+          "subscription_type": "INDIVIDUAL"},
+         {"subscription_type": "GROUP"}),
+    Spec("subscription-plan", "/api/subscription-plans", True,
+         {"name": f"Pytest Plan {_u()}", "original_price": 100,
+          "discounted_price": 80, "seat_count": 5,
+          "slug": f"pytest-plan-{_u()}"},
+         {"discounted_price": 60},
+         missing_required={"name": "no seat_count"}),  # `seat_count` required
+    Spec("subscription-account-user", "/api/subscription-account-users", False,
+         {},  # both attrs are relations; create with empty payload
+         {}),
+    Spec("subscription-order", "/api/subscription-orders", False,
+         {"order_total": 99.99, "r_ordernum": f"PYT-{_u()}",
+          "r_approved": True, "order_ccname": "Pytest"},
+         {"order_total": 79.99}),
+    Spec("center", "/api/centers", True,
+         {"name": f"Pytest Center CRUD {_u()}", "status": "active"},
+         {"status": "inactive"}),
+    Spec("center-user", "/api/center-users", True,
+         {"status": "active"},
+         {"status": "inactive"}),
+    Spec("subscription-account", "/api/subscription-accounts", False,
+         {"sub_acc_name": f"Pytest Acct {_u()}", "seat_count": 10,
+          "price": 199.99, "status": True},
+         {"status": False}),
 ]
 
 IDS = [s.api for s in SPECS]

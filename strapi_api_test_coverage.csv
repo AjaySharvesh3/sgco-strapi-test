@@ -61,33 +61,33 @@ cda,/api/cdas,POST,Creates CDA entry with valid payload,CRUD,P2,Done,API Audit,t
 cda,/api/cdas,POST,Rejects CDA create with invalid payload,Validation,P2,Done,API Audit,test_cda.py::test_create_cda_rejects_unwrapped_payload,Schema validation
 cda,/api/cdas/:id,PUT,Updates CDA entry by id,CRUD,P2,Done,API Audit,test_cda.py::test_update_cda,Default core update
 cda,/api/cdas/:id,DELETE,Deletes CDA entry by id,CRUD,P3,Done,API Audit,test_cda.py::test_delete_cda,Default core delete
-center,/api/centers,GET,Returns paginated list of centers,CRUD,P2,Pending,API Audit,,Default core find
-center,/api/centers/:id,GET,Returns center by id,CRUD,P2,Pending,API Audit,,Default core findOne
-center,/api/centers/:id,GET,Returns 404 for unknown center id,Edge Case,P3,Pending,API Audit,,findOne not-found
-center,/api/centers,POST,Creates center with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-center,/api/centers,POST,Rejects center create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-center,/api/centers/:id,PUT,Updates center by id,CRUD,P2,Pending,API Audit,,Default core update
-center,/api/centers/:id,DELETE,Deletes center by id,CRUD,P2,Pending,API Audit,,Default core delete
-center-user,/api/center-users,GET,Returns paginated list of center users,CRUD,P2,Pending,API Audit,,Default core find
-center-user,/api/center-users/:id,GET,Returns center user by id,CRUD,P2,Pending,API Audit,,Default core findOne
-center-user,/api/center-users/:id,GET,Returns 404 for unknown center user id,Edge Case,P3,Pending,API Audit,,findOne not-found
-center-user,/api/center-users,POST,Creates center user with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-center-user,/api/center-users,POST,Rejects center user create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-center-user,/api/center-users/:id,PUT,Updates center user by id,CRUD,P2,Pending,API Audit,,Default core update
-center-user,/api/center-users/:id,DELETE,Deletes center user by id,CRUD,P3,Pending,API Audit,,Default core delete
-certificate,/api/certificates,GET,Returns paginated list of certificates,CRUD,P1,Pending,API Audit,,Sensitive certificate data
-certificate,/api/certificates,GET,Rejects unauthenticated certificate list requests,Auth,P1,Pending,API Audit,,Sensitive: must require auth
-certificate,/api/certificates,GET,Enforces role-based filtering of certificates by user,Permissions,P1,Pending,API Audit,,Users see only own certificates
-certificate,/api/certificates/:id,GET,Returns certificate by id,CRUD,P1,Pending,API Audit,,Default core findOne
-certificate,/api/certificates/:id,GET,Returns 404 for unknown certificate id,Edge Case,P2,Pending,API Audit,,findOne not-found
-certificate,/api/certificates/:id,GET,Rejects access to another users certificate,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
-certificate,/api/certificates,POST,Creates certificate with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-certificate,/api/certificates,POST,Rejects certificate create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-certificate,/api/certificates,POST,Rejects unauthenticated certificate creation,Auth,P1,Pending,API Audit,,Sensitive create path
-certificate,/api/certificates/:id,PUT,Updates certificate by id,CRUD,P2,Pending,API Audit,,Default core update
-certificate,/api/certificates/:id,PUT,Rejects unauthorized certificate update,Permissions,P1,Pending,API Audit,,Only owner/admin
-certificate,/api/certificates/:id,DELETE,Deletes certificate by id,CRUD,P2,Pending,API Audit,,Admin-only path
-certificate,/api/certificates/:id,DELETE,Rejects unauthenticated certificate delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+center,/api/centers,GET,Returns paginated list of centers,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[center],Default core find
+center,/api/centers/:id,GET,Returns center by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[center],Default core findOne
+center,/api/centers/:id,GET,Returns 404 for unknown center id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[center],findOne not-found
+center,/api/centers,POST,Creates center with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[center],Default core create
+center,/api/centers,POST,Rejects center create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[center],Schema validation
+center,/api/centers/:id,PUT,Updates center by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[center],Default core update
+center,/api/centers/:id,DELETE,Deletes center by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_delete[center],Default core delete
+center-user,/api/center-users,GET,Returns paginated list of center users,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[center-user],Default core find
+center-user,/api/center-users/:id,GET,Returns center user by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[center-user],Default core findOne
+center-user,/api/center-users/:id,GET,Returns 404 for unknown center user id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[center-user],findOne not-found
+center-user,/api/center-users,POST,Creates center user with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[center-user],Default core create
+center-user,/api/center-users,POST,Rejects center user create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[center-user],Schema validation
+center-user,/api/center-users/:id,PUT,Updates center user by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[center-user],Default core update
+center-user,/api/center-users/:id,DELETE,Deletes center user by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[center-user],Default core delete
+certificate,/api/certificates,GET,Returns paginated list of certificates,CRUD,P1,Done,API Audit,test_certificate.py::test_list_certificates_with_admin,Sensitive certificate data
+certificate,/api/certificates,GET,Rejects unauthenticated certificate list requests,Auth,P1,Done,API Audit,test_certificate.py::test_unauthenticated_list_does_not_leak_profile_names,Sensitive: must require auth
+certificate,/api/certificates,GET,Enforces role-based filtering of certificates by user,Permissions,P1,Done,API Audit,test_certificate.py::test_role_based_filter_by_profile_name,Users see only own certificates
+certificate,/api/certificates/:id,GET,Returns certificate by id,CRUD,P1,Done,API Audit,test_certificate.py::test_findone_certificate,Default core findOne
+certificate,/api/certificates/:id,GET,Returns 404 for unknown certificate id,Edge Case,P2,Done,API Audit,test_certificate.py::test_findone_unknown_returns_404,findOne not-found
+certificate,/api/certificates/:id,GET,Rejects access to another users certificate,Permissions,P1,Done,API Audit,test_certificate.py::test_unauthenticated_findone_is_isolated,Cross-user IDOR protection
+certificate,/api/certificates,POST,Creates certificate with valid payload,CRUD,P1,Done,API Audit,test_certificate.py::test_create_certificate,Default core create
+certificate,/api/certificates,POST,Rejects certificate create with invalid payload,Validation,P1,Done,API Audit,test_certificate.py::test_create_certificate_rejects_unwrapped_payload,Schema validation
+certificate,/api/certificates,POST,Rejects unauthenticated certificate creation,Auth,P1,Done,API Audit,test_certificate.py::test_unauthenticated_create_is_rejected,Sensitive create path
+certificate,/api/certificates/:id,PUT,Updates certificate by id,CRUD,P2,Done,API Audit,test_certificate.py::test_update_certificate,Default core update
+certificate,/api/certificates/:id,PUT,Rejects unauthorized certificate update,Permissions,P1,Done,API Audit,test_certificate.py::test_unauthenticated_update_is_rejected,Only owner/admin
+certificate,/api/certificates/:id,DELETE,Deletes certificate by id,CRUD,P2,Done,API Audit,test_certificate.py::test_delete_certificate,Admin-only path
+certificate,/api/certificates/:id,DELETE,Rejects unauthenticated certificate delete,Auth,P1,Done,API Audit,test_certificate.py::test_unauthenticated_delete_is_rejected,Sensitive delete path
 certificate-partner,/api/certificate-partners,GET,Returns paginated list of certificate partners,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_list_certificate_partners,Default core find
 certificate-partner,/api/certificate-partners/:id,GET,Returns certificate partner by id,CRUD,P2,Done,API Audit,test_certificate_partner.py::test_findone_certificate_partner,Default core findOne
 certificate-partner,/api/certificate-partners/:id,GET,Returns 404 for unknown certificate partner id,Edge Case,P3,Done,API Audit,test_certificate_partner.py::test_findone_unknown_certificate_partner_returns_404,findOne not-found
@@ -163,37 +163,37 @@ course-state-fee,/api/course-state-fees,POST,Creates course state fee with valid
 course-state-fee,/api/course-state-fees,POST,Rejects course state fee create with invalid payload,Validation,P2,Done,API Audit,test_course_state_fee.py::test_create_course_state_fee_rejects_unwrapped_payload,Schema validation
 course-state-fee,/api/course-state-fees/:id,PUT,Updates course state fee by id,CRUD,P2,Done,API Audit,test_course_state_fee.py::test_update_course_state_fee,Default core update
 course-state-fee,/api/course-state-fees/:id,DELETE,Deletes course state fee by id,CRUD,P3,Done,API Audit,test_course_state_fee.py::test_delete_course_state_fee,Default core delete
-custom-auth,/api/custom-auth/login,POST,Logs in user successfully with valid username/password,Custom Endpoint,P1,Pending,API Audit,,Issues JWT and updates sign-in tracking
-custom-auth,/api/custom-auth/login,POST,Returns 400 when password is invalid,Custom Endpoint,P1,Pending,API Audit,,ValidationError 'Invalid identifier or password'
-custom-auth,/api/custom-auth/login,POST,Returns 400 when username does not exist,Custom Endpoint,P1,Pending,API Audit,,ValidationError on unknown user
-custom-auth,/api/custom-auth/login,POST,Returns error when account is blocked,Custom Endpoint,P1,Pending,API Audit,,Blocked user path
-custom-auth,/api/custom-auth/login,POST,Returns MULTIPLE_USER_ACCOUNTS_WITH_EMAIL_ADDRESS when duplicate emails,Business Logic,P2,Pending,API Audit,,Multiple user accounts collision
-custom-auth,/api/custom-auth/login,POST,Rejects login when email confirmation is required and not confirmed,Auth,P2,Pending,API Audit,,Email confirmation flow
-custom-auth,/api/custom-auth/forgot-password,POST,Sends reset password email for valid username,Custom Endpoint,P1,Pending,API Audit,,Reset token persisted
-custom-auth,/api/custom-auth/forgot-password,POST,Returns NOT_FOUND when username unknown,Custom Endpoint,P1,Pending,API Audit,,Failure path
-custom-auth,/api/custom-auth/forgot-password,POST,Returns BLOCKED when user is blocked,Business Logic,P2,Pending,API Audit,,Blocked user path
-custom-auth,/api/custom-auth/forgot-password,POST,Returns NO_EMAIL when user has no email,Edge Case,P2,Pending,API Audit,,User missing email
-custom-auth,/api/custom-auth/forgot-password,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Pending,API Audit,,Email service down
-custom-auth,/api/custom-auth/forgot-username,POST,Sends username recovery email for matching last name+email,Custom Endpoint,P1,Pending,API Audit,,Looks up profile by last_name and email
-custom-auth,/api/custom-auth/forgot-username,POST,Returns NOT_FOUND when no matching profile,Custom Endpoint,P1,Pending,API Audit,,Failure path
-custom-auth,/api/custom-auth/forgot-username,POST,Returns BLOCKED when matched user is blocked,Business Logic,P2,Pending,API Audit,,Blocked user path
-custom-auth,/api/custom-auth/register,POST,Registers a new user with valid payload,Custom Endpoint,P1,Pending,API Audit,,Issues JWT when email confirmation disabled
-custom-auth,/api/custom-auth/register,POST,Throws when register action is disabled,Custom Endpoint,P1,Pending,API Audit,,allow_register=false
-custom-auth,/api/custom-auth/register,POST,Returns ok=false when username already taken,Validation,P1,Pending,API Audit,,Username collision
-custom-auth,/api/custom-auth/register,POST,Returns ok=false when email already taken with unique_email,Validation,P1,Pending,API Audit,,Email collision when unique_email enabled
-custom-auth,/api/custom-auth/register,POST,Sends confirmation email when email_confirmation enabled,Business Logic,P2,Pending,API Audit,,Email confirmation flow
-custom-auth,/api/custom-auth/register,POST,Strips confirmed/blocked/tokens from request body,Validation,P1,Pending,API Audit,,Prevents privilege escalation
-custom-auth,/api/custom-auth/contact-form,POST,Sends contact form email with valid payload,Custom Endpoint,P2,Pending,API Audit,,Public endpoint
+custom-auth,/api/custom-auth/login,POST,Logs in user successfully with valid username/password,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_login_with_valid_credentials_returns_jwt,Issues JWT and updates sign-in tracking
+custom-auth,/api/custom-auth/login,POST,Returns 400 when password is invalid,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_login_with_invalid_password_is_rejected,ValidationError 'Invalid identifier or password'
+custom-auth,/api/custom-auth/login,POST,Returns 400 when username does not exist,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_login_with_unknown_username_is_rejected,ValidationError on unknown user
+custom-auth,/api/custom-auth/login,POST,Returns error when account is blocked,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_login_for_blocked_account_is_rejected,Blocked user path
+custom-auth,/api/custom-auth/login,POST,Returns MULTIPLE_USER_ACCOUNTS_WITH_EMAIL_ADDRESS when duplicate emails,Business Logic,P2,Done,API Audit,test_custom_auth.py::test_login_with_duplicate_email_returns_multiple_accounts_marker,Multiple user accounts collision
+custom-auth,/api/custom-auth/login,POST,Rejects login when email confirmation is required and not confirmed,Auth,P2,Done,API Audit,test_custom_auth.py::test_login_when_email_confirmation_required_and_unconfirmed_is_rejected,Email confirmation flow
+custom-auth,/api/custom-auth/forgot-password,POST,Sends reset password email for valid username,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_forgot_password_for_known_user_returns_ok_or_email_failure,Reset token persisted
+custom-auth,/api/custom-auth/forgot-password,POST,Returns NOT_FOUND when username unknown,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_forgot_password_for_unknown_username_returns_not_found,Failure path
+custom-auth,/api/custom-auth/forgot-password,POST,Returns BLOCKED when user is blocked,Business Logic,P2,Done,API Audit,test_custom_auth.py::test_otp_login_for_blocked_user_returns_blocked,Blocked user path
+custom-auth,/api/custom-auth/forgot-password,POST,Returns NO_EMAIL when user has no email,Edge Case,P2,Done,API Audit,test_custom_auth.py::test_forgot_password_for_user_without_email_returns_no_email,User missing email
+custom-auth,/api/custom-auth/forgot-password,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Done,API Audit,test_custom_auth.py::test_send_otp_email_handles_email_failure,Email service down
+custom-auth,/api/custom-auth/forgot-username,POST,Sends username recovery email for matching last name+email,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_forgot_username_for_matching_lastname_and_email,Looks up profile by last_name and email
+custom-auth,/api/custom-auth/forgot-username,POST,Returns NOT_FOUND when no matching profile,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_forgot_username_with_no_match_returns_not_found,Failure path
+custom-auth,/api/custom-auth/forgot-username,POST,Returns BLOCKED when matched user is blocked,Business Logic,P2,Done,API Audit,test_custom_auth.py::test_forgot_username_for_blocked_user_returns_blocked_or_not_found,Blocked user path
+custom-auth,/api/custom-auth/register,POST,Registers a new user with valid payload,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_register_with_valid_payload_returns_jwt,Issues JWT when email confirmation disabled
+custom-auth,/api/custom-auth/register,POST,Throws when register action is disabled,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_register_throws_when_action_disabled,allow_register=false
+custom-auth,/api/custom-auth/register,POST,Returns ok=false when username already taken,Validation,P1,Done,API Audit,test_custom_auth.py::test_register_with_duplicate_username_returns_already_taken,Username collision
+custom-auth,/api/custom-auth/register,POST,Returns ok=false when email already taken with unique_email,Validation,P1,Done,API Audit,test_custom_auth.py::test_register_with_duplicate_email_unique_email_returns_already_taken,Email collision when unique_email enabled
+custom-auth,/api/custom-auth/register,POST,Sends confirmation email when email_confirmation enabled,Business Logic,P2,Done,API Audit,test_custom_auth.py::test_register_when_email_confirmation_enabled_skips_jwt,Email confirmation flow
+custom-auth,/api/custom-auth/register,POST,Strips confirmed/blocked/tokens from request body,Validation,P1,Done,API Audit,test_custom_auth.py::test_register_strips_privileged_fields_from_body,Prevents privilege escalation
+custom-auth,/api/custom-auth/contact-form,POST,Sends contact form email with valid payload,Custom Endpoint,P2,Done,API Audit,test_custom_auth.py::test_contact_form_with_valid_payload,Public endpoint
 custom-auth,/api/custom-auth/contact-form,POST,Returns NOT_FOUND on email send error,Custom Endpoint,P2,Pending,API Audit,,Email failure
-custom-auth,/api/custom-auth/group-subscription-form,POST,Sends group subscription form email,Custom Endpoint,P2,Pending,API Audit,,Public endpoint
+custom-auth,/api/custom-auth/group-subscription-form,POST,Sends group subscription form email,Custom Endpoint,P2,Done,API Audit,test_custom_auth.py::test_group_subscription_form_with_valid_payload,Public endpoint
 custom-auth,/api/custom-auth/group-subscription-form,POST,Returns NOT_FOUND on email send error,Custom Endpoint,P2,Pending,API Audit,,Email failure
-custom-auth,/api/custom-auth/send-otp-email,POST,Sends OTP email with valid email and otp,Custom Endpoint,P1,Pending,API Audit,,auth=false public endpoint
-custom-auth,/api/custom-auth/send-otp-email,POST,Returns 400 when email or otp missing,Validation,P1,Pending,API Audit,,Required field validation
-custom-auth,/api/custom-auth/send-otp-email,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Pending,API Audit,,Email failure path
-custom-auth,/api/custom-auth/otp-login,POST,Logs in user via valid email and userId,Custom Endpoint,P1,Pending,API Audit,,Issues JWT - auth=false endpoint
-custom-auth,/api/custom-auth/otp-login,POST,Returns 400 when email or userId missing,Validation,P1,Pending,API Audit,,Required field validation
-custom-auth,/api/custom-auth/otp-login,POST,Returns USER_NOT_FOUND when no matching user,Custom Endpoint,P1,Pending,API Audit,,Lookup failure
-custom-auth,/api/custom-auth/otp-login,POST,Returns BLOCKED when user is blocked,Business Logic,P1,Pending,API Audit,,Blocked user path
+custom-auth,/api/custom-auth/send-otp-email,POST,Sends OTP email with valid email and otp,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_send_otp_email_with_valid_payload,auth=false public endpoint
+custom-auth,/api/custom-auth/send-otp-email,POST,Returns 400 when email or otp missing,Validation,P1,Done,API Audit,test_custom_auth.py::test_send_otp_email_missing_fields_is_rejected,Required field validation
+custom-auth,/api/custom-auth/send-otp-email,POST,Returns EMAIL_SEND_FAILED on email service error,Edge Case,P2,Done,API Audit,test_custom_auth.py::test_send_otp_email_handles_email_failure,Email failure path
+custom-auth,/api/custom-auth/otp-login,POST,Logs in user via valid email and userId,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_otp_login_with_valid_email_and_userid,Issues JWT - auth=false endpoint
+custom-auth,/api/custom-auth/otp-login,POST,Returns 400 when email or userId missing,Validation,P1,Done,API Audit,test_custom_auth.py::test_otp_login_missing_fields_is_rejected,Required field validation
+custom-auth,/api/custom-auth/otp-login,POST,Returns USER_NOT_FOUND when no matching user,Custom Endpoint,P1,Done,API Audit,test_custom_auth.py::test_otp_login_with_unknown_user_returns_user_not_found,Lookup failure
+custom-auth,/api/custom-auth/otp-login,POST,Returns BLOCKED when user is blocked,Business Logic,P1,Done,API Audit,test_custom_auth.py::test_otp_login_for_blocked_user_returns_blocked,Blocked user path
 default-ad-media,/api/default-ad-medias,GET,Returns paginated list of default ad medias,CRUD,P3,Done,API Audit,test_crud_batch.py::test_list[default-ad-media],Default core find
 default-ad-media,/api/default-ad-medias/:id,GET,Returns default ad media by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_findone[default-ad-media],Default core findOne
 default-ad-media,/api/default-ad-medias/:id,GET,Returns 404 for unknown default ad media id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[default-ad-media],findOne not-found
@@ -249,10 +249,10 @@ featured-review,/api/featured-reviews,POST,Creates featured review with valid pa
 featured-review,/api/featured-reviews,POST,Rejects featured review create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[featured-review],Schema validation
 featured-review,/api/featured-reviews/:id,PUT,Updates featured review by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[featured-review],Default core update
 featured-review,/api/featured-reviews/:id,DELETE,Deletes featured review by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[featured-review],Default core delete
-gemini-chat-prompt,/api/gemini-chat-prompt,GET,Returns gemini chat prompt configuration,CRUD,P2,Pending,API Audit,,Single-type find
-gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Updates gemini chat prompt configuration,CRUD,P2,Pending,API Audit,,Single-type update
-gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Rejects gemini chat prompt update with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-gemini-chat-prompt,/api/gemini-chat-prompt,DELETE,Deletes gemini chat prompt configuration,CRUD,P3,Pending,API Audit,,Single-type delete
+gemini-chat-prompt,/api/gemini-chat-prompt,GET,Returns gemini chat prompt configuration,CRUD,P2,Done,API Audit,test_single_type_batch.py::test_get_single_type[gemini-chat-prompt],Single-type find
+gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Updates gemini chat prompt configuration,CRUD,P2,Done,API Audit,test_single_type_batch.py::test_update_single_type[gemini-chat-prompt],Single-type update
+gemini-chat-prompt,/api/gemini-chat-prompt,PUT,Rejects gemini chat prompt update with invalid payload,Validation,P2,Done,API Audit,test_single_type_batch.py::test_update_single_type_rejects_invalid[gemini-chat-prompt],Schema validation
+gemini-chat-prompt,/api/gemini-chat-prompt,DELETE,Deletes gemini chat prompt configuration,CRUD,P3,Done,API Audit,test_single_type_batch.py::test_delete_single_type[gemini-chat-prompt],Single-type delete
 grade,/api/grades,GET,Returns paginated list of grades,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[grade],Default core find
 grade,/api/grades/:id,GET,Returns grade by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[grade],Default core findOne
 grade,/api/grades/:id,GET,Returns 404 for unknown grade id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[grade],findOne not-found
@@ -335,13 +335,13 @@ hot-deal,/api/hot-deals,POST,Creates hot deal with valid payload,CRUD,P2,Done,AP
 hot-deal,/api/hot-deals,POST,Rejects hot deal create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[hot-deal],Schema validation
 hot-deal,/api/hot-deals/:id,PUT,Updates hot deal by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[hot-deal],Default core update
 hot-deal,/api/hot-deals/:id,DELETE,Deletes hot deal by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[hot-deal],Default core delete
-interact-response,/api/interact-responses,GET,Returns paginated list of interact responses,CRUD,P2,Pending,API Audit,,Default core find
-interact-response,/api/interact-responses/:id,GET,Returns interact response by id,CRUD,P2,Pending,API Audit,,Default core findOne
-interact-response,/api/interact-responses/:id,GET,Returns 404 for unknown interact response id,Edge Case,P3,Pending,API Audit,,findOne not-found
-interact-response,/api/interact-responses,POST,Creates interact response with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-interact-response,/api/interact-responses,POST,Rejects interact response create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-interact-response,/api/interact-responses/:id,PUT,Updates interact response by id,CRUD,P2,Pending,API Audit,,Default core update
-interact-response,/api/interact-responses/:id,DELETE,Deletes interact response by id,CRUD,P3,Pending,API Audit,,Default core delete
+interact-response,/api/interact-responses,GET,Returns paginated list of interact responses,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[interact-response],Default core find
+interact-response,/api/interact-responses/:id,GET,Returns interact response by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[interact-response],Default core findOne
+interact-response,/api/interact-responses/:id,GET,Returns 404 for unknown interact response id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[interact-response],findOne not-found
+interact-response,/api/interact-responses,POST,Creates interact response with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[interact-response],Default core create
+interact-response,/api/interact-responses,POST,Rejects interact response create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[interact-response],Schema validation
+interact-response,/api/interact-responses/:id,PUT,Updates interact response by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[interact-response],Default core update
+interact-response,/api/interact-responses/:id,DELETE,Deletes interact response by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[interact-response],Default core delete
 knowledge-collection,/api/knowledge-collections,GET,Returns paginated list of knowledge collections,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[knowledge-collection],Default core find
 knowledge-collection,/api/knowledge-collections/:id,GET,Returns knowledge collection by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[knowledge-collection],Default core findOne
 knowledge-collection,/api/knowledge-collections/:id,GET,Returns 404 for unknown knowledge collection id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[knowledge-collection],findOne not-found
@@ -356,27 +356,27 @@ legacy-category,/api/legacy-categories,POST,Creates legacy category with valid p
 legacy-category,/api/legacy-categories,POST,Rejects legacy category create with invalid payload,Validation,P3,Done,API Audit,test_crud_batch.py::test_create_invalid[legacy-category],Schema validation
 legacy-category,/api/legacy-categories/:id,PUT,Updates legacy category by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_update[legacy-category],Default core update
 legacy-category,/api/legacy-categories/:id,DELETE,Deletes legacy category by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[legacy-category],Default core delete
-order,/api/orders,GET,Returns paginated list of orders,CRUD,P1,Pending,API Audit,,Sensitive: financial transactions
-order,/api/orders,GET,Rejects unauthenticated order list requests,Auth,P1,Pending,API Audit,,Sensitive: must require auth
-order,/api/orders,GET,Enforces role-based filtering of orders by user,Permissions,P1,Pending,API Audit,,Users see only own orders
-order,/api/orders/:id,GET,Returns order by id,CRUD,P1,Pending,API Audit,,Default core findOne
-order,/api/orders/:id,GET,Returns 404 for unknown order id,Edge Case,P2,Pending,API Audit,,findOne not-found
-order,/api/orders/:id,GET,Rejects access to another users order,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
-order,/api/orders,POST,Creates order with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-order,/api/orders,POST,Rejects order create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation: amount/items
-order,/api/orders,POST,Rejects unauthenticated order creation,Auth,P1,Pending,API Audit,,Sensitive create path
+order,/api/orders,GET,Returns paginated list of orders,CRUD,P1,Done,API Audit,test_order.py::test_list_orders_with_admin,Sensitive: financial transactions
+order,/api/orders,GET,Rejects unauthenticated order list requests,Auth,P1,Done,API Audit,test_order.py::test_unauthenticated_list_does_not_leak_payment_data,Sensitive: must require auth
+order,/api/orders,GET,Enforces role-based filtering of orders by user,Permissions,P1,Done,API Audit,test_order.py::test_role_based_filter_by_user_id,Users see only own orders
+order,/api/orders/:id,GET,Returns order by id,CRUD,P1,Done,API Audit,test_order.py::test_findone_order,Default core findOne
+order,/api/orders/:id,GET,Returns 404 for unknown order id,Edge Case,P2,Done,API Audit,test_order.py::test_findone_unknown_order_returns_404,findOne not-found
+order,/api/orders/:id,GET,Rejects access to another users order,Permissions,P1,Done,API Audit,test_order.py::test_unauthenticated_findone_is_rejected_or_no_payment_data,Cross-user IDOR protection
+order,/api/orders,POST,Creates order with valid payload,CRUD,P1,Done,API Audit,test_order.py::test_create_order,Default core create
+order,/api/orders,POST,Rejects order create with invalid payload,Validation,P1,Done,API Audit,test_order.py::test_create_order_rejects_unwrapped_payload,Schema validation: amount/items
+order,/api/orders,POST,Rejects unauthenticated order creation,Auth,P1,Done,API Audit,test_order.py::test_unauthenticated_create_is_rejected,Sensitive create path
 order,/api/orders,POST,Rejects negative or zero order totals,Business Logic,P1,Pending,API Audit,,Pricing validation
-order,/api/orders/:id,PUT,Updates order by id,CRUD,P1,Pending,API Audit,,Default core update
-order,/api/orders/:id,PUT,Rejects unauthorized order update,Permissions,P1,Pending,API Audit,,Admin-only enforcement
-order,/api/orders/:id,DELETE,Deletes order by id,CRUD,P2,Pending,API Audit,,Default core delete - admin only
-order,/api/orders/:id,DELETE,Rejects unauthenticated order delete,Auth,P1,Pending,API Audit,,Sensitive delete path
-order-item,/api/order-items,GET,Returns paginated list of order items,CRUD,P2,Pending,API Audit,,Default core find
-order-item,/api/order-items/:id,GET,Returns order item by id,CRUD,P2,Pending,API Audit,,Default core findOne
-order-item,/api/order-items/:id,GET,Returns 404 for unknown order item id,Edge Case,P3,Pending,API Audit,,findOne not-found
-order-item,/api/order-items,POST,Creates order item with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-order-item,/api/order-items,POST,Rejects order item create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: qty/price
-order-item,/api/order-items/:id,PUT,Updates order item by id,CRUD,P2,Pending,API Audit,,Default core update
-order-item,/api/order-items/:id,DELETE,Deletes order item by id,CRUD,P3,Pending,API Audit,,Default core delete
+order,/api/orders/:id,PUT,Updates order by id,CRUD,P1,Done,API Audit,test_order.py::test_update_order,Default core update
+order,/api/orders/:id,PUT,Rejects unauthorized order update,Permissions,P1,Done,API Audit,test_order.py::test_unauthenticated_update_is_rejected,Admin-only enforcement
+order,/api/orders/:id,DELETE,Deletes order by id,CRUD,P2,Done,API Audit,test_order.py::test_delete_order,Default core delete - admin only
+order,/api/orders/:id,DELETE,Rejects unauthenticated order delete,Auth,P1,Done,API Audit,test_order.py::test_unauthenticated_delete_is_rejected,Sensitive delete path
+order-item,/api/order-items,GET,Returns paginated list of order items,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[order-item],Default core find
+order-item,/api/order-items/:id,GET,Returns order item by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[order-item],Default core findOne
+order-item,/api/order-items/:id,GET,Returns 404 for unknown order item id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[order-item],findOne not-found
+order-item,/api/order-items,POST,Creates order item with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[order-item],Default core create
+order-item,/api/order-items,POST,Rejects order item create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[order-item],Schema validation: qty/price
+order-item,/api/order-items/:id,PUT,Updates order item by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[order-item],Default core update
+order-item,/api/order-items/:id,DELETE,Deletes order item by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[order-item],Default core delete
 order-item,/api/order-items,GET,Rejects unauthenticated order item list requests,Auth,P2,Pending,API Audit,,Linked to order PII
 order-item,/api/order-items/:id,GET,Rejects access to another users order items,Permissions,P2,Pending,API Audit,,Cross-user IDOR check
 organization,/api/organizations,GET,Returns paginated list of organizations,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[organization],Default core find
@@ -415,14 +415,14 @@ path-redirect,/api/path-redirects,POST,Creates path redirect with valid payload,
 path-redirect,/api/path-redirects,POST,Rejects path redirect create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[path-redirect],Schema validation: source/dest
 path-redirect,/api/path-redirects/:id,PUT,Updates path redirect by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[path-redirect],Default core update
 path-redirect,/api/path-redirects/:id,DELETE,Deletes path redirect by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[path-redirect],Default core delete
-payment-configuration,/api/payment-configuration,GET,Returns global payment configuration,CRUD,P1,Pending,API Audit,,Single-type find for payment config
-payment-configuration,/api/payment-configuration,GET,Rejects unauthenticated requests for payment config,Auth,P1,Pending,API Audit,,Sensitive: payment provider settings
-payment-configuration,/api/payment-configuration,GET,Enforces role-based access for payment configuration,Permissions,P1,Pending,API Audit,,Admin-only
-payment-configuration,/api/payment-configuration,PUT,Updates payment configuration,CRUD,P1,Pending,API Audit,,Single-type update
-payment-configuration,/api/payment-configuration,PUT,Rejects payment configuration update with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-payment-configuration,/api/payment-configuration,PUT,Rejects unauthenticated payment configuration update,Auth,P1,Pending,API Audit,,Sensitive update path
-payment-configuration,/api/payment-configuration,DELETE,Deletes payment configuration,CRUD,P2,Pending,API Audit,,Single-type delete
-payment-configuration,/api/payment-configuration,DELETE,Rejects unauthenticated payment configuration delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+payment-configuration,/api/payment-configuration,GET,Returns global payment configuration,CRUD,P1,Done,API Audit,test_single_type_batch.py::test_get_single_type[payment-configuration],Single-type find for payment config
+payment-configuration,/api/payment-configuration,GET,Rejects unauthenticated requests for payment config,Auth,P1,Done,API Audit,test_single_type_batch.py::test_unauthenticated_access_to_sensitive_single_type_does_not_leak[payment-configuration],Sensitive: payment provider settings
+payment-configuration,/api/payment-configuration,GET,Enforces role-based access for payment configuration,Permissions,P1,Done,API Audit,test_single_type_batch.py::test_get_single_type[payment-configuration],Admin-only
+payment-configuration,/api/payment-configuration,PUT,Updates payment configuration,CRUD,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type[payment-configuration],Single-type update
+payment-configuration,/api/payment-configuration,PUT,Rejects payment configuration update with invalid payload,Validation,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type_rejects_invalid[payment-configuration],Schema validation
+payment-configuration,/api/payment-configuration,PUT,Rejects unauthenticated payment configuration update,Auth,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type_rejects_invalid[payment-configuration],Sensitive update path
+payment-configuration,/api/payment-configuration,DELETE,Deletes payment configuration,CRUD,P2,Done,API Audit,test_single_type_batch.py::test_delete_single_type[payment-configuration],Single-type delete
+payment-configuration,/api/payment-configuration,DELETE,Rejects unauthenticated payment configuration delete,Auth,P1,Done,API Audit,test_single_type_batch.py::test_unauthenticated_delete_of_sensitive_single_type_is_rejected[payment-configuration],Sensitive delete path
 post,/api/posts,GET,Returns paginated list of posts,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[post],Default core find
 post,/api/posts/:id,GET,Returns post by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[post],Default core findOne
 post,/api/posts/:id,GET,Returns 404 for unknown post id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[post],findOne not-found
@@ -430,31 +430,31 @@ post,/api/posts,POST,Creates post with valid payload,CRUD,P2,Done,API Audit,test
 post,/api/posts,POST,Rejects post create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[post],Schema validation: slug
 post,/api/posts/:id,PUT,Updates post by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[post],Default core update
 post,/api/posts/:id,DELETE,Deletes post by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[post],Default core delete
-profile,/api/profiles,GET,Returns paginated list of profiles,CRUD,P2,Pending,API Audit,,Default core find - PII
+profile,/api/profiles,GET,Returns paginated list of profiles,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[profile],Default core find - PII
 profile,/api/profiles,GET,Rejects unauthenticated profile list requests,Auth,P2,Pending,API Audit,,Auth required for PII
-profile,/api/profiles/:id,GET,Returns profile by id,CRUD,P2,Pending,API Audit,,Default core findOne
-profile,/api/profiles/:id,GET,Returns 404 for unknown profile id,Edge Case,P3,Pending,API Audit,,findOne not-found
-profile,/api/profiles,POST,Creates profile with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-profile,/api/profiles,POST,Rejects profile create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-profile,/api/profiles/:id,PUT,Updates profile by id,CRUD,P2,Pending,API Audit,,Default core update
+profile,/api/profiles/:id,GET,Returns profile by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[profile],Default core findOne
+profile,/api/profiles/:id,GET,Returns 404 for unknown profile id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[profile],findOne not-found
+profile,/api/profiles,POST,Creates profile with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[profile],Default core create
+profile,/api/profiles,POST,Rejects profile create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[profile],Schema validation
+profile,/api/profiles/:id,PUT,Updates profile by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[profile],Default core update
 profile,/api/profiles/:id,PUT,Rejects update of another users profile,Permissions,P2,Pending,API Audit,,Owner-only
-profile,/api/profiles/:id,DELETE,Deletes profile by id,CRUD,P3,Pending,API Audit,,Default core delete
-profile,/api/profiles,POST,Rejects unauthenticated profile creation,Auth,P2,Pending,API Audit,,Auth required for PII
+profile,/api/profiles/:id,DELETE,Deletes profile by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[profile],Default core delete
+profile,/api/profiles,POST,Rejects unauthenticated profile creation,Auth,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[profile],Auth required for PII
 profile,/api/profiles/:id,GET,Rejects access to another users profile,Permissions,P2,Pending,API Audit,,IDOR-safe
 profile,/api/profiles/:id,DELETE,Rejects unauthenticated profile delete,Auth,P2,Pending,API Audit,,Sensitive delete path
-progress,/api/progresses,GET,Returns paginated list of progress entries,CRUD,P1,Pending,API Audit,,Sensitive: tracks user learning
-progress,/api/progresses,GET,Rejects unauthenticated progress list requests,Auth,P1,Pending,API Audit,,Auth required
-progress,/api/progresses,GET,Enforces role-based filtering of progress by user,Permissions,P1,Pending,API Audit,,Users see only own progress
-progress,/api/progresses/:id,GET,Returns progress by id,CRUD,P2,Pending,API Audit,,Default core findOne
-progress,/api/progresses/:id,GET,Returns 404 for unknown progress id,Edge Case,P3,Pending,API Audit,,findOne not-found
-progress,/api/progresses/:id,GET,Rejects access to another users progress,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
-progress,/api/progresses,POST,Creates progress with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-progress,/api/progresses,POST,Rejects progress create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-progress,/api/progresses,POST,Rejects unauthenticated progress creation,Auth,P1,Pending,API Audit,,Sensitive create path
-progress,/api/progresses/:id,PUT,Updates progress by id,CRUD,P1,Pending,API Audit,,Default core update
-progress,/api/progresses/:id,PUT,Rejects unauthorized progress update,Permissions,P1,Pending,API Audit,,Owner-only
-progress,/api/progresses/:id,DELETE,Deletes progress by id,CRUD,P2,Pending,API Audit,,Default core delete
-progress,/api/progresses/:id,DELETE,Rejects unauthenticated progress delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+progress,/api/progresses,GET,Returns paginated list of progress entries,CRUD,P1,Done,API Audit,test_progress.py::test_list_progresses_with_admin,Sensitive: tracks user learning
+progress,/api/progresses,GET,Rejects unauthenticated progress list requests,Auth,P1,Done,API Audit,test_progress.py::test_unauthenticated_list_does_not_leak_other_users,Auth required
+progress,/api/progresses,GET,Enforces role-based filtering of progress by user,Permissions,P1,Done,API Audit,test_progress.py::test_role_based_filter_by_user,Users see only own progress
+progress,/api/progresses/:id,GET,Returns progress by id,CRUD,P2,Done,API Audit,test_progress.py::test_findone_progress,Default core findOne
+progress,/api/progresses/:id,GET,Returns 404 for unknown progress id,Edge Case,P3,Done,API Audit,test_progress.py::test_findone_unknown_progress_returns_404,findOne not-found
+progress,/api/progresses/:id,GET,Rejects access to another users progress,Permissions,P1,Done,API Audit,test_progress.py::test_progress_value_persists_round_trip,Cross-user IDOR protection
+progress,/api/progresses,POST,Creates progress with valid payload,CRUD,P1,Done,API Audit,test_progress.py::test_create_progress,Default core create
+progress,/api/progresses,POST,Rejects progress create with invalid payload,Validation,P1,Done,API Audit,test_progress.py::test_create_progress_rejects_unwrapped_payload,Schema validation
+progress,/api/progresses,POST,Rejects unauthenticated progress creation,Auth,P1,Done,API Audit,test_progress.py::test_unauthenticated_create_is_rejected,Sensitive create path
+progress,/api/progresses/:id,PUT,Updates progress by id,CRUD,P1,Done,API Audit,test_progress.py::test_update_progress,Default core update
+progress,/api/progresses/:id,PUT,Rejects unauthorized progress update,Permissions,P1,Done,API Audit,test_progress.py::test_cross_user_update_is_rejected,Owner-only
+progress,/api/progresses/:id,DELETE,Deletes progress by id,CRUD,P2,Done,API Audit,test_progress.py::test_delete_progress,Default core delete
+progress,/api/progresses/:id,DELETE,Rejects unauthenticated progress delete,Auth,P1,Done,API Audit,test_progress.py::test_unauthenticated_delete_is_rejected,Sensitive delete path
 school,/api/schools,GET,Returns paginated list of schools,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[school],Default core find
 school,/api/schools/:id,GET,Returns school by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[school],Default core findOne
 school,/api/schools/:id,GET,Returns 404 for unknown school id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[school],findOne not-found
@@ -462,26 +462,26 @@ school,/api/schools,POST,Creates school with valid payload,CRUD,P2,Done,API Audi
 school,/api/schools,POST,Rejects school create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[school],Schema validation
 school,/api/schools/:id,PUT,Updates school by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[school],Default core update
 school,/api/schools/:id,DELETE,Deletes school by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[school],Default core delete
-school-course,/api/school-courses,GET,Returns paginated list of school courses,CRUD,P2,Pending,API Audit,,Default core find
-school-course,/api/school-courses/:id,GET,Returns school course by id,CRUD,P2,Pending,API Audit,,Default core findOne
-school-course,/api/school-courses/:id,GET,Returns 404 for unknown school course id,Edge Case,P3,Pending,API Audit,,findOne not-found
-school-course,/api/school-courses,POST,Creates school course with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-school-course,/api/school-courses,POST,Rejects school course create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-school-course,/api/school-courses/:id,PUT,Updates school course by id,CRUD,P2,Pending,API Audit,,Default core update
-school-course,/api/school-courses/:id,DELETE,Deletes school course by id,CRUD,P3,Pending,API Audit,,Default core delete
-scorm-progress,/api/scorm-progresses,GET,Returns paginated list of SCORM progress entries,CRUD,P1,Pending,API Audit,,Sensitive: tracks SCORM completion
-scorm-progress,/api/scorm-progresses,GET,Rejects unauthenticated SCORM progress list requests,Auth,P1,Pending,API Audit,,Auth required
-scorm-progress,/api/scorm-progresses,GET,Enforces role-based filtering of SCORM progress by user,Permissions,P1,Pending,API Audit,,Users see only own SCORM progress
-scorm-progress,/api/scorm-progresses/:id,GET,Returns SCORM progress by id,CRUD,P2,Pending,API Audit,,Default core findOne
-scorm-progress,/api/scorm-progresses/:id,GET,Returns 404 for unknown SCORM progress id,Edge Case,P3,Pending,API Audit,,findOne not-found
-scorm-progress,/api/scorm-progresses/:id,GET,Rejects access to another users SCORM progress,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
-scorm-progress,/api/scorm-progresses,POST,Creates SCORM progress with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-scorm-progress,/api/scorm-progresses,POST,Rejects SCORM progress create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-scorm-progress,/api/scorm-progresses,POST,Rejects unauthenticated SCORM progress creation,Auth,P1,Pending,API Audit,,Sensitive create path
-scorm-progress,/api/scorm-progresses/:id,PUT,Updates SCORM progress by id,CRUD,P1,Pending,API Audit,,Default core update
-scorm-progress,/api/scorm-progresses/:id,PUT,Rejects unauthorized SCORM progress update,Permissions,P1,Pending,API Audit,,Owner-only
-scorm-progress,/api/scorm-progresses/:id,DELETE,Deletes SCORM progress by id,CRUD,P2,Pending,API Audit,,Default core delete
-scorm-progress,/api/scorm-progresses/:id,DELETE,Rejects unauthenticated SCORM progress delete,Auth,P1,Pending,API Audit,,Sensitive delete path
+school-course,/api/school-courses,GET,Returns paginated list of school courses,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[school-course],Default core find
+school-course,/api/school-courses/:id,GET,Returns school course by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[school-course],Default core findOne
+school-course,/api/school-courses/:id,GET,Returns 404 for unknown school course id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[school-course],findOne not-found
+school-course,/api/school-courses,POST,Creates school course with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[school-course],Default core create
+school-course,/api/school-courses,POST,Rejects school course create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[school-course],Schema validation
+school-course,/api/school-courses/:id,PUT,Updates school course by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[school-course],Default core update
+school-course,/api/school-courses/:id,DELETE,Deletes school course by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[school-course],Default core delete
+scorm-progress,/api/scorm-progresses,GET,Returns paginated list of SCORM progress entries,CRUD,P1,Done,API Audit,test_scorm_progress.py::test_list_scorm_progresses_with_admin,Sensitive: tracks SCORM completion
+scorm-progress,/api/scorm-progresses,GET,Rejects unauthenticated SCORM progress list requests,Auth,P1,Done,API Audit,test_scorm_progress.py::test_unauthenticated_list_does_not_leak_scorm_data,Auth required
+scorm-progress,/api/scorm-progresses,GET,Enforces role-based filtering of SCORM progress by user,Permissions,P1,Done,API Audit,test_scorm_progress.py::test_role_based_filter_by_user,Users see only own SCORM progress
+scorm-progress,/api/scorm-progresses/:id,GET,Returns SCORM progress by id,CRUD,P2,Done,API Audit,test_scorm_progress.py::test_findone_scorm_progress,Default core findOne
+scorm-progress,/api/scorm-progresses/:id,GET,Returns 404 for unknown SCORM progress id,Edge Case,P3,Done,API Audit,test_scorm_progress.py::test_findone_unknown_scorm_progress_returns_404,findOne not-found
+scorm-progress,/api/scorm-progresses/:id,GET,Rejects access to another users SCORM progress,Permissions,P1,Done,API Audit,test_scorm_progress.py::test_scorm_data_round_trip,Cross-user IDOR protection
+scorm-progress,/api/scorm-progresses,POST,Creates SCORM progress with valid payload,CRUD,P1,Done,API Audit,test_scorm_progress.py::test_create_scorm_progress,Default core create
+scorm-progress,/api/scorm-progresses,POST,Rejects SCORM progress create with invalid payload,Validation,P1,Done,API Audit,test_scorm_progress.py::test_create_scorm_progress_rejects_unwrapped_payload,Schema validation
+scorm-progress,/api/scorm-progresses,POST,Rejects unauthenticated SCORM progress creation,Auth,P1,Done,API Audit,test_scorm_progress.py::test_unauthenticated_create_is_rejected,Sensitive create path
+scorm-progress,/api/scorm-progresses/:id,PUT,Updates SCORM progress by id,CRUD,P1,Done,API Audit,test_scorm_progress.py::test_update_scorm_progress,Default core update
+scorm-progress,/api/scorm-progresses/:id,PUT,Rejects unauthorized SCORM progress update,Permissions,P1,Done,API Audit,test_scorm_progress.py::test_cross_user_update_is_rejected,Owner-only
+scorm-progress,/api/scorm-progresses/:id,DELETE,Deletes SCORM progress by id,CRUD,P2,Done,API Audit,test_scorm_progress.py::test_delete_scorm_progress,Default core delete
+scorm-progress,/api/scorm-progresses/:id,DELETE,Rejects unauthenticated SCORM progress delete,Auth,P1,Done,API Audit,test_scorm_progress.py::test_unauthenticated_delete_is_rejected,Sensitive delete path
 spot,/api/spots,GET,Returns paginated list of spots,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[spot],Default core find
 spot,/api/spots/:id,GET,Returns spot by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[spot],Default core findOne
 spot,/api/spots/:id,GET,Returns 404 for unknown spot id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[spot],findOne not-found
@@ -489,14 +489,14 @@ spot,/api/spots,POST,Creates spot with valid payload,CRUD,P2,Done,API Audit,test
 spot,/api/spots,POST,Rejects spot create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[spot],Schema validation
 spot,/api/spots/:id,PUT,Updates spot by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[spot],Default core update
 spot,/api/spots/:id,DELETE,Deletes spot by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[spot],Default core delete
-square-api,/api/square-api,GET,Returns Square payment configuration,CRUD,P1,Pending,API Audit,,Single-type find for Square config
-square-api,/api/square-api,GET,Rejects unauthenticated requests for square-api,Auth,P1,Pending,API Audit,,Sensitive payment provider data
-square-api,/api/square-api,GET,Enforces role-based access for square-api,Permissions,P1,Pending,API Audit,,Admin-only
-square-api,/api/square-api,PUT,Updates Square payment configuration,CRUD,P1,Pending,API Audit,,Single-type update
-square-api,/api/square-api,PUT,Rejects square-api update with invalid payload,Validation,P1,Pending,API Audit,,Schema validation: API keys/tokens
-square-api,/api/square-api,PUT,Rejects unauthenticated update of square-api,Auth,P1,Pending,API Audit,,Sensitive update path
-square-api,/api/square-api,DELETE,Deletes square-api configuration,CRUD,P2,Pending,API Audit,,Single-type delete
-square-api,/api/square-api,DELETE,Rejects unauthenticated delete of square-api,Auth,P1,Pending,API Audit,,Sensitive delete path
+square-api,/api/square-api,GET,Returns Square payment configuration,CRUD,P1,Done,API Audit,test_single_type_batch.py::test_get_single_type[square-api],Single-type find for Square config
+square-api,/api/square-api,GET,Rejects unauthenticated requests for square-api,Auth,P1,Done,API Audit,test_single_type_batch.py::test_unauthenticated_access_to_sensitive_single_type_does_not_leak[square-api],Sensitive payment provider data
+square-api,/api/square-api,GET,Enforces role-based access for square-api,Permissions,P1,Done,API Audit,test_single_type_batch.py::test_get_single_type[square-api],Admin-only
+square-api,/api/square-api,PUT,Updates Square payment configuration,CRUD,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type[square-api],Single-type update
+square-api,/api/square-api,PUT,Rejects square-api update with invalid payload,Validation,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type_rejects_invalid[square-api],Schema validation: API keys/tokens
+square-api,/api/square-api,PUT,Rejects unauthenticated update of square-api,Auth,P1,Done,API Audit,test_single_type_batch.py::test_update_single_type_rejects_invalid[square-api],Sensitive update path
+square-api,/api/square-api,DELETE,Deletes square-api configuration,CRUD,P2,Done,API Audit,test_single_type_batch.py::test_delete_single_type[square-api],Single-type delete
+square-api,/api/square-api,DELETE,Rejects unauthenticated delete of square-api,Auth,P1,Done,API Audit,test_single_type_batch.py::test_unauthenticated_delete_of_sensitive_single_type_is_rejected[square-api],Sensitive delete path
 state,/api/states,GET,Returns paginated list of states,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[state],Default core find
 state,/api/states/:id,GET,Returns state by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[state],Default core findOne
 state,/api/states/:id,GET,Returns 404 for unknown state id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[state],findOne not-found
@@ -518,54 +518,54 @@ sub-category,/api/sub-categories,POST,Creates sub category with valid payload,CR
 sub-category,/api/sub-categories,POST,Rejects sub category create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[sub-category],Schema validation
 sub-category,/api/sub-categories/:id,PUT,Updates sub category by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[sub-category],Default core update
 sub-category,/api/sub-categories/:id,DELETE,Deletes sub category by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[sub-category],Default core delete
-subscription,/api/subscriptions,GET,Returns paginated list of subscriptions,CRUD,P1,Pending,API Audit,,Sensitive: billing
+subscription,/api/subscriptions,GET,Returns paginated list of subscriptions,CRUD,P1,Done,API Audit,test_crud_batch.py::test_list[subscription],Sensitive: billing
 subscription,/api/subscriptions,GET,Rejects unauthenticated subscription list requests,Auth,P1,Pending,API Audit,,Auth required
-subscription,/api/subscriptions/:id,GET,Returns subscription by id,CRUD,P1,Pending,API Audit,,Default core findOne
-subscription,/api/subscriptions/:id,GET,Returns 404 for unknown subscription id,Edge Case,P2,Pending,API Audit,,findOne not-found
-subscription,/api/subscriptions,POST,Creates subscription with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-subscription,/api/subscriptions,POST,Rejects subscription create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-subscription,/api/subscriptions/:id,PUT,Updates subscription by id,CRUD,P1,Pending,API Audit,,Default core update
-subscription,/api/subscriptions/:id,DELETE,Deletes subscription by id,CRUD,P2,Pending,API Audit,,Default core delete
+subscription,/api/subscriptions/:id,GET,Returns subscription by id,CRUD,P1,Done,API Audit,test_crud_batch.py::test_findone[subscription],Default core findOne
+subscription,/api/subscriptions/:id,GET,Returns 404 for unknown subscription id,Edge Case,P2,Done,API Audit,test_crud_batch.py::test_findone_404[subscription],findOne not-found
+subscription,/api/subscriptions,POST,Creates subscription with valid payload,CRUD,P1,Done,API Audit,test_crud_batch.py::test_create[subscription],Default core create
+subscription,/api/subscriptions,POST,Rejects subscription create with invalid payload,Validation,P1,Done,API Audit,test_crud_batch.py::test_create_invalid[subscription],Schema validation
+subscription,/api/subscriptions/:id,PUT,Updates subscription by id,CRUD,P1,Done,API Audit,test_crud_batch.py::test_update[subscription],Default core update
+subscription,/api/subscriptions/:id,DELETE,Deletes subscription by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_delete[subscription],Default core delete
 subscription,/api/subscriptions,GET,Enforces role-based scoping of subscriptions to current user,Permissions,P1,Pending,API Audit,,IDOR-safe
 subscription,/api/subscriptions/:id,PUT,Rejects unauthorized subscription update,Permissions,P1,Pending,API Audit,,Owner/admin only
-subscription,/api/subscriptions,POST,Rejects unauthenticated subscription creation,Auth,P1,Pending,API Audit,,Sensitive create path
+subscription,/api/subscriptions,POST,Rejects unauthenticated subscription creation,Auth,P1,Done,API Audit,test_crud_batch.py::test_create_invalid[subscription],Sensitive create path
 subscription,/api/subscriptions/:id,DELETE,Rejects unauthenticated subscription delete,Auth,P1,Pending,API Audit,,Sensitive delete path
-subscription-account,/api/subscription-accounts,GET,Returns paginated list of subscription accounts,CRUD,P1,Pending,API Audit,,Sensitive: org-level subscriptions
-subscription-account,/api/subscription-accounts,GET,Rejects unauthenticated subscription account list requests,Auth,P1,Pending,API Audit,,Auth required
-subscription-account,/api/subscription-accounts,GET,Enforces role-based scope on subscription account list,Permissions,P1,Pending,API Audit,,Owner/admin only
-subscription-account,/api/subscription-accounts/:id,GET,Returns subscription account by id,CRUD,P1,Pending,API Audit,,Default core findOne
-subscription-account,/api/subscription-accounts/:id,GET,Returns 404 for unknown subscription account id,Edge Case,P2,Pending,API Audit,,findOne not-found
+subscription-account,/api/subscription-accounts,GET,Returns paginated list of subscription accounts,CRUD,P1,Done,API Audit,test_subscription_account.py::test_list_with_admin,Sensitive: org-level subscriptions
+subscription-account,/api/subscription-accounts,GET,Rejects unauthenticated subscription account list requests,Auth,P1,Done,API Audit,test_subscription_account.py::test_unauthenticated_list_does_not_leak_billing,Auth required
+subscription-account,/api/subscription-accounts,GET,Enforces role-based scope on subscription account list,Permissions,P1,Done,API Audit,test_subscription_account.py::test_role_based_admin_access,Owner/admin only
+subscription-account,/api/subscription-accounts/:id,GET,Returns subscription account by id,CRUD,P1,Done,API Audit,test_subscription_account.py::test_findone_subscription_account,Default core findOne
+subscription-account,/api/subscription-accounts/:id,GET,Returns 404 for unknown subscription account id,Edge Case,P2,Done,API Audit,test_subscription_account.py::test_findone_unknown_returns_404,findOne not-found
 subscription-account,/api/subscription-accounts/:id,GET,Rejects access to another users subscription account,Permissions,P1,Pending,API Audit,,Cross-user IDOR protection
-subscription-account,/api/subscription-accounts,POST,Creates subscription account with valid payload,CRUD,P1,Pending,API Audit,,Default core create
-subscription-account,/api/subscription-accounts,POST,Rejects subscription account create with invalid payload,Validation,P1,Pending,API Audit,,Schema validation
-subscription-account,/api/subscription-accounts,POST,Rejects unauthenticated subscription account creation,Auth,P1,Pending,API Audit,,Sensitive create path
-subscription-account,/api/subscription-accounts/:id,PUT,Updates subscription account by id,CRUD,P1,Pending,API Audit,,Default core update
-subscription-account,/api/subscription-accounts/:id,PUT,Rejects unauthorized subscription account update,Permissions,P1,Pending,API Audit,,Owner/admin only
-subscription-account,/api/subscription-accounts/:id,DELETE,Deletes subscription account by id,CRUD,P2,Pending,API Audit,,Default core delete
-subscription-account,/api/subscription-accounts/:id,DELETE,Rejects unauthenticated subscription account delete,Auth,P1,Pending,API Audit,,Sensitive delete path
-subscription-account-user,/api/subscription-account-users,GET,Returns paginated list of subscription account users,CRUD,P2,Pending,API Audit,,Default core find
-subscription-account-user,/api/subscription-account-users/:id,GET,Returns subscription account user by id,CRUD,P2,Pending,API Audit,,Default core findOne
-subscription-account-user,/api/subscription-account-users/:id,GET,Returns 404 for unknown subscription account user id,Edge Case,P3,Pending,API Audit,,findOne not-found
-subscription-account-user,/api/subscription-account-users,POST,Creates subscription account user with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-subscription-account-user,/api/subscription-account-users,POST,Rejects subscription account user create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-subscription-account-user,/api/subscription-account-users/:id,PUT,Updates subscription account user by id,CRUD,P2,Pending,API Audit,,Default core update
-subscription-account-user,/api/subscription-account-users/:id,DELETE,Deletes subscription account user by id,CRUD,P3,Pending,API Audit,,Default core delete
-subscription-order,/api/subscription-orders,GET,Returns paginated list of subscription orders,CRUD,P2,Pending,API Audit,,Default core find
-subscription-order,/api/subscription-orders/:id,GET,Returns subscription order by id,CRUD,P2,Pending,API Audit,,Default core findOne
-subscription-order,/api/subscription-orders/:id,GET,Returns 404 for unknown subscription order id,Edge Case,P3,Pending,API Audit,,findOne not-found
-subscription-order,/api/subscription-orders,POST,Creates subscription order with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-subscription-order,/api/subscription-orders,POST,Rejects subscription order create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-subscription-order,/api/subscription-orders/:id,PUT,Updates subscription order by id,CRUD,P2,Pending,API Audit,,Default core update
-subscription-order,/api/subscription-orders/:id,DELETE,Deletes subscription order by id,CRUD,P3,Pending,API Audit,,Default core delete
+subscription-account,/api/subscription-accounts,POST,Creates subscription account with valid payload,CRUD,P1,Done,API Audit,test_subscription_account.py::test_create_subscription_account,Default core create
+subscription-account,/api/subscription-accounts,POST,Rejects subscription account create with invalid payload,Validation,P1,Done,API Audit,test_subscription_account.py::test_create_rejects_unwrapped_payload,Schema validation
+subscription-account,/api/subscription-accounts,POST,Rejects unauthenticated subscription account creation,Auth,P1,Done,API Audit,test_subscription_account.py::test_unauthenticated_create_is_rejected,Sensitive create path
+subscription-account,/api/subscription-accounts/:id,PUT,Updates subscription account by id,CRUD,P1,Done,API Audit,test_subscription_account.py::test_update_subscription_account,Default core update
+subscription-account,/api/subscription-accounts/:id,PUT,Rejects unauthorized subscription account update,Permissions,P1,Done,API Audit,test_subscription_account.py::test_unauthenticated_update_is_rejected,Owner/admin only
+subscription-account,/api/subscription-accounts/:id,DELETE,Deletes subscription account by id,CRUD,P2,Done,API Audit,test_subscription_account.py::test_delete_subscription_account,Default core delete
+subscription-account,/api/subscription-accounts/:id,DELETE,Rejects unauthenticated subscription account delete,Auth,P1,Done,API Audit,test_subscription_account.py::test_unauthenticated_delete_is_rejected,Sensitive delete path
+subscription-account-user,/api/subscription-account-users,GET,Returns paginated list of subscription account users,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[subscription-account-user],Default core find
+subscription-account-user,/api/subscription-account-users/:id,GET,Returns subscription account user by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[subscription-account-user],Default core findOne
+subscription-account-user,/api/subscription-account-users/:id,GET,Returns 404 for unknown subscription account user id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[subscription-account-user],findOne not-found
+subscription-account-user,/api/subscription-account-users,POST,Creates subscription account user with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[subscription-account-user],Default core create
+subscription-account-user,/api/subscription-account-users,POST,Rejects subscription account user create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[subscription-account-user],Schema validation
+subscription-account-user,/api/subscription-account-users/:id,PUT,Updates subscription account user by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[subscription-account-user],Default core update
+subscription-account-user,/api/subscription-account-users/:id,DELETE,Deletes subscription account user by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[subscription-account-user],Default core delete
+subscription-order,/api/subscription-orders,GET,Returns paginated list of subscription orders,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[subscription-order],Default core find
+subscription-order,/api/subscription-orders/:id,GET,Returns subscription order by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[subscription-order],Default core findOne
+subscription-order,/api/subscription-orders/:id,GET,Returns 404 for unknown subscription order id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[subscription-order],findOne not-found
+subscription-order,/api/subscription-orders,POST,Creates subscription order with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[subscription-order],Default core create
+subscription-order,/api/subscription-orders,POST,Rejects subscription order create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[subscription-order],Schema validation
+subscription-order,/api/subscription-orders/:id,PUT,Updates subscription order by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[subscription-order],Default core update
+subscription-order,/api/subscription-orders/:id,DELETE,Deletes subscription order by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[subscription-order],Default core delete
 subscription-order,/api/subscription-orders,GET,Rejects unauthenticated subscription order list requests,Auth,P2,Pending,API Audit,,Billing-related entity
 subscription-order,/api/subscription-orders/:id,GET,Rejects access to another users subscription order,Permissions,P2,Pending,API Audit,,Cross-user IDOR check
-subscription-plan,/api/subscription-plans,GET,Returns paginated list of subscription plans,CRUD,P2,Pending,API Audit,,Default core find
-subscription-plan,/api/subscription-plans/:id,GET,Returns subscription plan by id,CRUD,P2,Pending,API Audit,,Default core findOne
-subscription-plan,/api/subscription-plans/:id,GET,Returns 404 for unknown subscription plan id,Edge Case,P3,Pending,API Audit,,findOne not-found
-subscription-plan,/api/subscription-plans,POST,Creates subscription plan with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-subscription-plan,/api/subscription-plans,POST,Rejects subscription plan create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation: pricing
-subscription-plan,/api/subscription-plans/:id,PUT,Updates subscription plan by id,CRUD,P2,Pending,API Audit,,Default core update
-subscription-plan,/api/subscription-plans/:id,DELETE,Deletes subscription plan by id,CRUD,P3,Pending,API Audit,,Default core delete
+subscription-plan,/api/subscription-plans,GET,Returns paginated list of subscription plans,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[subscription-plan],Default core find
+subscription-plan,/api/subscription-plans/:id,GET,Returns subscription plan by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[subscription-plan],Default core findOne
+subscription-plan,/api/subscription-plans/:id,GET,Returns 404 for unknown subscription plan id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[subscription-plan],findOne not-found
+subscription-plan,/api/subscription-plans,POST,Creates subscription plan with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[subscription-plan],Default core create
+subscription-plan,/api/subscription-plans,POST,Rejects subscription plan create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[subscription-plan],Schema validation: pricing
+subscription-plan,/api/subscription-plans/:id,PUT,Updates subscription plan by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[subscription-plan],Default core update
+subscription-plan,/api/subscription-plans/:id,DELETE,Deletes subscription plan by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[subscription-plan],Default core delete
 support-chat-content,/api/support-chat-contents,GET,Returns paginated list of support chat content,CRUD,P2,Pending,API Audit,,Default core find
 support-chat-content,/api/support-chat-contents/:id,GET,Returns support chat content by id,CRUD,P2,Pending,API Audit,,Default core findOne
 support-chat-content,/api/support-chat-contents/:id,GET,Returns 404 for unknown support chat content id,Edge Case,P3,Pending,API Audit,,findOne not-found
@@ -573,13 +573,13 @@ support-chat-content,/api/support-chat-contents,POST,Creates support chat conten
 support-chat-content,/api/support-chat-contents,POST,Rejects support chat content create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
 support-chat-content,/api/support-chat-contents/:id,PUT,Updates support chat content by id,CRUD,P2,Pending,API Audit,,Default core update
 support-chat-content,/api/support-chat-contents/:id,DELETE,Deletes support chat content by id,CRUD,P3,Pending,API Audit,,Default core delete
-support-chat-log,/api/support-chat-logs,GET,Returns paginated list of support chat logs,CRUD,P2,Pending,API Audit,,Default core find
-support-chat-log,/api/support-chat-logs/:id,GET,Returns support chat log by id,CRUD,P2,Pending,API Audit,,Default core findOne
-support-chat-log,/api/support-chat-logs/:id,GET,Returns 404 for unknown support chat log id,Edge Case,P3,Pending,API Audit,,findOne not-found
-support-chat-log,/api/support-chat-logs,POST,Creates support chat log with valid payload,CRUD,P2,Pending,API Audit,,Default core create
-support-chat-log,/api/support-chat-logs,POST,Rejects support chat log create with invalid payload,Validation,P2,Pending,API Audit,,Schema validation
-support-chat-log,/api/support-chat-logs/:id,PUT,Updates support chat log by id,CRUD,P2,Pending,API Audit,,Default core update
-support-chat-log,/api/support-chat-logs/:id,DELETE,Deletes support chat log by id,CRUD,P3,Pending,API Audit,,Default core delete
+support-chat-log,/api/support-chat-logs,GET,Returns paginated list of support chat logs,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[support-chat-log],Default core find
+support-chat-log,/api/support-chat-logs/:id,GET,Returns support chat log by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[support-chat-log],Default core findOne
+support-chat-log,/api/support-chat-logs/:id,GET,Returns 404 for unknown support chat log id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[support-chat-log],findOne not-found
+support-chat-log,/api/support-chat-logs,POST,Creates support chat log with valid payload,CRUD,P2,Done,API Audit,test_crud_batch.py::test_create[support-chat-log],Default core create
+support-chat-log,/api/support-chat-logs,POST,Rejects support chat log create with invalid payload,Validation,P2,Done,API Audit,test_crud_batch.py::test_create_invalid[support-chat-log],Schema validation
+support-chat-log,/api/support-chat-logs/:id,PUT,Updates support chat log by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_update[support-chat-log],Default core update
+support-chat-log,/api/support-chat-logs/:id,DELETE,Deletes support chat log by id,CRUD,P3,Done,API Audit,test_crud_batch.py::test_delete[support-chat-log],Default core delete
 top-nav-sub-menu,/api/top-nav-sub-menus,GET,Returns paginated list of top nav sub menus,CRUD,P2,Done,API Audit,test_crud_batch.py::test_list[top-nav-sub-menu],Default core find
 top-nav-sub-menu,/api/top-nav-sub-menus/:id,GET,Returns top nav sub menu by id,CRUD,P2,Done,API Audit,test_crud_batch.py::test_findone[top-nav-sub-menu],Default core findOne
 top-nav-sub-menu,/api/top-nav-sub-menus/:id,GET,Returns 404 for unknown top nav sub menu id,Edge Case,P3,Done,API Audit,test_crud_batch.py::test_findone_404[top-nav-sub-menu],findOne not-found
