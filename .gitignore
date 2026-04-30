@@ -27,3 +27,7 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Per-run artifacts (CI publishes these to gh-pages; locally they're transient)
+results/
+dashboard/

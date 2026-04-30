@@ -1,6 +1,9 @@
+import json
 import os
+import subprocess
 import time
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -8,6 +11,56 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent / ".env")
+
+
+# ---- Run-record hook (writes results/run.json per pytest invocation) -------
+#
+# CI consumes this file along with the pytest-html report to update the
+# gh-pages dashboard. Locally, it just sits in `results/` (gitignored).
+
+_SESSION_START_TS: float | None = None
+
+
+def pytest_sessionstart(session):
+    global _SESSION_START_TS
+    _SESSION_START_TS = time.time()
+
+
+def _git_field(args: list[str]) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", *args], cwd=Path(__file__).parent.parent,
+            stderr=subprocess.DEVNULL, timeout=2,
+        ).decode().strip()
+    except Exception:
+        return ""
+
+
+def pytest_sessionfinish(session, exitstatus):
+    duration = round(time.time() - (_SESSION_START_TS or time.time()), 2)
+    rep = session.config.pluginmanager.getplugin("terminalreporter")
+    counts = {}
+    if rep is not None:
+        for k in ("passed", "failed", "skipped", "error", "xfailed", "xpassed"):
+            counts[k] = len(rep.stats.get(k, []))
+
+    record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "exitstatus": int(exitstatus),
+        "duration_seconds": duration,
+        "counts": counts,
+        "git_sha": os.getenv("GITHUB_SHA") or _git_field(["rev-parse", "HEAD"]),
+        "git_branch": os.getenv("GITHUB_REF_NAME") or _git_field(["rev-parse", "--abbrev-ref", "HEAD"]),
+        "ci_run_id": os.getenv("GITHUB_RUN_ID", ""),
+        "ci_run_url": (
+            f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+            if os.getenv("GITHUB_REPOSITORY") and os.getenv("GITHUB_RUN_ID") else ""
+        ),
+    }
+
+    out_dir = Path(__file__).parent.parent / "results"
+    out_dir.mkdir(exist_ok=True)
+    (out_dir / "run.json").write_text(json.dumps(record, indent=2))
 
 
 def _env(key: str, default: str = "") -> str:

@@ -1,0 +1,89 @@
+name: Test and publish dashboard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: api/requirements.txt
+
+      - name: Install Python deps
+        working-directory: api
+        run: pip install -r requirements.txt
+
+      - name: Run pytest
+        id: pytest
+        working-directory: api
+        # Don't fail the workflow on test failures — we still want to publish
+        # the dashboard so the team can see *what* failed. We re-raise the
+        # failure at the end of the job after publishing.
+        continue-on-error: true
+        env:
+          STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
+          STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+          NEXT_APP_API_URL: ${{ secrets.NEXT_APP_API_URL }}
+          TEST_COURSE_ID: ${{ vars.TEST_COURSE_ID }}
+          TEST_COURSE_FEE: ${{ vars.TEST_COURSE_FEE }}
+          TEST_CARD_NUMBER: "4111111111111111"
+          TEST_CARD_EXP_MONTH: "12"
+          TEST_CARD_EXP_YEAR: "2034"
+          TEST_CARD_CVV: "123"
+          TEST_ZIP_CODE: "10001"
+        run: |
+          mkdir -p ../results
+          pytest --html=../results/report.html --self-contained-html --tb=short || true
+
+      - name: Upload pytest report (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report-${{ github.sha }}
+          path: results/
+
+      - name: Fetch existing dashboard history from gh-pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin gh-pages --depth=1 || echo "no gh-pages branch yet"
+          mkdir -p ./_history
+          git show origin/gh-pages:runs.jsonl > ./_history/runs.jsonl 2>/dev/null \
+            || echo "starting fresh history"
+
+      - name: Build dashboard
+        if: github.ref == 'refs/heads/main'
+        run: |
+          python scripts/build_dashboard.py \
+            --history ./_history/runs.jsonl \
+            --run-json results/run.json \
+            --report results/report.html \
+            --out ./dashboard
+
+      - name: Publish dashboard to gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dashboard
+          keep_files: true
+          commit_message: "dashboard: run ${{ github.sha }}"
+
+      - name: Re-raise test failures so the PR check fails
+        if: steps.pytest.outcome != 'success'
+        run: |
+          echo "::error::pytest failed - see artifact 'pytest-report-${{ github.sha }}' or the dashboard"
+          exit 1
