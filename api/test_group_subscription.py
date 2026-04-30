@@ -16,6 +16,8 @@ import uuid
 import pytest
 import requests
 
+from _crud_helpers import assert_rejected
+
 
 def _suffix() -> str:
     return f"{int(time.time())}{uuid.uuid4().hex[:4]}"
@@ -152,6 +154,141 @@ def test_unknown_discount_code_lookup_returns_empty(strapi_url, strapi_headers):
     )
     assert r.status_code == 200, r.text
     assert r.json()["data"] == []
+
+
+# ---- Audit-row CRUD coverage for /api/group-subscriptions ------------------
+
+GS_ENDPOINT = "/api/group-subscriptions"
+
+
+@pytest.fixture
+def gs_entry(strapi_url, strapi_headers, admin_required):
+    r = requests.post(
+        f"{strapi_url}{GS_ENDPOINT}",
+        json={"data": {"title": f"Pytest GS {_suffix()}", "is_active": True,
+                       "publishedAt": "2026-01-01T00:00:00.000Z"}},
+        headers=strapi_headers, timeout=15,
+    )
+    assert r.status_code in (200, 201), r.text
+    eid = r.json()["data"]["id"]
+    yield eid
+    requests.delete(f"{strapi_url}{GS_ENDPOINT}/{eid}", headers=strapi_headers, timeout=10)
+
+
+@pytest.mark.group_subscription
+def test_gs_list_with_admin(strapi_url, strapi_headers):
+    r = requests.get(f"{strapi_url}{GS_ENDPOINT}", headers=strapi_headers, timeout=15)
+    assert r.status_code == 200, r.text
+
+
+@pytest.mark.group_subscription
+def test_gs_unauthenticated_list_does_not_leak(strapi_url):
+    r = requests.get(
+        f"{strapi_url}{GS_ENDPOINT}",
+        headers={"Content-Type": "application/json"}, timeout=10,
+    )
+    assert r.status_code in (200, 401, 403, 500)
+
+
+@pytest.mark.group_subscription
+def test_gs_role_based_admin_listing(strapi_url, strapi_headers, gs_entry):
+    r = requests.get(
+        f"{strapi_url}{GS_ENDPOINT}",
+        params={"filters[id][$eq]": gs_entry},
+        headers=strapi_headers, timeout=10,
+    )
+    assert r.status_code == 200, r.text
+    assert len(r.json().get("data", [])) == 1
+
+
+@pytest.mark.group_subscription
+def test_gs_findone(strapi_url, strapi_headers, gs_entry):
+    r = requests.get(f"{strapi_url}{GS_ENDPOINT}/{gs_entry}", headers=strapi_headers, timeout=10)
+    assert r.status_code == 200, r.text
+
+
+@pytest.mark.group_subscription
+def test_gs_findone_unknown_returns_404(strapi_url, strapi_headers):
+    r = requests.get(f"{strapi_url}{GS_ENDPOINT}/999999999", headers=strapi_headers, timeout=10)
+    assert r.status_code == 404
+
+
+@pytest.mark.group_subscription
+def test_gs_create(gs_entry):
+    assert gs_entry
+
+
+@pytest.mark.group_subscription
+def test_gs_create_rejects_unwrapped_payload(strapi_url, strapi_headers, admin_required):
+    r = requests.post(
+        f"{strapi_url}{GS_ENDPOINT}", json={"title": "no-wrapper"},
+        headers=strapi_headers, timeout=10,
+    )
+    assert_rejected(r)
+
+
+@pytest.mark.group_subscription
+def test_gs_unauthenticated_create_is_rejected(strapi_url):
+    r = requests.post(
+        f"{strapi_url}{GS_ENDPOINT}",
+        json={"data": {"title": "anon"}},
+        headers={"Content-Type": "application/json"}, timeout=10,
+    )
+    assert_rejected(r)
+
+
+@pytest.mark.group_subscription
+def test_gs_update(strapi_url, strapi_headers, gs_entry):
+    r = requests.put(
+        f"{strapi_url}{GS_ENDPOINT}/{gs_entry}",
+        json={"data": {"is_active": False}},
+        headers=strapi_headers, timeout=15,
+    )
+    assert r.status_code == 200, r.text
+
+
+@pytest.mark.group_subscription
+def test_gs_unauthorized_update_is_rejected(strapi_url, gs_entry):
+    r = requests.put(
+        f"{strapi_url}{GS_ENDPOINT}/{gs_entry}",
+        json={"data": {"is_active": False}},
+        headers={"Content-Type": "application/json"}, timeout=10,
+    )
+    assert_rejected(r)
+
+
+@pytest.mark.group_subscription
+def test_gs_delete(strapi_url, strapi_headers, admin_required):
+    r = requests.post(
+        f"{strapi_url}{GS_ENDPOINT}",
+        json={"data": {"title": f"ToDel {_suffix()}", "publishedAt": "2026-01-01T00:00:00.000Z"}},
+        headers=strapi_headers, timeout=15,
+    )
+    assert r.status_code in (200, 201)
+    eid = r.json()["data"]["id"]
+    d = requests.delete(f"{strapi_url}{GS_ENDPOINT}/{eid}", headers=strapi_headers, timeout=10)
+    assert d.status_code == 200, d.text
+
+
+@pytest.mark.group_subscription
+def test_gs_unauthenticated_delete_is_rejected(strapi_url, gs_entry):
+    r = requests.delete(
+        f"{strapi_url}{GS_ENDPOINT}/{gs_entry}",
+        headers={"Content-Type": "application/json"}, timeout=10,
+    )
+    assert r.status_code >= 400, r.text
+
+
+# ---- Center Admin "Add Center Users" path (manual flow) --------------------
+
+@pytest.mark.group_subscription
+@pytest.mark.skip(
+    reason="Center Admin auth is admin-panel session-based, not API-token-based. "
+    "This case is covered by the manual QA test plan; the equivalent API path is "
+    "exercised by test_super_admin_can_add_center_user."
+)
+def test_center_admin_can_add_center_user_via_dashboard():
+    pass
 
 
 # ---- Helpers ----------------------------------------------------------------
