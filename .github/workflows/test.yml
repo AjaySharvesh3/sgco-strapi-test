@@ -1,4 +1,4 @@
-name: Test and publish dashboard
+name: Test
 
 on:
   push:
@@ -7,7 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  checks: write          # for the "pytest results" check run
+  pull-requests: write   # for the PR summary comment
 
 jobs:
   test:
@@ -29,9 +31,9 @@ jobs:
       - name: Run pytest
         id: pytest
         working-directory: api
-        # Don't fail the workflow on test failures — we still want to publish
-        # the dashboard so the team can see *what* failed. We re-raise the
-        # failure at the end of the job after publishing.
+        # Don't fail the workflow at this step — we want the publish step to
+        # always run so failures are visible inline on the PR. The job
+        # re-raises the failure at the end after the report is published.
         continue-on-error: true
         env:
           STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
@@ -46,44 +48,33 @@ jobs:
           TEST_ZIP_CODE: "10001"
         run: |
           mkdir -p ../results
-          pytest --html=../results/report.html --self-contained-html --tb=short || true
+          pytest \
+            --junitxml=../results/junit.xml \
+            --html=../results/report.html --self-contained-html \
+            --tb=short || true
 
-      - name: Upload pytest report (artifact)
+      - name: Publish pytest results on the PR
+        if: always()
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: results/junit.xml
+          check_name: pytest results
+          fail_on_failure: true
+          require_tests: true
+          detailed_summary: true
+          include_passed: false   # only annotate failures (signal not noise)
+          annotate_only: false
+
+      - name: Upload pytest report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pytest-report-${{ github.sha }}
           path: results/
+          retention-days: 30
 
-      - name: Fetch existing dashboard history from gh-pages
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git fetch origin gh-pages --depth=1 || echo "no gh-pages branch yet"
-          mkdir -p ./_history
-          git show origin/gh-pages:runs.jsonl > ./_history/runs.jsonl 2>/dev/null \
-            || echo "starting fresh history"
-
-      - name: Build dashboard
-        if: github.ref == 'refs/heads/main'
-        run: |
-          python scripts/build_dashboard.py \
-            --history ./_history/runs.jsonl \
-            --run-json results/run.json \
-            --report results/report.html \
-            --out ./dashboard
-
-      - name: Publish dashboard to gh-pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./dashboard
-          keep_files: true
-          commit_message: "dashboard: run ${{ github.sha }}"
-
-      - name: Re-raise test failures so the PR check fails
+      - name: Re-raise test failure on the workflow itself
         if: steps.pytest.outcome != 'success'
         run: |
-          echo "::error::pytest failed - see artifact 'pytest-report-${{ github.sha }}' or the dashboard"
+          echo "::error::pytest failed - see annotations above or download artifact 'pytest-report-${{ github.sha }}'"
           exit 1

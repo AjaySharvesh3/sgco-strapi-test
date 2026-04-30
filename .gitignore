@@ -28,6 +28,5 @@ Thumbs.db
 *.swp
 *.swo
 
-# Per-run artifacts (CI publishes these to gh-pages; locally they're transient)
+# Per-run artifacts (uploaded as workflow artifacts in CI; transient locally)
 results/
-dashboard/
